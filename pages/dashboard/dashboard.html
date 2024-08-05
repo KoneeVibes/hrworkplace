@@ -5,29 +5,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../../index.css">
     <link rel="stylesheet" href="dashboard.css">
 </head>
 
 <body>
-    <div class="top-nav">
-        <div>
-            <img src="../../assets/logo.svg" />
-        </div>
-        <input type="text" placeholder="Search Anything" class="search-bar">
-        <div class="self-service">
-            <img class="filter-icon" src="../../assets/filter-icon.png" alt="filter-icon">
-            <p>Self Service</p>
-            <img class="bell-icon" src="../../assets/bell.png" alt="bell-icon">
-        </div>
-    </div>
     <div class="column side-nav">
-        <div class="column">
-            <img src="../../assets/client_logo.svg" />
+        <div class="column logos">
+            <div>
+                <img src="../../assets/logo.svg" />
+            </div>
+            <div class="client-logo">
+                <img src="../../assets/client_logo.svg" />
+            </div>
         </div>
         <div class="column side-nav-items"></div>
     </div>
-    <div class="main-area"></div>
+    <div class="row top-nav">
+        <div class="search-bar row">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Search Anything">
+        </div>
+        <div class="self-service">
+            <i class="fa-solid fa-arrow-down-wide-short"></i>
+            <span>Self Service</span>
+            <i class="fa-regular fa-bell"></i>
+        </div>
+    </div>
+    <div class="main-area">Main Area</div>
 
     <script src="dashboard.js"></script>
 </body>
