@@ -1,0 +1,28 @@
+html {
+    --flex-gap: 2rem;
+    --top-nav-height: 3.15rem;
+    --side-nav-width: 11.25rem;
+    --basic-padding: 2rem;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    /* outline: 1px solid red; */
+}
+
+.row {
+    display: flex;
+    gap: var(--flex-gap);
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: var(--flex-gap);
+}
+
+/* Typography styles */
