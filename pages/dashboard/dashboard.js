@@ -22,7 +22,7 @@ sideNavItemsColumn.innerHTML = sideNavItems.map((sideNavItem, key) => {
         <div class="row side-nav-item" key="${key}">
             <i class="${sideNavItem.icon} nav-link-item-icon"></i>
             <span class="nav-link-item">${sideNavItem.navItem}</span>
-            <i class="fa-solid fa-greater-than drop-down"></i>
+            <i class="fa-solid fa-greater-than drop-down nav-link-item-dropdown"></i>
         </div>
     `;
 }).join("");

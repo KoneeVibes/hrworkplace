@@ -1,4 +1,10 @@
-@media screen and (min-width: 0px) {}
+/* @media screen and (min-width: 0px) and (max-width: 768px) {
+
+    .nav-link-item,
+    .nav-link-item-dropdown {
+        display: none;
+    }
+} */
 
 /* Side Nav Styles Below */
 .side-nav {
