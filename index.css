@@ -49,8 +49,6 @@ h3{
     font-size: 14px;
     font-weight: 600;
     line-height: 21px;
-    text-align: left;
-
 }
 
 p {
@@ -65,4 +63,11 @@ span{
     font-size: 14px;
     font-weight: 500;
     line-height: 20px;
+}
+
+input{
+    font-family: Inter;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 18.15px;
 }
