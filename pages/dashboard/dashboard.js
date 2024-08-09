@@ -22,7 +22,54 @@ sideNavItemsColumn.innerHTML = sideNavItems.map((sideNavItem, key) => {
         <div class="row side-nav-item" key="${key}">
             <i class="${sideNavItem.icon} nav-link-item-icon"></i>
             <span class="nav-link-item">${sideNavItem.navItem}</span>
-            <i class="fa-solid fa-greater-than drop-down"></i>
+            <i class="fa-solid fa-greater-than drop-down nav-link-item-dropdown"></i>
         </div>
     `;
 }).join("");
+
+const minSideNavWidth = "4.25rem";
+const maxSideNavWidth = "16rem";
+const sideNav = document.querySelector(".side-nav");
+const mainArea = document.querySelector(".main-area");
+const collapsibleNavItems = document.querySelectorAll(".nav-link-item, .nav-link-item-dropdown");
+
+const handleMouseEnter = () => {
+    const screenSize = window.innerWidth;
+    collapsibleNavItems.forEach((collapseNavItem) => collapseNavItem.classList.remove("hide-element"));
+    if (screenSize <= 768) {
+        mainArea.style.display = "none";
+        document.documentElement.style.setProperty('--side-nav-width', `-webkit-fill-available`);
+    } else if (screenSize <= 1024) {
+        document.documentElement.style.setProperty('--side-nav-width', maxSideNavWidth);
+    }
+};
+
+const handleMouseLeave = () => {
+    mainArea.style.display = "block";
+    document.documentElement.style.setProperty('--side-nav-width', minSideNavWidth);
+    collapsibleNavItems.forEach((collapseNavItem) => collapseNavItem.classList.add("hide-element"));
+};
+
+const collapseNavItems = () => {
+    const screenSize = window.innerWidth;
+    //BELOW: Remove existing event listeners to prevent stacking
+    sideNav.removeEventListener("mouseover", handleMouseEnter);
+    sideNav.removeEventListener("mouseleave", handleMouseLeave);
+    if (screenSize <= 1024) {
+        document.documentElement.style.setProperty('--side-nav-width', minSideNavWidth);
+        collapsibleNavItems.forEach((collapseNavItem) => collapseNavItem.classList.add("hide-element"));
+        // BELOW: Attach event listeners for smaller screens
+        sideNav.addEventListener("mouseover", handleMouseEnter);
+        sideNav.addEventListener("mouseleave", handleMouseLeave);
+    } else {
+        document.documentElement.style.setProperty('--side-nav-width', maxSideNavWidth);
+        collapsibleNavItems.forEach((collapseNavItem) => collapseNavItem.classList.remove("hide-element"));
+        // BELOW: Ensure event listeners are not attached if not needed
+        sideNav.removeEventListener("mouseover", handleMouseEnter);
+        sideNav.removeEventListener("mouseleave", handleMouseLeave);
+    }
+};
+
+//BELOW: Initialize state on page load and window resize
+window.addEventListener("load", collapseNavItems);
+window.addEventListener("resize", collapseNavItems);

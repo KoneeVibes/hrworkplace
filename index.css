@@ -1,31 +1,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
-html {
-    --flex-gap: 2rem;
-    --top-nav-height: 3.15rem;
-    --side-nav-width: 16rem;
-    --basic-padding: 2rem;
+@media screen and (min-width: 0px) {
+    html {
+        --top-nav-height: 3.15rem;
+        --side-nav-width: 16rem;
+        /* --full */
+        --flex-gap: 2rem;
+        --basic-padding: 2rem;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .row {
+        display: flex;
+        gap: var(--flex-gap);
+    }
+
+    .column {
+        display: flex;
+        flex-direction: column;
+        gap: var(--flex-gap);
+    }
+
+    .hide-element {
+        display: none;
+    }
+
+    * {
+        /* outline: 1px solid red; */
+    }
 }
 
-body {
-    margin: 0;
-    padding: 0;
-}
-
-* {
-    /* outline: 1px solid red; */
-}
-
-.row {
-    display: flex;
-    gap: var(--flex-gap);
-}
-
-.column {
-    display: flex;
-    flex-direction: column;
-    gap: var(--flex-gap);
-}
 
 /* Typography styles */
 
