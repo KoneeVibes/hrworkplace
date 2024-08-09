@@ -3,7 +3,7 @@ body {
     padding: 0;
 }
 
-.logo{
+.logo {
     margin-bottom: 3rem;
 }
 
@@ -126,7 +126,7 @@ button {
         margin: 0 auto;
         margin-bottom: 2rem;
     }
-    
+
     form {
         display: flex;
         flex-direction: column;
@@ -135,39 +135,38 @@ button {
         gap: 1rem;
         box-sizing: border-box;
         margin-bottom: 5rem;
-    
+
     }
 
     input[type="email"],
-input[type="password"] {
-    border-radius: 70px;
-    padding: 10px;
-    border: 1px;
-    width: 100%;
-    color: #ededed;
-    box-sizing: border-box;
-}
+    input[type="password"] {
+        border-radius: 70px;
+        padding: 10px;
+        border: 1px;
+        width: 100%;
+        color: #ededed;
+        box-sizing: border-box;
+    }
 
-input[type="checkbox"] {
-    background-color: #656e74;
-    cursor: pointer;
-}
+    input[type="checkbox"] {
+        background-color: #656e74;
+        cursor: pointer;
+    }
 
-a {
-    color: #217834;
-    text-decoration: none;
-    margin-bottom: 20px;
-    align-self: flex-end;
-}
+    a {
+        color: #217834;
+        text-decoration: none;
+        margin-bottom: 20px;
+        align-self: flex-end;
+    }
 
-button {
-    padding: 10px;
-    background-color: #28a745;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
+    button {
+        padding: 10px;
+        background-color: #28a745;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
 
 }
-
