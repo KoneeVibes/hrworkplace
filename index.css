@@ -1,8 +1,7 @@
 @media screen and (min-width: 0px) {
     html {
-        --top-nav-height: 3.15rem;
+        --top-nav-height: 7.275rem;
         --side-nav-width: 16rem;
-        /* --full */
         --flex-gap: 2rem;
         --basic-padding: 2rem;
     }

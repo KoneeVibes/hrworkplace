@@ -17,59 +17,73 @@ const sideNavItems = [
     { navItem: "Exit", icon: "fa-solid fa-circle-xmark" },
 ];
 
-sideNavItemsColumn.innerHTML = sideNavItems.map((sideNavItem, key) => {
-    return `
-        <div class="row side-nav-item" key="${key}">
+if (sideNavItemsColumn) {
+    sideNavItemsColumn.innerHTML = sideNavItems.map((sideNavItem, index) => `
+        <div class="row side-nav-item" key="${index}">
             <i class="${sideNavItem.icon} nav-link-item-icon"></i>
             <span class="nav-link-item">${sideNavItem.navItem}</span>
             <i class="fa-solid fa-greater-than drop-down nav-link-item-dropdown"></i>
         </div>
-    `;
-}).join("");
+    `).join("");
+}
 
-const minSideNavWidth = "4.25rem";
-const maxSideNavWidth = "16rem";
 const sideNav = document.querySelector(".side-nav");
 const mainArea = document.querySelector(".main-area");
 const collapsibleNavItems = document.querySelectorAll(".nav-link-item, .nav-link-item-dropdown");
+const hamburgerIcon = document.querySelector('.hamburger-icon');
+const closeIcon = document.querySelector('.close-icon');
 
-const handleMouseEnter = () => {
-    const screenSize = window.innerWidth;
-    collapsibleNavItems.forEach((collapseNavItem) => collapseNavItem.classList.remove("hide-element"));
-    if (screenSize <= 768) {
-        mainArea.style.display = "none";
-        document.documentElement.style.setProperty('--side-nav-width', `-webkit-fill-available`);
-    } else if (screenSize <= 1024) {
-        document.documentElement.style.setProperty('--side-nav-width', maxSideNavWidth);
+function handleHamburgerClick() {
+    if (sideNav && mainArea) {
+        const isHidden = sideNav.classList.toggle("hide-element");
+        mainArea.style.display = isHidden ? "block" : "none";
+        if (hamburgerIcon && closeIcon) {
+            hamburgerIcon.classList.toggle('show');
+            closeIcon.classList.toggle('show');
+        }
     }
-};
+}
 
-const handleMouseLeave = () => {
-    mainArea.style.display = "block";
-    document.documentElement.style.setProperty('--side-nav-width', minSideNavWidth);
-    collapsibleNavItems.forEach((collapseNavItem) => collapseNavItem.classList.add("hide-element"));
-};
+function handleMouseOver(maxSideNavWidth) {
+    if (collapsibleNavItems && mainArea) {
+        const screenSize = window.innerWidth;
+        collapsibleNavItems.forEach(item => item.classList.remove("hide-element"));
+        if (screenSize < 768) {
+            mainArea.style.opacity = 0.1;
+            document.documentElement.style.setProperty('--side-nav-width', maxSideNavWidth);
+        } else if (screenSize <= 1024) {
+            document.documentElement.style.setProperty('--side-nav-width', maxSideNavWidth);
+        }
+    }
+}
 
-const collapseNavItems = () => {
-    const screenSize = window.innerWidth;
-    //BELOW: Remove existing event listeners to prevent stacking
-    sideNav.removeEventListener("mouseover", handleMouseEnter);
-    sideNav.removeEventListener("mouseleave", handleMouseLeave);
-    if (screenSize <= 1024) {
+function handleMouseLeave(minSideNavWidth) {
+    if (mainArea && collapsibleNavItems) {
+        mainArea.style.opacity = 1;
         document.documentElement.style.setProperty('--side-nav-width', minSideNavWidth);
-        collapsibleNavItems.forEach((collapseNavItem) => collapseNavItem.classList.add("hide-element"));
-        // BELOW: Attach event listeners for smaller screens
-        sideNav.addEventListener("mouseover", handleMouseEnter);
-        sideNav.addEventListener("mouseleave", handleMouseLeave);
-    } else {
-        document.documentElement.style.setProperty('--side-nav-width', maxSideNavWidth);
-        collapsibleNavItems.forEach((collapseNavItem) => collapseNavItem.classList.remove("hide-element"));
-        // BELOW: Ensure event listeners are not attached if not needed
-        sideNav.removeEventListener("mouseover", handleMouseEnter);
-        sideNav.removeEventListener("mouseleave", handleMouseLeave);
+        collapsibleNavItems.forEach(item => item.classList.add("hide-element"));
     }
-};
+}
 
-//BELOW: Initialize state on page load and window resize
+function collapseNavItems() {
+    const screenSize = window.innerWidth;
+    const minSideNavWidth = "4.25rem";
+    const maxSideNavWidth = screenSize < 425 ? "-webkit-fill-available" : "16rem";
+    if (sideNav && collapsibleNavItems) {
+        sideNav.removeEventListener("mouseover", handleMouseOver);
+        sideNav.removeEventListener("mouseleave", handleMouseLeave);
+
+        if (425 < screenSize && screenSize <= 1024) {
+            document.documentElement.style.setProperty('--side-nav-width', minSideNavWidth);
+            collapsibleNavItems.forEach(item => item.classList.add("hide-element"));
+            sideNav.addEventListener("mouseover", () => handleMouseOver(maxSideNavWidth));
+            sideNav.addEventListener("mouseleave", () => handleMouseLeave(minSideNavWidth));
+        } else {
+            document.documentElement.style.setProperty('--side-nav-width', maxSideNavWidth);
+            collapsibleNavItems.forEach(item => item.classList.remove("hide-element"));
+        }
+    }
+}
+
 window.addEventListener("load", collapseNavItems);
 window.addEventListener("resize", collapseNavItems);

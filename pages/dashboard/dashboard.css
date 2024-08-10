@@ -74,13 +74,15 @@
         position: absolute;
         left: 0;
         width: -webkit-fill-available;
+        flex-wrap: wrap;
     }
 
     .search-bar {
-        width: 30%;
+        width: 100%;
         gap: calc(var(--flex-gap)/4);
         align-items: center;
         color: #D0D5DD;
+        order: 3;
     }
 
     .search-bar input {
@@ -89,7 +91,8 @@
         outline: none;
         width: 100%;
         color: #667085;
-        background-color: transparent;
+        background-color: #F9FAFB;
+        border-radius: 0.5rem;
         padding: calc(var(--basic-padding)/4);
     }
 
@@ -100,6 +103,48 @@
         cursor: pointer;
         font-size: 1rem;
         color: #555;
+        order: 2;
+    }
+
+    .top-nav>.app-logo {
+        order: 1;
+    }
+
+    .hamburger-icon,
+    .close-icon {
+        display: none;
+    }
+
+    .hamburger-icon.show,
+    .close-icon.show {
+        display: inline;
+    }
+
+    /* Main area styles below */
+    .main-area {
+        position: absolute;
+        top: calc(var(--top-nav-height) + calc(var(--basic-padding) + 2px));
+        width: -webkit-fill-available;
+        padding: var(--basic-padding);
+    }
+
+    .jumbotron>img {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 425px) {
+    .side-nav {
+        display: block;
+    }
+
+    .hamburger-icon,
+    .close-icon {
+        display: none !important;
+    }
+
+    .main-area {
+        left: calc(var(--side-nav-width) + calc(var(--basic-padding)));
     }
 }
 
@@ -124,15 +169,15 @@
 
     .top-nav>.app-logo {
         display: none;
+        order: 1;
     }
-}
 
+    .search-bar {
+        order: 2;
+        width: 30%;
+    }
 
-/* Main area styles below */
-.main-area {
-    position: absolute;
-    left: calc(var(--side-nav-width) + calc(var(--basic-padding)));
-    top: calc(var(--top-nav-height) + calc(var(--basic-padding) + 2px));
-    width: -webkit-fill-available;
-    padding: var(--basic-padding);
+    .self-service {
+        order: 3;
+    }
 }

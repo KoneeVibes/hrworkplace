@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <div class="column side-nav">
+    <div class="column side-nav hide-element">
         <div class="column logos">
             <div class="app-logo">
                 <img src="../../assets/logo.svg" />
@@ -37,14 +37,23 @@
             <i class="fa-solid fa-arrow-down-wide-short"></i>
             <span>Self Service</span>
             <i class="fa-regular fa-bell"></i>
+            <i class="fa-solid fa-bars hamburger-icon show" onclick="handleHamburgerClick()"></i>
+            <i class="fa-solid fa-circle-xmark close-icon" onclick="handleHamburgerClick()"></i>
         </div>
     </div>
     <div class="main-area">
         <div class="jumbotron">
-
+            <img src="../../assets/jumbotron.svg" />
         </div>
-        <div class="news-marquee">
-
+        <div class="row news-marquee">
+            <div>
+                <span>News & Events</span>
+            </div>
+            <div>
+            </div>
+            <div>
+                <span>Edit controls</span>
+            </div>
         </div>
     </div>
 
