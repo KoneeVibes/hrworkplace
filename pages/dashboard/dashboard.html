@@ -16,11 +16,11 @@
     <div class="column side-nav hide-element">
         <div class="column logos">
             <div class="app-logo">
-                <img src="../../assets/logo.svg" />
+                <img src="../../assets/logo.svg" class="logo-img" />
             </div>
-            <div class="client-logo">
-                <!--client-logo should be broken down into it's favicon and text -->
+            <div class="row client-logo">
                 <img src="../../assets/client_logo.svg" />
+                <span class="side-nav-link-item">Interswitch</span>
             </div>
         </div>
         <div class="column side-nav-items"></div>
@@ -34,9 +34,11 @@
             <input type="text" placeholder="Search Anything">
         </div>
         <div class="self-service">
-            <i class="fa-solid fa-arrow-down-wide-short"></i>
-            <span>Self Service</span>
-            <i class="fa-solid fa-greater-than drop-down"></i>
+            <!-- <i class="fa-solid fa-arrow-down-wide-short"></i> -->
+            <div class="row self-service-button">
+                <span>Self Service</span>
+                <i class="fa-solid fa-greater-than"></i>
+            </div>
             <i class="fa-regular fa-bell"></i>
             <i class="fa-solid fa-bars hamburger-icon show" onclick="handleHamburgerClick()"></i>
             <i class="fa-solid fa-circle-xmark close-icon" onclick="handleHamburgerClick()"></i>
@@ -46,7 +48,7 @@
         <div class="jumbotron">
             <img src="../../assets/jumbotron.svg" />
         </div>
-        <div class="row news-marquee">
+        <!-- <div class="row news-marquee">
             <div>
                 <span>News & Events</span>
             </div>
@@ -55,7 +57,7 @@
             <div>
                 <span>Edit controls</span>
             </div>
-        </div>
+        </div> -->
     </div>
 
     <script src="dashboard.js"></script>
