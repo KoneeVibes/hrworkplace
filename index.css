@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
 @media screen and (min-width: 0px) {
     html {
         --top-nav-height: 7.275rem;
@@ -33,3 +35,46 @@
 
 
 /* Typography styles */
+
+h1{
+    font-family: Inter;
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 37px;
+}
+
+ h2 {
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 18px;
+    letter-spacing: -0.02em;
+}
+
+h3{
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 21px;
+}
+
+p {
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 20px;    
+}
+
+span{
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+}
+
+input{
+    font-family: Inter;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 18.15px;
+}
