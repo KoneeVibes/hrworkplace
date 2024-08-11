@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../../index.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <section class="column side-nav hide-element">
+        <div class="column logos">
+            <div class="app-logo">
+                <img src="../../assets/logo.svg" class="logo-img" />
+            </div>
+            <div class="row client-logo">
+                <img src="../../assets/client_logo.svg" />
+                <span class="side-nav-link-item">Interswitch</span>
+            </div>
+        </div>
+        <div class="column side-nav-items"></div>
+    </section>
+    <section class="row top-nav">
+        <div class="app-logo">
+            <img src="../../assets/logo.svg" />
+        </div>
+        <div class="search-bar row">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Search Anything">
+        </div>
+        <div class="self-service">
+            <!-- <i class="fa-solid fa-arrow-down-wide-short"></i> -->
+            <div class="row self-service-button">
+                <span>Self Service</span>
+                <i class="fa-solid fa-greater-than"></i>
+            </div>
+            <i class="fa-regular fa-bell"></i>
+            <i class="fa-solid fa-bars hamburger-icon show" onclick="handleHamburgerClick()"></i>
+            <i class="fa-solid fa-circle-xmark close-icon" onclick="handleHamburgerClick()"></i>
+        </div>
+    </section>
+    <section class="main-area">
+        <div class="jumbotron">
+            <img src="../../assets/jumbotron.svg" />
+        </div>
+        <div class="row news-marquee">
+            <div class="title">
+                <span>News & Events</span>
+            </div>
+            <div class="scrolling-news">
+
+            </div>
+            <div class="controls">
+                <span>Edit controls</span>
+            </div>
+        </div>
+        <div class="data-area">
+            <div class="row metrics-area">
+                <div class="metric employee-count">
+                    <div class="row title">
+                        <i class="fa-solid fa-user-group title-icon"></i>
+                        <h2>Active Employee Count</h2>
+                    </div>
+                    <div class="count">
+                        <p class="count-value">100</p>
+                    </div>
+                </div>
+                <div class="metric pending-task">
+                    <div class="row title">
+                        <i class="fa-solid fa-clock title-icon pending-task-icon"></i>
+                        <h2>Pending task</h2>
+                        <i class="fa-solid fa-circle-exclamation warning-icon"></i>
+                    </div>
+                    <div class="column count">
+                        <p class="count-value">35</p>
+                    </div>
+                    <div>
+                        <p class="range">Total number of task from February 15 - October 12 2024</p>
+                    </div>
+                </div>
+                <div class="column metric profile-completion">
+                    <div class="row title">
+                        <i class="fa-solid fa-user title-icon"></i>
+                        <h2>Profile completion</h2>
+                    </div>
+                    <div class="chart"></div>
+                    <div class="row profile-completion-count">
+                        <div class="count">
+                            <span class="count-value">50%</span>
+                        </div>
+                        <div class="update-profile">
+                            <span><a href="">Update profile</a></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="metric leave-count">
+                    <div class="chart"></div>
+                    <div class="column count">
+                        <div class="row active-leave">
+                            <i class="fa-solid fa-seedling title-icon active-leave-icon"></i>
+                            <div class="column">
+                                <h2>Employee on leave</h2>
+                                <p><span class="count-value">25</span> Employees</p>
+                            </div>
+                        </div>
+                        <div class="row upcoming-leave">
+                            <i class="fa-solid fa-seedling title-icon upcoming-leave-icon"></i>
+                            <div class="column">
+                                <h2>Upcoming leave</h2>
+                                <p class="count-value">122</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="events-area">
+                <div class="upcoming-birthdays"></div>
+                <div class="upcoming-events"></div>
+            </div>
+        </div>
+    </section>
+
+    <script src="./layout.js"></script>
+</body>
+
+</html>
