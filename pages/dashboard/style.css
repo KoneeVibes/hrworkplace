@@ -69,8 +69,10 @@
         border-bottom: 1px solid #ddd;
         height: var(--top-nav-height);
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        position: absolute;
+        position: fixed;
+        top: 0;
         left: 0;
+        z-index: 1;
         width: -webkit-fill-available;
         flex-wrap: wrap;
     }
@@ -136,6 +138,170 @@
     .jumbotron>img {
         width: 100%;
     }
+
+    .news-marquee {
+        justify-content: space-between;
+        overflow: hidden;
+    }
+
+    .news-marquee>.title {
+        flex: 25%;
+        overflow: hidden;
+    }
+
+    .news-marquee>.scrolling-news {
+        flex: 50%;
+        overflow: hidden;
+    }
+
+    .news-marquee>.controls {
+        flex: 25%;
+        overflow: hidden;
+        text-align: right;
+    }
+
+    .news-marquee span {
+        display: inline-block;
+        width: 100%;
+    }
+
+    .data-area {
+        margin: var(--basic-padding) 0;
+        overflow: hidden;
+    }
+
+    .metrics-area {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .metric {
+        flex: 35%;
+        border: 1px solid #F1F5F9;
+        border-radius: 0.625rem;
+        padding: var(--basic-padding);
+        overflow: hidden;
+    }
+
+    .metric .title,
+    .metric .active-leave,
+    .metric .upcoming-leave {
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .leave-count {
+        display: flex;
+        flex-direction: column;
+        gap: var(--flex-gap);
+    }
+
+    .title-icon {
+        padding: calc(var(--basic-padding)/2);
+        border-radius: 0.25rem;
+        color: #217834;
+        background-color: #E2FFE9;
+        overflow: hidden;
+    }
+
+    .pending-task-icon {
+        color: #DC6803;
+        background-color: #FEF0C7;
+    }
+
+    .warning-icon {
+        overflow: hidden;
+    }
+
+    .active-leave-icon {
+        color: #E2FFE9;
+        background-color: #217834;
+    }
+
+    .active-leave-icon,
+    .upcoming-leave-icon {
+        border-radius: 50%;
+    }
+
+    .employee-count .count-value,
+    .pending-task .count-value {
+        font-size: 2.2rem;
+        font-weight: 700;
+        line-height: normal;
+    }
+
+    .pending-task .range {
+        color: #667085;
+    }
+
+    .profile-completion .count-value {
+        font-size: 1.125rem;
+        font-weight: 600;
+        line-height: normal;
+    }
+
+    .update-profile a {
+        text-decoration: none;
+        color: #0041A9;
+        font-weight: 400;
+        font-size: 0.75rem;
+    }
+
+    .profile-completion-count {
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .profile-completion-count>.count,
+    .profile-completion-count>.update-profile {
+        flex: 0.5;
+        overflow: hidden;
+    }
+
+    .profile-completion-count>.count span {
+        display: inline-block;
+        width: 100%;
+    }
+
+    .profile-completion-count>.update-profile span {
+        display: inline-block;
+        width: 100%;
+        text-align: right;
+    }
+
+    .active-leave>.column,
+    .upcoming-leave>.column {
+        gap: 0;
+        overflow: hidden;
+    }
+
+    .active-leave>.column h2,
+    .active-leave>.column p,
+    .upcoming-leave>.column h2,
+    .upcoming-leave>.column p {
+        margin-block: 0;
+    }
+
+    .active-leave>.column h2,
+    .upcoming-leave>.column h2 {
+        color: #8A929F;
+    }
+
+    .active-leave>.column .count-value,
+    .upcoming-leave>.column p {
+        font-size: 0.875rem;
+        font-weight: 700;
+        line-height: normal;
+        color: #000000;
+    }
+
+    .active-leave>.column p {
+        color: #8A929F;
+        ;
+        font-size: 0.875rem;
+        font-weight: 700;
+        line-height: normal;
+    }
 }
 
 @media screen and (min-width: 0px) and (max-width: 220px) {
@@ -191,5 +357,9 @@
 
     .self-service {
         order: 3;
+    }
+
+    .leave-count {
+        flex-direction: row;
     }
 }
