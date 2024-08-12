@@ -59,7 +59,7 @@
                 <span>Edit controls</span>
             </div>
         </div>
-        <div class="data-area">
+        <div class="column data-area">
             <div class="row metrics-area">
                 <div class="metric employee-count">
                     <div class="row title">
@@ -118,14 +118,30 @@
                     </div>
                 </div>
             </div>
-            <div class="events-area">
-                <div class="upcoming-birthdays"></div>
-                <div class="upcoming-events"></div>
+            <div class="row events-area">
+                <div class="metric upcoming-birthdays">
+                    <div class="row title">
+                        <i class="fa-solid fa-cake-candles title-icon upcoming-birthdays-icon"></i>
+                        <h2>Upcoming birthdays</h2>
+                    </div>
+                    <div class="birthdays"></div>
+                </div>
+                <div class="metric upcoming-events">
+                    <div class="row title">
+                        <i class="fa-solid fa-calendar-day title-icon"></i>
+                        <h2>Upcoming events</h2>
+                    </div>
+                    <div class="events"></div>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- Local scripts -->
     <script src="./layout.js"></script>
+    <script src="./script.js"></script>
+    <!-- External dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 
 </html>

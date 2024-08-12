@@ -170,7 +170,8 @@
         overflow: hidden;
     }
 
-    .metrics-area {
+    .metrics-area,
+    .events-area {
         flex-wrap: wrap;
         justify-content: space-between;
     }
@@ -221,6 +222,11 @@
     .active-leave-icon,
     .upcoming-leave-icon {
         border-radius: 50%;
+    }
+
+    .upcoming-birthdays-icon {
+        color: #FF2976;
+        background-color: #FFECF0;
     }
 
     .employee-count .count-value,

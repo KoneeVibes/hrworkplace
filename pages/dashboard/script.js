@@ -1,1 +1,1 @@
-// This is the file to contain every api consumption and data update to the dashboard
+// This is the file to contain every function to dynamically update the dashboard.
