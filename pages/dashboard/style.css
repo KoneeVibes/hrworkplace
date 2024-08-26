@@ -20,7 +20,7 @@
         padding: calc(var(--basic-padding)/2);
     }
 
-    .side-nav-item:hover {
+    .side-nav-item:hover > .side-nav-link{
         background-color: #217834;
         border-radius: 0.375rem;
         color: #FFFFFF;
@@ -59,6 +59,30 @@
         border-radius: 0.375rem;
         align-items: center;
     }
+
+    
+    
+    .side-nav-item .side-nav-link {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+    }
+    
+    .side-nav-item:hover > .sub-items {
+        background-color: transparent;
+        color: inherit;
+    }
+    .sub-items {
+        padding-left: var(--basic-padding);
+        line-height: 2rem;
+    }
+
+    
+    .sub-items.hide {
+        display: none;
+    }
+    
 
     /* Top Nav Styles Below */
     .top-nav {
