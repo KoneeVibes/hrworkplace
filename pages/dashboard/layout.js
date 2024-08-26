@@ -32,7 +32,34 @@ const mainArea = document.querySelector(".main-area");
 const collapsibleNavItems = document.querySelectorAll(".side-nav-link-item, .side-nav-link-item-dropdown");
 const hamburgerIcon = document.querySelector('.hamburger-icon');
 const closeIcon = document.querySelector('.close-icon');
-const appLogo = document.querySelector(".logo-img")
+const appLogo = document.querySelector(".logo-img");
+const pendingTaskModal = document.querySelector(".pending-task-modal");
+const selfServiceModal = document.querySelector(".self-service-modal");
+const selfServiceItemsColumn = document.querySelector(".self-service-items")
+const selfServiceItems = [
+    { item: "My Employees" },
+    { item: "My Careers" },
+    { item: "My Travels" },
+    { item: "My Performance" },
+    { item: "My Discipline" },
+    { item: "My Benefit" },
+    { item: "My Loan" },
+    { item: "My Payroll" },
+    { item: "My Expenses " },
+    { item: "My Success Plan" },
+    { item: "My Medical Service" },
+    { item: "My Feedback" },
+    { item: "My Exit" },
+];
+
+if (selfServiceItemsColumn) {
+    selfServiceItemsColumn.innerHTML = selfServiceItems.map((selfServiceItem, index) => `
+        <div class="row side-nav-item" key="${index}">
+            <span class="side-nav-link-item">${selfServiceItem.item}</span>
+            <i class="fa-solid fa-greater-than drop-down side-nav-link-item-dropdown"></i>
+        </div>
+    `).join("");
+}
 
 function handleHamburgerClick() {
     if (sideNav && mainArea) {
@@ -104,5 +131,33 @@ function collapseNavItems() {
     }
 }
 
+function handleOpenSelfServiceModal(e) {
+    e.stopPropagation();
+    selfServiceModal.classList.remove("close-modal");
+}
+
+function handleOpenPendingTaskModal(e) {
+    e.stopPropagation();
+    pendingTaskModal.classList.remove("close-modal");
+}
+
+function handleClosePendingTaskModal() {
+    pendingTaskModal.classList.add("close-modal");
+}
+
+function handleCloseSelfServiceModal() {
+    selfServiceModal.classList.add("close-modal");
+}
+
 window.addEventListener("load", collapseNavItems);
 window.addEventListener("resize", collapseNavItems);
+// handle modal renders
+window.addEventListener("click", (e) => {
+    // condition - if the modal is currently rendered && if the click is not within the modal 
+    if (!pendingTaskModal.classList.contains("close-modal") && !pendingTaskModal.contains(e.target)) {
+        handleClosePendingTaskModal()
+    }
+    if (!selfServiceModal.classList.contains("close-modal") && !selfServiceModal.contains(e.target)) {
+        handleCloseSelfServiceModal()
+    }
+});

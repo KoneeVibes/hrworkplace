@@ -114,7 +114,7 @@
     .self-service-button {
         align-items: center;
         gap: 1rem;
-        display: none;
+        display: flex;
     }
 
     .hamburger-icon,
@@ -125,6 +125,41 @@
     .hamburger-icon.show,
     .close-icon.show {
         display: inline;
+    }
+
+    /* Pending task modal below */
+    .pending-task-modal,
+    .self-service-modal {
+        position: fixed;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        height: 100%;
+        background-color: #FFFFFF;
+        border-top-left-radius: 1rem;
+        z-index: 1;
+        min-width: var(--modal-width);
+        overflow-y: auto;
+    }
+
+    .pending-task-modal.close-modal,
+    .self-service-modal.close-modal {
+        display: none;
+    }
+
+    .handle-pending-task-icon {
+        cursor: pointer;
+    }
+
+    .pending-task-modal-title-box,
+    .self-service-modal-title-box {
+        align-items: center;
+        padding: var(--basic-padding);
+        border-bottom: 1px solid #EAECF0;
+    }
+
+    .self-service-items {
+        padding: var(--basic-padding);
     }
 
     /* Main area styles below */
@@ -310,18 +345,8 @@
     }
 }
 
-@media screen and (min-width: 0px) and (max-width: 220px) {
-    .search-bar {
-        display: none;
-    }
-}
-
 @media screen and (min-width: 425px) {
     .side-nav {
-        display: flex;
-    }
-
-    .self-service-button {
         display: flex;
     }
 

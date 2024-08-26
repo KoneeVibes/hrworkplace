@@ -35,14 +35,27 @@
         </div>
         <div class="self-service">
             <!-- <i class="fa-solid fa-arrow-down-wide-short"></i> -->
-            <div class="row self-service-button">
+            <div class="row self-service-button" onclick="handleOpenSelfServiceModal(event)">
                 <span>Self Service</span>
                 <i class="fa-solid fa-greater-than"></i>
             </div>
-            <i class="fa-regular fa-bell"></i>
+            <i class="fa-regular fa-bell handle-pending-task-icon" onclick="handleOpenPendingTaskModal(event)"></i>
             <i class="fa-solid fa-bars hamburger-icon show" onclick="handleHamburgerClick()"></i>
             <i class="fa-solid fa-circle-xmark close-icon" onclick="handleHamburgerClick()"></i>
         </div>
+    </section>
+    <section class="pending-task-modal close-modal">
+        <div class="row pending-task-modal-title-box">
+            <i class="fa-solid fa-xmark handle-pending-task-icon" onclick="handleClosePendingTaskModal()"></i>
+            <h2>Pending Task</h2>
+        </div>
+    </section>
+    <section class="self-service-modal close-modal">
+        <div class="row self-service-modal-title-box">
+            <i class="fa-solid fa-xmark handle-pending-task-icon" onclick="handleCloseSelfServiceModal()"></i>
+            <h2>Self Service</h2>
+        </div>
+        <div class="self-service-items"></div>
     </section>
     <section class="main-area">
         <div class="jumbotron">
