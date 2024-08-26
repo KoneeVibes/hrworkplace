@@ -60,7 +60,7 @@ input[type="password"] {
     border: 1px;
     width: 100%;
     border-color: #ededed;
-    color: #ededed;
+    /* color: #ededed; */
     box-sizing: border-box;
 }
 

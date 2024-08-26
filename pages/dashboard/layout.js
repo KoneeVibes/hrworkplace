@@ -1,31 +1,189 @@
 const sideNavItemsColumn = document.querySelector(".side-nav-items");
 const sideNavItems = [
     { navItem: "Home", icon: "fa-solid fa-house" },
-    { navItem: "Employee", icon: "fa-solid fa-user-group" },
-    { navItem: "Career", icon: "fa-solid fa-briefcase" },
-    { navItem: "Leave & Travel", icon: "fa-solid fa-book-open-reader" },
-    { navItem: "Performance", icon: "fa-solid fa-chart-simple" },
-    { navItem: "Discipline", icon: "fa-solid fa-house-laptop" },
-    { navItem: "Loan", icon: "fa-solid fa-money-check-dollar" },
-    { navItem: "Payroll", icon: "fa-solid fa-coins" },
-    { navItem: "Expense", icon: "fa-solid fa-money-bills" },
-    { navItem: "Admin", icon: "fa-solid fa-money-check" },
-    { navItem: "Succession Plan", icon: "fa-solid fa-clipboard" },
-    { navItem: "Health and Safety", icon: "fa-solid fa-laptop-medical" },
-    { navItem: "Strategic Plan Warehousing", icon: "fa-solid fa-warehouse" },
-    { navItem: "Reports", icon: "fa-solid fa-chart-line" },
-    { navItem: "Exit", icon: "fa-solid fa-circle-xmark" },
+    { navItem: "Employee", 
+      icon: "fa-solid fa-user-group", 
+      subItems:[
+        "Employee Management",
+        "Assigned's Asset",
+        "Resource Management",
+        "Benefit Management",
+        "Contract Management",
+        "WorkForce Budget Mgt",
+        "Attendance Management",
+        "List of Competencies",
+      ]
+    },
+    { navItem: "Career", 
+      icon: "fa-solid fa-briefcase",
+      subItems:[
+        "Business Academic Management",
+        "Job Description Management",
+        "Redeployment Management",
+        "Rehire Management",
+        "Promotion Management",
+        "Training Request Management",
+        "Employee Training Management",
+        "Training Cost Management",
+        "New Hire Management",
+      ]
+     },
+    { navItem: "Leave & Travel",
+      icon: "fa-solid fa-book-open-reader",
+      subItems:[
+        "Leave Planner Management",
+        "Leave Request Management",
+        "Travel Request Management",
+      ]
+     },
+    { navItem: "Performance",
+      icon: "fa-solid fa-chart-simple",
+      subItems:[
+        "Employee BSC Management",
+        "Corporate BSC Management",
+        "Check-In Review Management",
+        "360 Degree Management",
+        "Result & Behaviour KPI",
+        "Result & Behaviour Appraisal Mgt.",
+        "Time Sheet Management",
+        "Task Management",
+        "Confirmation Management",
+      ]
+     },
+    { navItem: "Discipline",
+      icon: "fa-solid fa-house-laptop",
+      subItems:[
+        "Query Management",
+        "Sanction Management",
+      ]
+    },
+    { navItem: "Loan",
+      icon: "fa-solid fa-money-check-dollar",
+      subItems:[
+        "Loan Request Management",
+        "Loan Repay Management",
+        "Loan Migration Management",
+      ]
+     },
+    { navItem: "Payroll", 
+      icon: "fa-solid fa-coins",
+      subItems:[
+        "Overtime Tracking By HR",
+        "Overtime Management",
+        "Payroll Managent",
+        "Payroll Extra Upload",
+        "Payroll Approval Management",
+        "Remove Payroll",
+      ]
+     },
+    { navItem: "Expense",
+      icon: "fa-solid fa-money-bills",
+      subItems:[
+        "Expense Claims Management",
+        "Cash Advance Management",
+        "Cash Retirement Management",
+      ]
+     },
+    { navItem: "Admin",
+      icon: "fa-solid fa-money-check",
+      subItems:[
+        "Setup Management",
+        "Change Setup Value",
+        "Change Employee Username",
+        "Access Right Management",
+        "Notice Management",
+        "Short Message Service[SMS]",
+        "MD's Desk Management",
+        "News Managemet",
+        "Feedback Management",
+        "Audit Trail Management",
+        "Task Monitoring Management",
+      ] 
+    },
+    { navItem: "Succession Plan",
+      icon: "fa-solid fa-clipboard",
+      subItems:[
+        "Skill Set Management",
+        "Succession Management",
+        "Reporting Hierarchy",
+      ]
+     },
+    { navItem: "Health and Safety",
+      icon: "fa-solid fa-laptop-medical",
+      subItems:[
+        "Illness Management",
+        "Injury Management",
+        "Medical Service Management",
+      ]
+     },
+    { navItem: "Strategic Plan Warehousing", 
+      icon: "fa-solid fa-warehouse",
+      subItems:[
+        "Strategic Intent Management",
+        "Long Term Objectives Management",
+        "Yearly Objectives Management",
+        "Action Plans Management"
+      ]
+     },
+    { navItem: "Reports",
+      icon: "fa-solid fa-chart-line",
+      subItems:[
+        "Employee Dashboard",
+        "Leave Request",
+        "Cash Advance",
+        "Cash Retirement",
+        "Expense Claims Dashboard",
+        "Payroll"
+      ]
+     },
+    { navItem: "Exit", 
+      icon: "fa-solid fa-circle-xmark",
+      subItems:[
+        "Exit Management",
+        "Exit By HR",
+        "Exit Bulk Employees",
+        "Exit Clearance Management",
+        "Exit Interview Management",
+      ]
+     },
 ];
 
 if (sideNavItemsColumn) {
-    sideNavItemsColumn.innerHTML = sideNavItems.map((sideNavItem, index) => `
-        <div class="row side-nav-item" key="${index}">
-            <i class="${sideNavItem.icon} side-nav-link-item-icon"></i>
-            <span class="side-nav-link-item">${sideNavItem.navItem}</span>
-            <i class="fa-solid fa-greater-than drop-down side-nav-link-item-dropdown"></i>
-        </div>
-    `).join("");
+  sideNavItemsColumn.innerHTML = sideNavItems.map((sideNavItem, index) => `
+      <div class="side-nav-item" key="${index}">
+          <div class="row side-nav-link">
+              <i class="${sideNavItem.icon} side-nav-link-item-icon"></i>
+              <span class="side-nav-link-item">${sideNavItem.navItem}</span>
+              ${sideNavItem.subItems ? `<i class="fa-solid fa-greater-than side-nav-link-item-dropdown"></i>` : ''}
+          </div>
+          ${sideNavItem.subItems ? `
+              <div class="sub-items hide">
+                  ${sideNavItem.subItems.map(subItem => `
+                      <div class="sub-item">${subItem}</div>
+                  `).join('')}
+              </div>
+          ` : ''}
+      </div>
+  `).join("");
 }
+
+document.querySelectorAll('.side-nav-link').forEach(item => {
+  item.addEventListener('click', () => {
+      const subItems = item.nextElementSibling;
+      const dropdownIcon = item.querySelector('.side-nav-link-item-dropdown');
+      
+      if (subItems) {
+          subItems.classList.toggle('hide');
+          if (subItems.classList.contains('hide')) {
+              dropdownIcon.classList.remove('fa-chevron-down');
+              dropdownIcon.classList.add('fa-greater-than');
+          } else {
+              dropdownIcon.classList.remove('fa-greater-than');
+              dropdownIcon.classList.add('fa-chevron-down');
+          }
+      }
+  });
+});
 
 const sideNav = document.querySelector(".side-nav");
 const mainArea = document.querySelector(".main-area");
