@@ -1,6 +1,6 @@
 @media screen and (min-width: 0px) {
 
-    /* Side Nav Styles Below */
+    /* side nav styles below */
     .side-nav {
         align-items: flex-start;
         gap: var(--flex-gap);
@@ -116,7 +116,7 @@
         display: none;
     }
 
-    /* Top Nav Styles Below */
+    /* top nav styles below */
     .top-nav {
         align-items: center;
         justify-content: space-between;
@@ -264,7 +264,7 @@
         cursor: pointer;
     }
 
-    /* Main area styles below */
+    /* main area styles below */
     .main-area {
         position: absolute;
         top: calc(var(--top-nav-height) + calc(var(--basic-padding) + 2px));
@@ -464,7 +464,7 @@
 
 @media screen and (min-width: 768px) {
 
-    /* Side Nav Styles Below */
+    /* side nav styles below */
     .side-nav {
         top: 0;
     }
@@ -473,7 +473,7 @@
         display: flex;
     }
 
-    /* Top Nav Styles Below */
+    /* top nav styles below */
     .top-nav {
         left: calc(var(--side-nav-width) + calc(var(--basic-padding)));
     }
