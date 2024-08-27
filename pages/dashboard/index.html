@@ -31,7 +31,8 @@
         </div>
         <div class="search-bar row">
             <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" placeholder="Search Anything">
+            <input type="text" placeholder="Search Anything" class="search-anything"
+                onfocus="handleOpenSearchModal(event)">
         </div>
         <div class="self-service">
             <!-- <i class="fa-solid fa-arrow-down-wide-short"></i> -->
@@ -44,18 +45,45 @@
             <i class="fa-solid fa-circle-xmark close-icon" onclick="handleHamburgerClick()"></i>
         </div>
     </section>
-    <section class="pending-task-modal close-modal">
-        <div class="row pending-task-modal-title-box">
+    <section class="modal search-modal close-modal">
+        <div class="column modal-title-box search-modal-title-box">
+            <h2>Searching for</h2>
+        </div>
+        <div class="modal-title-box-badges"></div>
+        <div class="modal-items">
+            <h2>Search prompt examples</h2>
+            <div class="search-modal-items">
+                <div class="row search-prompt">
+                    <i class="fa-regular fa-star"></i>
+                    <p>Filter your timesheet</p>
+                </div>
+                <div class="row search-prompt">
+                    <i class="fa-regular fa-star"></i>
+                    <p>See upcoming events</p>
+                </div>
+                <div class="row search-prompt">
+                    <i class="fa-regular fa-star"></i>
+                    <p>Leave request</p>
+                </div>
+                <div class="row search-prompt">
+                    <i class="fa-regular fa-star"></i>
+                    <p>See reports</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="modal pending-task-modal close-modal">
+        <div class="row modal-title-box pending-task-modal-title-box">
             <i class="fa-solid fa-xmark handle-pending-task-icon" onclick="handleClosePendingTaskModal()"></i>
             <h2>Pending Task</h2>
         </div>
     </section>
-    <section class="self-service-modal close-modal">
-        <div class="row self-service-modal-title-box">
+    <section class="modal self-service-modal close-modal">
+        <div class="row modal-title-box self-service-modal-title-box">
             <i class="fa-solid fa-xmark handle-pending-task-icon" onclick="handleCloseSelfServiceModal()"></i>
             <h2>Self Service</h2>
         </div>
-        <div class="self-service-items"></div>
+        <div class="modal-items self-service-modal-items"></div>
     </section>
     <section class="main-area">
         <div class="jumbotron">
