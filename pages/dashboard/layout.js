@@ -207,6 +207,7 @@ const closeIcon = document.querySelector('.close-icon');
 const appLogo = document.querySelector(".logo-img");
 const searchModal = document.querySelector(".search-modal");
 const searchField = document.querySelector(".search-anything");
+const searchChips = document.querySelector(".search-chips");
 const pendingTaskModal = document.querySelector(".pending-task-modal");
 const selfServiceModal = document.querySelector(".self-service-modal");
 const selfServiceItemsColumn = document.querySelector(".self-service-modal-items")
@@ -226,11 +227,20 @@ const selfServiceItems = [
     { item: "My Exit" },
 ];
 
+if (searchChips) {
+    searchChips.innerHTML = sideNavItems.slice(1).map((item, index) => `
+        <div class="row search-chip" key=${index}>
+            <i class="${item.icon} "></i>
+            <span class="">${item.navItem}</span>
+        </div>
+    `).join("")
+}
+
 if (selfServiceItemsColumn) {
     selfServiceItemsColumn.innerHTML = selfServiceItems.map((selfServiceItem, index) => `
         <div class="row self-service-item" key="${index}">
             <span class="self-service-link-item">${selfServiceItem.item}</span>
-            <i class="fa-solid fa-greater-than drop-down self-service-link-item-dropdown"></i>
+            <i class="fa-solid fa-greater-than self-service-link-item-dropdown"></i>
         </div>
     `).join("");
 }
