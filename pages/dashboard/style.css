@@ -140,16 +140,16 @@
     }
 
     .side-nav-link-item-dropdown {
-    cursor: pointer;
+       cursor: pointer;
 }
     
     /* .user-detail-items.show {
         display: block; 
     } */
 
-     .user-detail-link {
-        margin-bottom: calc(var(--basic-padding)/2);
-        margin-left:var(--basic-padding) ; 
+     .user-detail-items {
+        padding-left:var(--basic-padding) ;
+        padding-top: var(--basic-padding); 
     } 
     /* top nav styles below */
     .top-nav {

@@ -92,23 +92,7 @@ const sideNavItems = [
       "Cash Retirement Management",
     ]
   },
-  {
-    navItem: "Admin",
-    icon: "fa-solid fa-money-check",
-    subItems: [
-      "Setup Management",
-      "Change Setup Value",
-      "Change Employee Username",
-      "Access Right Management",
-      "Notice Management",
-      "Short Message Service[SMS]",
-      "MD's Desk Management",
-      "News Managemet",
-      "Feedback Management",
-      "Audit Trail Management",
-      "Task Monitoring Management",
-    ]
-  },
+
   {
     navItem: "Succession Plan",
     icon: "fa-solid fa-clipboard",
@@ -158,6 +142,24 @@ const sideNavItems = [
       "Exit Bulk Employees",
       "Exit Clearance Management",
       "Exit Interview Management",
+    ]
+  },
+
+  {
+    navItem: "Admin",
+    icon: "fa-solid fa-money-check",
+    subItems: [
+      "Setup Management",
+      "Change Setup Value",
+      "Change Employee Username",
+      "Access Right Management",
+      "Notice Management",
+      "Short Message Service[SMS]",
+      "MD's Desk Management",
+      "News Managemet",
+      "Feedback Management",
+      "Audit Trail Management",
+      "Task Monitoring Management",
     ]
   },
 ];
