@@ -121,6 +121,41 @@
         display: none;
     }
 
+    .sub-detail {
+        margin-left:calc(var(--basic-padding)/2) ; 
+       
+      }
+
+    .sub-items {
+        padding-left: var(--basic-padding);
+        line-height: 2rem;
+    }
+
+    .sub-items.hide {
+        display: none;
+    }
+
+    .user-detail-link-item,
+    .user-detail-link-item-icon {
+        color: #A3A3A3; 
+    }
+
+    .user-detail-items.hide {
+        display: none;
+    }
+
+    .side-nav-link-item-dropdown {
+       cursor: pointer;
+}
+    
+    /* .user-detail-items.show {
+        display: block; 
+    } */
+
+     .user-detail-items {
+        padding-left:var(--basic-padding) ;
+        padding-top: var(--basic-padding); 
+    } 
     /* top nav styles below */
     .top-nav {
         align-items: center;
