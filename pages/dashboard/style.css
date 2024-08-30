@@ -93,6 +93,11 @@
 
     .user-details h2 {
         color: #000000;
+        margin-block: 0;
+    }
+
+    .user-details p {
+        margin-block: 0;
     }
 
     .side-nav-item .side-nav-link {
