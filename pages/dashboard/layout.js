@@ -389,13 +389,23 @@ if (userDetailItemsColumn) {
     `).join("");
 }
 
-if (dropdownToggle && userCredentialRow) {
-    userCredentialRow.addEventListener('click', () => {
-        userDetailItemsColumn.classList.toggle('hide');
-        dropdownToggle.classList.toggle('fa-greater-than');
-        dropdownToggle.classList.toggle('fa-chevron-down');
-    });
-}
+document.querySelectorAll('.user-credential').forEach(headItem => {
+  headItem.addEventListener('click', () => {
+    const subDetails = headItem.nextElementSibling;
+    const dropdownIcon = headItem.querySelector('.side-nav-link-item-dropdown');
+
+    if (subDetails) {
+      subDetails.classList.toggle('hide');
+      if (subDetails.classList.contains('hide')) {
+        dropdownIcon.classList.remove('fa-chevron-down');
+        dropdownIcon.classList.add('fa-greater-than');
+      } else {
+        dropdownIcon.classList.remove('fa-greater-than');
+        dropdownIcon.classList.add('fa-chevron-down');
+      }
+    }
+  });
+});
 
 if (searchChips) {
   searchChips.innerHTML = sideNavItems.slice(1).map((item, index) => `
