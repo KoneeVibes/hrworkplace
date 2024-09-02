@@ -143,10 +143,6 @@
        cursor: pointer;
 }
     
-    /* .user-detail-items.show {
-        display: block; 
-    } */
-
      .user-detail-items {
         padding-left:var(--basic-padding) ;
         padding-top: var(--basic-padding); 
