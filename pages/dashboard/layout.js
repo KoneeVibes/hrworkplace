@@ -254,17 +254,50 @@ const selfServiceItems = [
   {
     headItem: "My Performance",
     subDetails: [
-      "My 360 Degree Appraisal",
-      "My 360 Degree Task",
-      "My Balance Score Card KPI",
-      "My Balance Score Card",
-      "My Corporate Balance Score Card",
-      "My Check-In Review",
-      "My Confirmation",
-      "My Result & Behaviour KPI",
-      "My Result & Behaviour Appraisal Mgt.",
-      "My Time Sheet",
-      "My Task",
+      {
+        name: "My 360 Degree Appraisal",
+        url: ""
+      },
+      {
+        name: "My 360 Degree Task",
+        url: ""
+      },
+      {
+        name: "My Balance Score Card KPI",
+        url: ""
+      },
+      {
+        name: "My Balance Score Card",
+        url: ""
+      },
+      {
+        name: "My Corporate Balance Score Card",
+        url: ""
+      },
+      {
+        name: "My Check-In Review",
+        url: ""
+      },
+      {
+        name: "My Confirmation",
+        url: ""
+      },
+      {
+        name: "My Result & Behaviour KPI",
+        url: ""
+      },
+      {
+        name: "My Result & Behaviour Appraisal Mgt.",
+        url: ""
+      },
+      {
+        name: "My Time Sheet",
+        url: "../timesheet/index.html"
+      },
+      {
+        name: "My Task",
+        url: ""
+      },
     ]
   },
   {
@@ -297,9 +330,18 @@ const selfServiceItems = [
   {
     headItem: "My Expense",
     subDetails: [
-      "My Expense Claims",
-      "My Cash Advance",
-      "My Cash Retirement",
+      {
+        name: "My Expense Claims",
+        url: "../expenseclaims/index.html"
+      },
+      {
+        name: "My Cash Advance",
+        url: ""
+      },
+      {
+        name: "My Cash Retirement",
+        url: ""
+      },
     ]
   },
   {
@@ -334,18 +376,20 @@ const selfServiceItems = [
 if (selfServiceItemsColumn) {
   selfServiceItemsColumn.innerHTML = selfServiceItems.map((selfServiceItem, index) => `
     <div class="self-service-item" key="${index}"> 
-             <div class="row self-service-link">
-              <i class="${selfServiceItem.icon} self-service-link-item-icon"></i>
-              <span class="self-service-link-item">${selfServiceItem.headItem}</span>
-              ${selfServiceItem.subDetails ? `<i class="fa-solid fa-greater-than self-service-link-item-dropdown"></i>` : ''}
-          </div> 
-            ${selfServiceItem.subDetails ? `
-              <div class="side-nav-link-item sub-items hide">
-                  ${selfServiceItem.subDetails.map(subDetail => `
-                      <div class="sub-detail">${subDetail}</div>
-                  `).join('')}
-              </div>
-           ` : ''}
+      <div class="row self-service-link">
+        <i class="${selfServiceItem.icon} self-service-link-item-icon"></i>
+        <span class="self-service-link-item">${selfServiceItem.headItem}</span>
+        ${selfServiceItem.subDetails ? `<i class="fa-solid fa-greater-than self-service-link-item-dropdown"></i>` : ''}
+      </div> 
+      ${selfServiceItem.subDetails ? `
+        <div class="side-nav-link-item sub-items hide">
+            ${selfServiceItem.subDetails.map(subDetail => `
+                <div class="sub-detail">
+                  <a href=${subDetail.url || "#"}>${subDetail.name || subDetail}</a>
+                </div>
+            `).join('')}
+        </div>
+      ` : ''}
     </div>
   `).join("");
 }
@@ -373,13 +417,13 @@ const dropdownToggle = document.querySelector(".side-nav-link-item-dropdown");
 const userCredentialRow = document.querySelector(".user-credential");
 
 const userDetailItems = [
-    { detailItem: "Logout", icon: "fa-solid fa-arrow-right-from-bracket" },
-    { detailItem: "Sleep", icon: "fa-regular fa-moon" },
-    { detailItem: "Switch User", icon: "fa-regular fa-user" },
+  { detailItem: "Logout", icon: "fa-solid fa-arrow-right-from-bracket" },
+  { detailItem: "Sleep", icon: "fa-regular fa-moon" },
+  { detailItem: "Switch User", icon: "fa-regular fa-user" },
 ];
 
 if (userDetailItemsColumn) {
-    userDetailItemsColumn.innerHTML = userDetailItems.map((userDetailItem, index) => `
+  userDetailItemsColumn.innerHTML = userDetailItems.map((userDetailItem, index) => `
         <div class="user-detail-item" key="${index}">
             <div class="row user-detail-link">
                 ${userDetailItem.icon ? `<i class="${userDetailItem.icon} user-detail-link-item-icon"></i>` : ''}
