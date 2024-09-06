@@ -411,11 +411,11 @@ const selfServiceItems = [
     subDetails: [
       {
         name: "My Skill Set",
-        url: "",
+        url: "../myskillset/index.html",
       },
       {
         name: "My Succession Plan",
-        url: "",
+        url: "../mysuccessionplan/index.html",
       },
     ]
   },
@@ -424,7 +424,7 @@ const selfServiceItems = [
     subDetails: [
       {
         name: "My Medical Service",
-        url: "", 
+        url: "../mymedicalservice/index.html", 
       },
     ]
   },
@@ -433,7 +433,7 @@ const selfServiceItems = [
     subDetails: [
       {
         name:"My Feedback",
-        url:"",
+        url:"../myfeedback/index.html",
       },
     ]
   },
@@ -442,11 +442,11 @@ const selfServiceItems = [
     subDetails: [
       {
         name:"Exit Request",
-        url:"",
+        url:"../exitrequest/index.html",
       },
       {
         name:"Exit Interview",
-        url:"",
+        url:"../exitinterview/index.html",
       },
     ]
   },
