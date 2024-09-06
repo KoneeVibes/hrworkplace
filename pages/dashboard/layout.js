@@ -217,38 +217,79 @@ const selfServiceItems = [
   {
     headItem: "My Employees",
     subDetails: [
-      "HrWorkPlace User Manual",
-      "Employee Handbook",
-      "My Profile",
-      "My Assigned's Asset",
-      "My Employee Contract",
-      "My Attendance",
-      "Change Password",
+      {
+        name: "HrWorkPlace User Manual",
+      },
+      {
+        name: "Employee Handbook",
+      },
+      {
+        name: "My Profile",
+        url:"../myprofile/index.html", 
+      },
+      {
+        name:"My Assigned's Asset",
+        url:"../myassigned'sasset/index.html",
+      },
+      {
+        name: "My Attendance",
+        url:"../myattendance/index.html",
+      },
+      {
+        name: "Change Password",
+        url:"../changepassword/index.html",
+      },
     ]
   },
   {
     headItem: "My Careers",
     subDetails: [
-      "View Competencies Catalog",
-      "My Job Description",
-      "Business Academy",
-      "My Redeployment",
-      "My Promotion",
-      "My Training Request",
-      "My Training",
+      {
+        name:"View Competencies Catalog",
+        url: "../viewcompetenciescatalog/index.html",
+      },
+      {
+        name:"My Job Description",
+        url: "../myjobdescription/index.html",
+      },
+      {
+        name:"Business Academy",
+        url:"../businessacademy/index.html",
+      },
+      {
+        name:"My Redeployment",
+        url:"../myredeployment/index.html",
+      },
+      {
+        name:"My Promotion",
+        url:"../mypromotion/index.html",
+      },
+      {
+        name:"My Training Request",
+        url:"../mytrainingrequest/index.html",
+      },
+      {
+        name:"My Training",
+        url:"../mytraining/index.html",
+      },
     ]
   },
   {
     headItem: "My Leave",
     subDetails: [
-      "My Leave Request",
-      "My Leave Planner",
+      {
+        name: "My Leave Request",
+        url:"../myleaverequest/index.html",
+      },
     ]
   },
   {
     headItem: "My Travels",
     subDetails: [
-      "My Travel Request",
+      {
+        name: "My Travel Request",
+        url: "../mytravelrequest/index.html",
+      },
     ]
   },
   {
@@ -256,39 +297,39 @@ const selfServiceItems = [
     subDetails: [
       {
         name: "My 360 Degree Appraisal",
-        url: ""
+        url: "../my360degreeappraisal/index.html"
       },
       {
         name: "My 360 Degree Task",
-        url: ""
+        url: "../my360degreetask/index.html"
       },
       {
         name: "My Balance Score Card KPI",
-        url: ""
+        url: "../mybalancescorecardkpi/index.html"
       },
       {
         name: "My Balance Score Card",
-        url: ""
+        url: "../mybalancescorecard/index.html"
       },
       {
         name: "My Corporate Balance Score Card",
-        url: ""
+        url: "../mycorporatebalancescorecard/index.html"
       },
       {
         name: "My Check-In Review",
-        url: ""
+        url: "../mycheckinreview/index.html"
       },
       {
         name: "My Confirmation",
-        url: ""
+        url: "../myconfirmation/index.html"
       },
       {
         name: "My Result & Behaviour KPI",
-        url: ""
+        url: "../myresult&behaviourkpi/index.html"
       },
       {
         name: "My Result & Behaviour Appraisal Mgt.",
-        url: ""
+        url: "../myresult&behaviourappraisalmgt/index.html"
       },
       {
         name: "My Time Sheet",
@@ -296,35 +337,56 @@ const selfServiceItems = [
       },
       {
         name: "My Task",
-        url: ""
+        url: "../mytask/index.html"
       },
     ]
   },
   {
     headItem: "My Discipline",
     subDetails: [
-      "My Sanction",
-      "My Query",
+      {
+        name:  "My Sanction",
+        url: "../mysanction/index.html",
+      },
+      {
+        name: "My Query",
+        url: "../myquery/index.html",
+      },
     ]
   },
   {
     headItem: "My Benefit",
     subDetails: [
-      "My Benefit",
+      {
+        name:  "My Benefit",
+        url: "../mybenefit/index.html",
+      },
     ]
   },
   {
     headItem: "My Loan",
     subDetails: [
-      "My Loan Request",
-      "My Loan Repayment",
+      {
+        name: "My Loan Request",
+        url:"../myloanrequest/index.html",
+      },
+      {
+        name: "My Loan Repayment",
+        url: "../myloanrepayment/index.html", 
+      },
     ]
   },
   {
     headItem: "My Payroll ",
     subDetails: [
-      "My Overtime",
-      "My Payroll",
+      {
+        name: "My Overtime",
+        url: "../myovertime/index.html",
+      },
+      {
+        name: "My Payroll",
+        url: "../mypayroll/index.html",
+      },
     ]
   },
   {
@@ -336,38 +398,56 @@ const selfServiceItems = [
       },
       {
         name: "My Cash Advance",
-        url: ""
+        url: "../mycashadvance/index.html"
       },
       {
         name: "My Cash Retirement",
-        url: ""
+        url: "../mycashretirement/index.html"
       },
     ]
   },
   {
     headItem: "My Succession Plan",
     subDetails: [
-      "My Skill Set",
-      "My Succession Plan",
+      {
+        name: "My Skill Set",
+        url: "",
+      },
+      {
+        name: "My Succession Plan",
+        url: "",
+      },
     ]
   },
   {
     headItem: "My Medical Service",
     subDetails: [
-      "My Medical Service",
+      {
+        name: "My Medical Service",
+        url: "", 
+      },
     ]
   },
   {
     headItem: "My Feedback",
     subDetails: [
-      "My Feedback",
+      {
+        name:"My Feedback",
+        url:"",
+      },
     ]
   },
   {
     headItem: "My Exit",
     subDetails: [
-      "Exit Request",
-      "Exit Interview",
+      {
+        name:"Exit Request",
+        url:"",
+      },
+      {
+        name:"Exit Interview",
+        url:"",
+      },
     ]
   },
 ];
