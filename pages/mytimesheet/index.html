@@ -101,7 +101,19 @@
     </section>
     <section class="main-area">
         <!-- Details -->
-        <h2>Expense Claims</h2>
+        <div class="row page-title-box">
+            <h1>My Time Sheet</h1>
+            <button class="row" onclick="handleShowModal()">
+                <i class="fa-solid fa-plus"></i>
+                <span>Add New Time Sheet</span>
+            </button>
+        </div>
+        <div class="row navigation">
+            <span class="previous">Home</span>
+            <i class="fa-solid fa-greater-than previous"></i>
+            <span>My Time Sheet</span>
+        </div>
+        <div class="time-sheet-table"></div>
     </section>
 
     <!-- Local scripts -->

@@ -333,7 +333,7 @@ const selfServiceItems = [
       },
       {
         name: "My Time Sheet",
-        url: "../timesheet/index.html"
+        url: "../mytimesheet/index.html"
       },
       {
         name: "My Task",
@@ -539,8 +539,6 @@ if (searchChips) {
         </div>
     `).join("")
 }
-
-
 
 function handleHamburgerClick() {
   if (sideNav && mainArea) {

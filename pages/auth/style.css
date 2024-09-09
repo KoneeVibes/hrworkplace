@@ -92,6 +92,15 @@ button {
     color: #fff;
 }
 
+h1 {
+    font-family: Inter;
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 37px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .overlay h1 {
     margin: 0;
     font-size: 5rem;
