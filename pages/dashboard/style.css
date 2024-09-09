@@ -114,7 +114,11 @@
 
     .sub-detail {
         margin-left: calc(var(--basic-padding)/2);
+    }
 
+    .sub-detail a {
+        text-decoration: none;
+        color: #98A2B3;
     }
 
     .sub-items {
