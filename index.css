@@ -70,7 +70,8 @@
     }
 
     a,
-    span {
+    span,
+    label {
         font-family: Inter;
         font-size: 14px;
         font-weight: 500;
@@ -93,6 +94,42 @@
         padding-block: calc(var(--basic-padding)/4);
         border-radius: 0.5rem;
         cursor: pointer;
+    }
+
+    table {
+        width: 100%;
+        margin-top: var(--basic-padding);
+    }
+
+    th {
+        font-family: Inter;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: normal;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: #667085;
+        border-bottom: 1px solid #EAECF0;
+        padding: calc(var(--basic-padding)/2) var(--basic-padding);
+        white-space: nowrap;
+        background-color: #F9FAFB;
+    }
+
+    td {
+        font-family: Inter;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: normal;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: #667085;
+        border-bottom: 1px solid #EAECF0;
+        padding: calc(var(--basic-padding)/2) var(--basic-padding);
+    }
+
+    td:nth-child(2) {
+        font-weight: 500;
+        color: #101828;
     }
 
     /* debug style */

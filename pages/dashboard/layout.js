@@ -225,19 +225,19 @@ const selfServiceItems = [
       },
       {
         name: "My Profile",
-        url:"../myprofile/index.html", 
+        url: "/selfservice/myprofile/index.html",
       },
       {
-        name:"My Assigned's Asset",
-        url:"../myassigned'sasset/index.html",
+        name: "My Assigned's Asset",
+        url: "/selfservice/myassigned'sasset/index.html",
       },
       {
         name: "My Attendance",
-        url:"../myattendance/index.html",
+        url: "/selfservice/myattendance/index.html",
       },
       {
         name: "Change Password",
-        url:"../changepassword/index.html",
+        url: "/selfservice/changepassword/index.html",
       },
     ]
   },
@@ -245,32 +245,32 @@ const selfServiceItems = [
     headItem: "My Careers",
     subDetails: [
       {
-        name:"View Competencies Catalog",
-        url: "../viewcompetenciescatalog/index.html",
+        name: "View Competencies Catalog",
+        url: "/selfservice/viewcompetenciescatalog/index.html",
       },
       {
-        name:"My Job Description",
-        url: "../myjobdescription/index.html",
+        name: "My Job Description",
+        url: "/selfservice/myjobdescription/index.html",
       },
       {
-        name:"Business Academy",
-        url:"../businessacademy/index.html",
+        name: "Business Academy",
+        url: "/selfservice/businessacademy/index.html",
       },
       {
-        name:"My Redeployment",
-        url:"../myredeployment/index.html",
+        name: "My Redeployment",
+        url: "/selfservice/myredeployment/index.html",
       },
       {
-        name:"My Promotion",
-        url:"../mypromotion/index.html",
+        name: "My Promotion",
+        url: "/selfservice/mypromotion/index.html",
       },
       {
-        name:"My Training Request",
-        url:"../mytrainingrequest/index.html",
+        name: "My Training Request",
+        url: "/selfservice/mytrainingrequest/index.html",
       },
       {
-        name:"My Training",
-        url:"../mytraining/index.html",
+        name: "My Training",
+        url: "/selfservice/mytraining/index.html",
       },
     ]
   },
@@ -279,7 +279,7 @@ const selfServiceItems = [
     subDetails: [
       {
         name: "My Leave Request",
-        url:"../myleaverequest/index.html",
+        url: "/selfservice/myleaverequest/index.html",
       },
     ]
   },
@@ -288,7 +288,7 @@ const selfServiceItems = [
     subDetails: [
       {
         name: "My Travel Request",
-        url: "../mytravelrequest/index.html",
+        url: "/selfservice/mytravelrequest/index.html",
       },
     ]
   },
@@ -297,47 +297,47 @@ const selfServiceItems = [
     subDetails: [
       {
         name: "My 360 Degree Appraisal",
-        url: "../my360degreeappraisal/index.html"
+        url: "/selfservice/my360degreeappraisal/index.html"
       },
       {
         name: "My 360 Degree Task",
-        url: "../my360degreetask/index.html"
+        url: "/selfservice/my360degreetask/index.html"
       },
       {
         name: "My Balance Score Card KPI",
-        url: "../mybalancescorecardkpi/index.html"
+        url: "/selfservice/mybalancescorecardkpi/index.html"
       },
       {
         name: "My Balance Score Card",
-        url: "../mybalancescorecard/index.html"
+        url: "/selfservice/mybalancescorecard/index.html"
       },
       {
         name: "My Corporate Balance Score Card",
-        url: "../mycorporatebalancescorecard/index.html"
+        url: "/selfservice/mycorporatebalancescorecard/index.html"
       },
       {
         name: "My Check-In Review",
-        url: "../mycheckinreview/index.html"
+        url: "/selfservice/mycheckinreview/index.html"
       },
       {
         name: "My Confirmation",
-        url: "../myconfirmation/index.html"
+        url: "/selfservice/myconfirmation/index.html"
       },
       {
         name: "My Result & Behaviour KPI",
-        url: "../myresult&behaviourkpi/index.html"
+        url: "/selfservice/myresult&behaviourkpi/index.html"
       },
       {
         name: "My Result & Behaviour Appraisal Mgt.",
-        url: "../myresult&behaviourappraisalmgt/index.html"
+        url: "/selfservice/myresult&behaviourappraisalmgt/index.html"
       },
       {
         name: "My Time Sheet",
-        url: "../mytimesheet/index.html"
+        url: "/selfservice/mytimesheet/index.html"
       },
       {
         name: "My Task",
-        url: "../mytask/index.html"
+        url: "/selfservice/mytask/index.html"
       },
     ]
   },
@@ -345,12 +345,12 @@ const selfServiceItems = [
     headItem: "My Discipline",
     subDetails: [
       {
-        name:  "My Sanction",
-        url: "../mysanction/index.html",
+        name: "My Sanction",
+        url: "/selfservice/mysanction/index.html",
       },
       {
         name: "My Query",
-        url: "../myquery/index.html",
+        url: "/selfservice/myquery/index.html",
       },
     ]
   },
@@ -358,8 +358,8 @@ const selfServiceItems = [
     headItem: "My Benefit",
     subDetails: [
       {
-        name:  "My Benefit",
-        url: "../mybenefit/index.html",
+        name: "My Benefit",
+        url: "/selfservice/mybenefit/index.html",
       },
     ]
   },
@@ -368,11 +368,11 @@ const selfServiceItems = [
     subDetails: [
       {
         name: "My Loan Request",
-        url:"../myloanrequest/index.html",
+        url: "/selfservice/myloanrequest/index.html",
       },
       {
         name: "My Loan Repayment",
-        url: "../myloanrepayment/index.html", 
+        url: "/selfservice/myloanrepayment/index.html",
       },
     ]
   },
@@ -381,11 +381,11 @@ const selfServiceItems = [
     subDetails: [
       {
         name: "My Overtime",
-        url: "../myovertime/index.html",
+        url: "/selfservice/myovertime/index.html",
       },
       {
         name: "My Payroll",
-        url: "../mypayroll/index.html",
+        url: "/selfservice/mypayroll/index.html",
       },
     ]
   },
@@ -394,15 +394,15 @@ const selfServiceItems = [
     subDetails: [
       {
         name: "My Expense Claims",
-        url: "../expenseclaims/index.html"
+        url: "/selfservice/expenseclaims/index.html"
       },
       {
         name: "My Cash Advance",
-        url: "../mycashadvance/index.html"
+        url: "/selfservice/mycashadvance/index.html"
       },
       {
         name: "My Cash Retirement",
-        url: "../mycashretirement/index.html"
+        url: "/selfservice/mycashretirement/index.html"
       },
     ]
   },
@@ -411,11 +411,11 @@ const selfServiceItems = [
     subDetails: [
       {
         name: "My Skill Set",
-        url: "../myskillset/index.html",
+        url: "/selfservice/myskillset/index.html",
       },
       {
         name: "My Succession Plan",
-        url: "../mysuccessionplan/index.html",
+        url: "/selfservice/mysuccessionplan/index.html",
       },
     ]
   },
@@ -424,7 +424,7 @@ const selfServiceItems = [
     subDetails: [
       {
         name: "My Medical Service",
-        url: "../mymedicalservice/index.html", 
+        url: "/selfservice/mymedicalservice/index.html",
       },
     ]
   },
@@ -432,8 +432,8 @@ const selfServiceItems = [
     headItem: "My Feedback",
     subDetails: [
       {
-        name:"My Feedback",
-        url:"../myfeedback/index.html",
+        name: "My Feedback",
+        url: "/selfservice/myfeedback/index.html",
       },
     ]
   },
@@ -441,23 +441,21 @@ const selfServiceItems = [
     headItem: "My Exit",
     subDetails: [
       {
-        name:"Exit Request",
-        url:"../exitrequest/index.html",
+        name: "Exit Request",
+        url: "/selfservice/exitrequest/index.html",
       },
       {
-        name:"Exit Interview",
-        url:"../exitinterview/index.html",
+        name: "Exit Interview",
+        url: "/selfservice/exitinterview/index.html",
       },
     ]
   },
 ];
 
-
 if (selfServiceItemsColumn) {
   selfServiceItemsColumn.innerHTML = selfServiceItems.map((selfServiceItem, index) => `
     <div class="self-service-item" key="${index}"> 
       <div class="row self-service-link">
-        <i class="${selfServiceItem.icon} self-service-link-item-icon"></i>
         <span class="self-service-link-item">${selfServiceItem.headItem}</span>
         ${selfServiceItem.subDetails ? `<i class="fa-solid fa-greater-than self-service-link-item-dropdown"></i>` : ''}
       </div> 
@@ -465,7 +463,7 @@ if (selfServiceItemsColumn) {
         <div class="side-nav-link-item sub-items hide">
             ${selfServiceItem.subDetails.map(subDetail => `
                 <div class="sub-detail">
-                  <a href=${subDetail.url || "#"}>${subDetail.name || subDetail}</a>
+                  <a href="/pages/modules${subDetail.url || "#"}">${subDetail.name || subDetail}</a>
                 </div>
             `).join('')}
         </div>

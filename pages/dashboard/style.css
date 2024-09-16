@@ -112,10 +112,6 @@
         color: inherit;
     }
 
-    .sub-detail {
-        margin-left: calc(var(--basic-padding)/2);
-    }
-
     .sub-detail a {
         text-decoration: none;
         color: #98A2B3;
@@ -169,6 +165,10 @@
     .top-nav>.app-logo {
         order: 1;
         overflow: hidden;
+    }
+
+    .app-logo>img {
+        cursor: pointer;
     }
 
     .search-bar {
@@ -266,7 +266,7 @@
     }
 
     .modal-items {
-        padding: var(--basic-padding);
+        padding: calc(var(--basic-padding)/2) calc(var(--basic-padding)/2) calc(var(--basic-padding));
     }
 
     .search-modal-title-box {
