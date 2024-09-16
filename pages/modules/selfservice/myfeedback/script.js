@@ -2,6 +2,8 @@ const feedbackTable = document.querySelector(".module-table");
 const feedbackModal = document.querySelector(".feedback-module-modal");
 const feedbackForm = document.querySelector(".module-modal-form");
 const feedbackConfirmationModal = document.querySelector(".feedback-confirmation-modal");
+const feedbackDetailModal = document.querySelector(".module-detail-modal");
+const feedbackDetailBox = document.querySelector(".module-modal-detail-box");
 const markedForDeHighlighting = document.querySelectorAll(".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav");
 const headers = ["S/N", "Name", "Company", "Department", "Task Date", "Task Title", "Time Spent", "Manager's Remark", "Status", "View"];
 const rows = [""];
@@ -19,7 +21,10 @@ feedbackTable.innerHTML = rows.length > 0 ? (
         </thead>
         <tbody>
         ${rows?.map((row, index) => `
-                <tr key=${index}>
+                <tr
+                    key=${index}
+                    onclick="handleOpenDetailModal(event)"
+                >
                     <td>
                         <input 
                             type="checkbox"
@@ -96,6 +101,32 @@ feedbackForm.innerHTML = (`
     </form>
 `)
 
+feedbackDetailBox.innerHTML = (`
+        <div>
+            // details would go in here
+            
+        </div>
+    `)
+
+function handleOpenDetailModal(e) {
+    e.stopPropagation();
+    feedbackDetailModal.classList.remove("close-modal");
+    document.body.style.overflow = "hidden";
+    markedForDeHighlighting.forEach((item) => {
+        item.style.opacity = 0.1;
+        item.style.pointerEvents = "none";
+    });
+}
+
+function handleCloseDetailModal() {
+    feedbackDetailModal.classList.add("close-modal");
+    document.body.style.overflow = "auto";
+    markedForDeHighlighting.forEach((item) => {
+        item.style.opacity = 1;
+        item.style.pointerEvents = "auto";
+    });
+}
+
 function handleOpenFeedbackModal(e) {
     e.stopPropagation();
     feedbackModal.classList.remove("close-modal");
@@ -139,5 +170,8 @@ window.addEventListener("click", (e) => {
     // condition - if the modal is currently rendered && if the click is not within the modal 
     if (!feedbackModal.classList.contains("close-modal") && !feedbackModal.contains(e.target)) {
         handleCloseFeedbackModal();
+    }
+    if (!feedbackDetailModal.classList.contains("close-modal") && !feedbackDetailModal.contains(e.target)) {
+        handleCloseDetailModal();
     }
 });

@@ -2,6 +2,8 @@ const sanctionTable = document.querySelector(".module-table");
 const sanctionModal = document.querySelector(".sanction-module-modal");
 const sanctionForm = document.querySelector(".module-modal-form");
 const sanctionConfirmationModal = document.querySelector(".sanction-confirmation-modal");
+const sanctionDetailModal = document.querySelector(".module-detail-modal");
+const sanctionDetailBox = document.querySelector(".module-modal-detail-box");
 const markedForDeHighlighting = document.querySelectorAll(".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav");
 const headers = ["S/N", "Name", "Company", "Department", "Task Date", "Task Title", "Time Spent", "Manager's Remark", "Status", "View"];
 const rows = [""];
@@ -19,7 +21,10 @@ sanctionTable.innerHTML = rows.length > 0 ? (
         </thead>
         <tbody>
         ${rows?.map((row, index) => `
-                <tr key=${index}>
+                <tr
+                    key=${index}
+                    onclick="handleOpenDetailModal(event)"
+                >
                     <td>
                         <input 
                             type="checkbox"
@@ -96,6 +101,32 @@ sanctionForm.innerHTML = (`
     </form>
 `)
 
+sanctionDetailBox.innerHTML = (`
+        <div>
+            // details would go in here
+            
+        </div>
+    `)
+
+function handleOpenDetailModal(e) {
+    e.stopPropagation();
+    sanctionDetailModal.classList.remove("close-modal");
+    document.body.style.overflow = "hidden";
+    markedForDeHighlighting.forEach((item) => {
+        item.style.opacity = 0.1;
+        item.style.pointerEvents = "none";
+    });
+}
+
+function handleCloseDetailModal() {
+    sanctionDetailModal.classList.add("close-modal");
+    document.body.style.overflow = "auto";
+    markedForDeHighlighting.forEach((item) => {
+        item.style.opacity = 1;
+        item.style.pointerEvents = "auto";
+    });
+}
+
 function handleOpenSanctionModal(e) {
     e.stopPropagation();
     sanctionModal.classList.remove("close-modal");
@@ -139,5 +170,8 @@ window.addEventListener("click", (e) => {
     // condition - if the modal is currently rendered && if the click is not within the modal 
     if (!sanctionModal.classList.contains("close-modal") && !sanctionModal.contains(e.target)) {
         handleCloseSanctionModal();
+    }
+    if (!sanctionDetailModal.classList.contains("close-modal") && !sanctionDetailModal.contains(e.target)) {
+        handleCloseDetailModal();
     }
 });

@@ -2,6 +2,8 @@ const cashRetirementTable = document.querySelector(".module-table");
 const cashRetirementModal = document.querySelector(".cash-retirement-module-modal");
 const cashRetirementForm = document.querySelector(".module-modal-form");
 const cashRetirementConfirmationModal = document.querySelector(".cash-retirement-confirmation-modal");
+const cashRetirementDetailModal = document.querySelector(".module-detail-modal");
+const cashRetirementDetailBox = document.querySelector(".module-modal-detail-box");
 const markedForDeHighlighting = document.querySelectorAll(".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav");
 const headers = ["S/N", "Name", "Company", "Department", "Task Date", "Task Title", "Time Spent", "Manager's Remark", "Status", "View"];
 const rows = [""];
@@ -19,7 +21,10 @@ cashRetirementTable.innerHTML = rows.length > 0 ? (
         </thead>
         <tbody>
         ${rows?.map((row, index) => `
-                <tr key=${index}>
+                <tr
+                    key=${index}
+                    onclick="handleOpenDetailModal(event)"
+                >
                     <td>
                         <input 
                             type="checkbox"
@@ -96,6 +101,32 @@ cashRetirementForm.innerHTML = (`
     </form>
 `)
 
+cashRetirementDetailBox.innerHTML = (`
+        <div>
+            // details would go in here
+            
+        </div>
+    `)
+
+function handleOpenDetailModal(e) {
+    e.stopPropagation();
+    cashRetirementDetailModal.classList.remove("close-modal");
+    document.body.style.overflow = "hidden";
+    markedForDeHighlighting.forEach((item) => {
+        item.style.opacity = 0.1;
+        item.style.pointerEvents = "none";
+    });
+}
+
+function handleCloseDetailModal() {
+    cashRetirementDetailModal.classList.add("close-modal");
+    document.body.style.overflow = "auto";
+    markedForDeHighlighting.forEach((item) => {
+        item.style.opacity = 1;
+        item.style.pointerEvents = "auto";
+    });
+}
+
 function handleOpenCashRetirementModal(e) {
     e.stopPropagation();
     cashRetirementModal.classList.remove("close-modal");
@@ -139,5 +170,8 @@ window.addEventListener("click", (e) => {
     // condition - if the modal is currently rendered && if the click is not within the modal 
     if (!cashRetirementModal.classList.contains("close-modal") && !cashRetirementModal.contains(e.target)) {
         handleCloseCashRetirementModal();
+    }
+    if (!cashRetirementDetailModal.classList.contains("close-modal") && !cashRetirementDetailModal.contains(e.target)) {
+        handleCloseDetailModal();
     }
 });

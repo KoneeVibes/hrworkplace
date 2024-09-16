@@ -2,6 +2,8 @@ const payrollTable = document.querySelector(".module-table");
 const payrollModal = document.querySelector(".payroll-module-modal");
 const payrollForm = document.querySelector(".module-modal-form");
 const payrollConfirmationModal = document.querySelector(".payroll-confirmation-modal");
+const payrollDetailModal = document.querySelector(".module-detail-modal");
+const payrollDetailBox = document.querySelector(".module-modal-detail-box");
 const markedForDeHighlighting = document.querySelectorAll(".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav");
 const headers = ["S/N", "Name", "Company", "Department", "Task Date", "Task Title", "Time Spent", "Manager's Remark", "Status", "View"];
 const rows = [""];
@@ -19,7 +21,10 @@ payrollTable.innerHTML = rows.length > 0 ? (
         </thead>
         <tbody>
         ${rows?.map((row, index) => `
-                <tr key=${index}>
+                <tr
+                    key=${index}
+                    onclick="handleOpenDetailModal(event)"
+                >
                     <td>
                         <input 
                             type="checkbox"
@@ -96,6 +101,32 @@ payrollForm.innerHTML = (`
     </form>
 `)
 
+payrollDetailBox.innerHTML = (`
+        <div>
+            // details would go in here
+            
+        </div>
+    `)
+
+function handleOpenDetailModal(e) {
+    e.stopPropagation();
+    payrollDetailModal.classList.remove("close-modal");
+    document.body.style.overflow = "hidden";
+    markedForDeHighlighting.forEach((item) => {
+        item.style.opacity = 0.1;
+        item.style.pointerEvents = "none";
+    });
+}
+
+function handleCloseDetailModal() {
+    payrollDetailModal.classList.add("close-modal");
+    document.body.style.overflow = "auto";
+    markedForDeHighlighting.forEach((item) => {
+        item.style.opacity = 1;
+        item.style.pointerEvents = "auto";
+    });
+}
+
 function handleOpenPayrollModal(e) {
     e.stopPropagation();
     payrollModal.classList.remove("close-modal");
@@ -139,5 +170,8 @@ window.addEventListener("click", (e) => {
     // condition - if the modal is currently rendered && if the click is not within the modal 
     if (!payrollModal.classList.contains("close-modal") && !payrollModal.contains(e.target)) {
         handleClosePayrollModal();
+    }
+    if (!payrollDetailModal.classList.contains("close-modal") && !payrollDetailModal.contains(e.target)) {
+        handleCloseDetailModal();
     }
 });

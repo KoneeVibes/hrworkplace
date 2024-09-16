@@ -2,6 +2,8 @@ const businessAcademyTable = document.querySelector(".module-table");
 const businessAcademyModal = document.querySelector(".business-academy-module-modal");
 const businessAcademyForm = document.querySelector(".module-modal-form");
 const businessAcademyConfirmationModal = document.querySelector(".business-academy-confirmation-modal");
+const businessAcademyDetailModal = document.querySelector(".module-detail-modal");
+const businessAcademyDetailBox = document.querySelector(".module-modal-detail-box");
 const markedForDeHighlighting = document.querySelectorAll(".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav");
 const headers = ["S/N", "Name", "Company", "Department", "Task Date", "Task Title", "Time Spent", "Manager's Remark", "Status", "View"];
 const rows = [""];
@@ -19,7 +21,10 @@ businessAcademyTable.innerHTML = rows.length > 0 ? (
         </thead>
         <tbody>
         ${rows?.map((row, index) => `
-                <tr key=${index}>
+                <tr
+                    key=${index}
+                    onclick="handleOpenDetailModal(event)"
+                >
                     <td>
                         <input 
                             type="checkbox"
@@ -96,6 +101,32 @@ businessAcademyForm.innerHTML = (`
     </form>
 `)
 
+businessAcademyDetailBox.innerHTML = (`
+        <div>
+            // details would go in here
+            
+        </div>
+    `)
+
+function handleOpenDetailModal(e) {
+    e.stopPropagation();
+    businessAcademyDetailModal.classList.remove("close-modal");
+    document.body.style.overflow = "hidden";
+    markedForDeHighlighting.forEach((item) => {
+        item.style.opacity = 0.1;
+        item.style.pointerEvents = "none";
+    });
+}
+
+function handleCloseDetailModal() {
+    businessAcademyDetailModal.classList.add("close-modal");
+    document.body.style.overflow = "auto";
+    markedForDeHighlighting.forEach((item) => {
+        item.style.opacity = 1;
+        item.style.pointerEvents = "auto";
+    });
+}
+
 function handleOpenBusinessAcademyModal(e) {
     e.stopPropagation();
     businessAcademyModal.classList.remove("close-modal");
@@ -139,5 +170,8 @@ window.addEventListener("click", (e) => {
     // condition - if the modal is currently rendered && if the click is not within the modal 
     if (!businessAcademyModal.classList.contains("close-modal") && !businessAcademyModal.contains(e.target)) {
         handleCloseBusinessAcademyModal();
+    }
+    if (!businessAcademyDetailModal.classList.contains("close-modal") && !businessAcademyDetailModal.contains(e.target)) {
+        handleCloseDetailModal();
     }
 });

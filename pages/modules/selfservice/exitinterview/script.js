@@ -2,6 +2,8 @@ const exitInterviewTable = document.querySelector(".module-table");
 const exitInterviewModal = document.querySelector(".exit-interview-module-modal");
 const exitInterviewForm = document.querySelector(".module-modal-form");
 const exitInterviewConfirmationModal = document.querySelector(".exit-interview-confirmation-modal");
+const exitInterviewDetailModal = document.querySelector(".module-detail-modal");
+const exitInterviewDetailBox = document.querySelector(".module-modal-detail-box");
 const markedForDeHighlighting = document.querySelectorAll(".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav");
 const headers = ["S/N", "Name", "Company", "Department", "Task Date", "Task Title", "Time Spent", "Manager's Remark", "Status", "View"];
 const rows = [""];
@@ -19,7 +21,10 @@ exitInterviewTable.innerHTML = rows.length > 0 ? (
         </thead>
         <tbody>
         ${rows?.map((row, index) => `
-                <tr key=${index}>
+                <tr
+                    key=${index}
+                    onclick="handleOpenDetailModal(event)"
+                >
                     <td>
                         <input 
                             type="checkbox"
@@ -96,6 +101,32 @@ exitInterviewForm.innerHTML = (`
     </form>
 `)
 
+exitInterviewDetailBox.innerHTML = (`
+        <div>
+            // details would go in here
+            
+        </div>
+    `)
+
+function handleOpenDetailModal(e) {
+    e.stopPropagation();
+    exitInterviewDetailModal.classList.remove("close-modal");
+    document.body.style.overflow = "hidden";
+    markedForDeHighlighting.forEach((item) => {
+        item.style.opacity = 0.1;
+        item.style.pointerEvents = "none";
+    });
+}
+
+function handleCloseDetailModal() {
+    exitInterviewDetailModal.classList.add("close-modal");
+    document.body.style.overflow = "auto";
+    markedForDeHighlighting.forEach((item) => {
+        item.style.opacity = 1;
+        item.style.pointerEvents = "auto";
+    });
+}
+
 function handleOpenExitInterviewModal(e) {
     e.stopPropagation();
     exitInterviewModal.classList.remove("close-modal");
@@ -139,5 +170,8 @@ window.addEventListener("click", (e) => {
     // condition - if the modal is currently rendered && if the click is not within the modal 
     if (!exitInterviewModal.classList.contains("close-modal") && !exitInterviewModal.contains(e.target)) {
         handleCloseExitInterviewModal();
+    }
+    if (!exitInterviewDetailModal.classList.contains("close-modal") && !exitInterviewDetailModal.contains(e.target)) {
+        handleCloseDetailModal();
     }
 });

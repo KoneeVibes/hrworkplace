@@ -2,6 +2,8 @@ const overtimeTable = document.querySelector(".module-table");
 const overtimeModal = document.querySelector(".overtime-module-modal");
 const overtimeForm = document.querySelector(".module-modal-form");
 const overtimeConfirmationModal = document.querySelector(".overtime-confirmation-modal");
+const overtimeDetailModal = document.querySelector(".module-detail-modal");
+const overtimeDetailBox = document.querySelector(".module-modal-detail-box");
 const markedForDeHighlighting = document.querySelectorAll(".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav");
 const headers = ["S/N", "Name", "Company", "Department", "Task Date", "Task Title", "Time Spent", "Manager's Remark", "Status", "View"];
 const rows = [""];
@@ -19,7 +21,10 @@ overtimeTable.innerHTML = rows.length > 0 ? (
         </thead>
         <tbody>
         ${rows?.map((row, index) => `
-                <tr key=${index}>
+                <tr
+                    key=${index}
+                    onclick="handleOpenDetailModal(event)"
+                >
                     <td>
                         <input 
                             type="checkbox"
@@ -96,6 +101,32 @@ overtimeForm.innerHTML = (`
     </form>
 `)
 
+overtimeDetailBox.innerHTML = (`
+        <div>
+            // details would go in here
+            
+        </div>
+    `)
+
+function handleOpenDetailModal(e) {
+    e.stopPropagation();
+    overtimeDetailModal.classList.remove("close-modal");
+    document.body.style.overflow = "hidden";
+    markedForDeHighlighting.forEach((item) => {
+        item.style.opacity = 0.1;
+        item.style.pointerEvents = "none";
+    });
+}
+
+function handleCloseDetailModal() {
+    overtimeDetailModal.classList.add("close-modal");
+    document.body.style.overflow = "auto";
+    markedForDeHighlighting.forEach((item) => {
+        item.style.opacity = 1;
+        item.style.pointerEvents = "auto";
+    });
+}
+
 function handleOpenOvertimeModal(e) {
     e.stopPropagation();
     overtimeModal.classList.remove("close-modal");
@@ -139,5 +170,8 @@ window.addEventListener("click", (e) => {
     // condition - if the modal is currently rendered && if the click is not within the modal 
     if (!overtimeModal.classList.contains("close-modal") && !overtimeModal.contains(e.target)) {
         handleCloseOvertimeModal();
+    }
+    if (!overtimeDetailModal.classList.contains("close-modal") && !overtimeDetailModal.contains(e.target)) {
+        handleCloseDetailModal();
     }
 });

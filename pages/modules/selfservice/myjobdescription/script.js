@@ -2,6 +2,8 @@ const jobDescriptionTable = document.querySelector(".module-table");
 const jobDescriptionModal = document.querySelector(".job-description-module-modal");
 const jobDescriptionForm = document.querySelector(".module-modal-form");
 const jobDescriptionConfirmationModal = document.querySelector(".job-description-confirmation-modal");
+const jobDescriptionDetailModal = document.querySelector(".module-detail-modal");
+const jobDescriptionDetailBox = document.querySelector(".module-modal-detail-box");
 const markedForDeHighlighting = document.querySelectorAll(".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav");
 const headers = ["S/N", "Name", "Company", "Department", "Task Date", "Task Title", "Time Spent", "Manager's Remark", "Status", "View"];
 const rows = [""];
@@ -19,7 +21,10 @@ jobDescriptionTable.innerHTML = rows.length > 0 ? (
         </thead>
         <tbody>
         ${rows?.map((row, index) => `
-                <tr key=${index}>
+                <tr
+                    key=${index}
+                    onclick="handleOpenDetailModal(event)"
+                >
                     <td>
                         <input 
                             type="checkbox"
@@ -96,6 +101,32 @@ jobDescriptionForm.innerHTML = (`
     </form>
 `)
 
+jobDescriptionDetailBox.innerHTML = (`
+        <div>
+            // details would go in here
+            
+        </div>
+    `)
+
+function handleOpenDetailModal(e) {
+    e.stopPropagation();
+    jobDescriptionDetailModal.classList.remove("close-modal");
+    document.body.style.overflow = "hidden";
+    markedForDeHighlighting.forEach((item) => {
+        item.style.opacity = 0.1;
+        item.style.pointerEvents = "none";
+    });
+}
+
+function handleCloseDetailModal() {
+    jobDescriptionDetailModal.classList.add("close-modal");
+    document.body.style.overflow = "auto";
+    markedForDeHighlighting.forEach((item) => {
+        item.style.opacity = 1;
+        item.style.pointerEvents = "auto";
+    });
+}
+
 function handleOpenJobDescriptionModal(e) {
     e.stopPropagation();
     jobDescriptionModal.classList.remove("close-modal");
@@ -139,5 +170,8 @@ window.addEventListener("click", (e) => {
     // condition - if the modal is currently rendered && if the click is not within the modal 
     if (!jobDescriptionModal.classList.contains("close-modal") && !jobDescriptionModal.contains(e.target)) {
         handleCloseJobDescriptionModal();
+    }
+    if (!jobDescriptionDetailModal.classList.contains("close-modal") && !jobDescriptionDetailModal.contains(e.target)) {
+        handleCloseDetailModal();
     }
 });

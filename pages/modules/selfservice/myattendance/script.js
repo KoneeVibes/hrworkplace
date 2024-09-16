@@ -2,6 +2,8 @@ const attendanceTable = document.querySelector(".module-table");
 const attendanceModal = document.querySelector(".attendance-module-modal");
 const attendanceForm = document.querySelector(".module-modal-form");
 const attendanceConfirmationModal = document.querySelector(".attendance-confirmation-modal");
+const attendanceDetailModal = document.querySelector(".module-detail-modal");
+const attendanceDetailBox = document.querySelector(".module-modal-detail-box");
 const markedForDeHighlighting = document.querySelectorAll(".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav");
 const headers = ["S/N", "Name", "Company", "Department", "Task Date", "Task Title", "Time Spent", "Manager's Remark", "Status", "View"];
 const rows = [""];
@@ -19,7 +21,10 @@ attendanceTable.innerHTML = rows.length > 0 ? (
         </thead>
         <tbody>
         ${rows?.map((row, index) => `
-                <tr key=${index}>
+                <tr
+                    key=${index}
+                    onclick="handleOpenDetailModal(event)"
+                >
                     <td>
                         <input 
                             type="checkbox"
@@ -96,6 +101,32 @@ attendanceForm.innerHTML = (`
     </form>
 `)
 
+attendanceDetailBox.innerHTML = (`
+        <div>
+            // details would go in here
+            
+        </div>
+    `)
+
+function handleOpenDetailModal(e) {
+    e.stopPropagation();
+    attendanceDetailModal.classList.remove("close-modal");
+    document.body.style.overflow = "hidden";
+    markedForDeHighlighting.forEach((item) => {
+        item.style.opacity = 0.1;
+        item.style.pointerEvents = "none";
+    });
+}
+
+function handleCloseDetailModal() {
+    attendanceDetailModal.classList.add("close-modal");
+    document.body.style.overflow = "auto";
+    markedForDeHighlighting.forEach((item) => {
+        item.style.opacity = 1;
+        item.style.pointerEvents = "auto";
+    });
+}
+
 function handleOpenAttendanceModal(e) {
     e.stopPropagation();
     attendanceModal.classList.remove("close-modal");
@@ -139,5 +170,8 @@ window.addEventListener("click", (e) => {
     // condition - if the modal is currently rendered && if the click is not within the modal 
     if (!attendanceModal.classList.contains("close-modal") && !attendanceModal.contains(e.target)) {
         handleCloseAttendanceModal();
+    }
+    if (!attendanceDetailModal.classList.contains("close-modal") && !attendanceDetailModal.contains(e.target)) {
+        handleCloseDetailModal();
     }
 });

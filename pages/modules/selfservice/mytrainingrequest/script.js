@@ -2,6 +2,8 @@ const trainingRequestTable = document.querySelector(".module-table");
 const trainingRequestModal = document.querySelector(".training-request-module-modal");
 const trainingRequestForm = document.querySelector(".module-modal-form");
 const trainingRequestConfirmationModal = document.querySelector(".training-request-confirmation-modal");
+const trainingRequestDetailModal = document.querySelector(".module-detail-modal");
+const trainingRequestDetailBox = document.querySelector(".module-modal-detail-box");
 const markedForDeHighlighting = document.querySelectorAll(".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav");
 const headers = ["S/N", "Name", "Company", "Department", "Task Date", "Task Title", "Time Spent", "Manager's Remark", "Status", "View"];
 const rows = [""];
@@ -19,7 +21,10 @@ trainingRequestTable.innerHTML = rows.length > 0 ? (
         </thead>
         <tbody>
         ${rows?.map((row, index) => `
-                <tr key=${index}>
+                <tr
+                    key=${index}
+                    onclick="handleOpenDetailModal(event)"
+                >
                     <td>
                         <input 
                             type="checkbox"
@@ -96,6 +101,32 @@ trainingRequestForm.innerHTML = (`
     </form>
 `)
 
+trainingRequestDetailBox.innerHTML = (`
+        <div>
+            // details would go in here
+            
+        </div>
+    `)
+
+function handleOpenDetailModal(e) {
+    e.stopPropagation();
+    trainingRequestDetailModal.classList.remove("close-modal");
+    document.body.style.overflow = "hidden";
+    markedForDeHighlighting.forEach((item) => {
+        item.style.opacity = 0.1;
+        item.style.pointerEvents = "none";
+    });
+}
+
+function handleCloseDetailModal() {
+    trainingRequestDetailModal.classList.add("close-modal");
+    document.body.style.overflow = "auto";
+    markedForDeHighlighting.forEach((item) => {
+        item.style.opacity = 1;
+        item.style.pointerEvents = "auto";
+    });
+}
+
 function handleOpenTrainingRequestModal(e) {
     e.stopPropagation();
     trainingRequestModal.classList.remove("close-modal");
@@ -139,5 +170,9 @@ window.addEventListener("click", (e) => {
     // condition - if the modal is currently rendered && if the click is not within the modal 
     if (!trainingRequestModal.classList.contains("close-modal") && !trainingRequestModal.contains(e.target)) {
         handleCloseTrainingRequestModal();
+    }
+
+    if (!trainingRequestDetailModal.classList.contains("close-modal") && !trainingRequestDetailModal.contains(e.target)) {
+        handleCloseDetailModal();
     }
 });

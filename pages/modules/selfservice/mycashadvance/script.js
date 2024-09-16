@@ -2,6 +2,8 @@ const cashAdvanceTable = document.querySelector(".module-table");
 const cashAdvanceModal = document.querySelector(".cash-advance-module-modal");
 const cashAdvanceForm = document.querySelector(".module-modal-form");
 const cashAdvanceConfirmationModal = document.querySelector(".cash-advance-confirmation-modal");
+const cashAdvanceDetailModal = document.querySelector(".module-detail-modal");
+const cashAdvanceDetailBox = document.querySelector(".module-modal-detail-box");
 const markedForDeHighlighting = document.querySelectorAll(".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav");
 const headers = ["S/N", "Name", "Company", "Department", "Task Date", "Task Title", "Time Spent", "Manager's Remark", "Status", "View"];
 const rows = [""];
@@ -19,7 +21,10 @@ cashAdvanceTable.innerHTML = rows.length > 0 ? (
         </thead>
         <tbody>
         ${rows?.map((row, index) => `
-                <tr key=${index}>
+                <tr
+                    key=${index}
+                    onclick="handleOpenDetailModal(event)"
+                >
                     <td>
                         <input 
                             type="checkbox"
@@ -96,6 +101,32 @@ cashAdvanceForm.innerHTML = (`
     </form>
 `)
 
+cashAdvanceDetailBox.innerHTML = (`
+        <div>
+            // details would go in here
+            
+        </div>
+    `)
+
+function handleOpenDetailModal(e) {
+    e.stopPropagation();
+    cashAdvanceDetailModal.classList.remove("close-modal");
+    document.body.style.overflow = "hidden";
+    markedForDeHighlighting.forEach((item) => {
+        item.style.opacity = 0.1;
+        item.style.pointerEvents = "none";
+    });
+}
+
+function handleCloseDetailModal() {
+    cashAdvanceDetailModal.classList.add("close-modal");
+    document.body.style.overflow = "auto";
+    markedForDeHighlighting.forEach((item) => {
+        item.style.opacity = 1;
+        item.style.pointerEvents = "auto";
+    });
+}
+
 function handleOpenCashAdvanceModal(e) {
     e.stopPropagation();
     cashAdvanceModal.classList.remove("close-modal");
@@ -139,5 +170,8 @@ window.addEventListener("click", (e) => {
     // condition - if the modal is currently rendered && if the click is not within the modal 
     if (!cashAdvanceModal.classList.contains("close-modal") && !cashAdvanceModal.contains(e.target)) {
         handleCloseCashAdvanceModal();
+    }
+    if (!cashAdvanceDetailModal.classList.contains("close-modal") && !cashAdvanceDetailModal.contains(e.target)) {
+        handleCloseDetailModal();
     }
 });

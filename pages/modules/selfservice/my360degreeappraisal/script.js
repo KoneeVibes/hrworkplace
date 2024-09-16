@@ -2,6 +2,8 @@ const appraisal360Table = document.querySelector(".module-table");
 const appraisal360Modal = document.querySelector(".appraisal-360-module-modal");
 const appraisal360Form = document.querySelector(".module-modal-form");
 const appraisal360ConfirmationModal = document.querySelector(".appraisal-360-confirmation-modal");
+const appraisal360DetailModal = document.querySelector(".module-detail-modal");
+const appraisal360DetailBox = document.querySelector(".module-modal-detail-box");
 const markedForDeHighlighting = document.querySelectorAll(".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav");
 const headers = ["S/N", "Name", "Company", "Department", "Task Date", "Task Title", "Time Spent", "Manager's Remark", "Status", "View"];
 const rows = [""];
@@ -19,7 +21,10 @@ appraisal360Table.innerHTML = rows.length > 0 ? (
         </thead>
         <tbody>
         ${rows?.map((row, index) => `
-                <tr key=${index}>
+                <tr
+                    key=${index}
+                    onclick="handleOpenDetailModal(event)"
+                >
                     <td>
                         <input 
                             type="checkbox"
@@ -96,6 +101,32 @@ appraisal360Form.innerHTML = (`
     </form>
 `)
 
+appraisal360DetailBox.innerHTML = (`
+        <div>
+            // details would go in here
+            
+        </div>
+    `)
+
+function handleOpenDetailModal(e) {
+    e.stopPropagation();
+    appraisal360DetailModal.classList.remove("close-modal");
+    document.body.style.overflow = "hidden";
+    markedForDeHighlighting.forEach((item) => {
+        item.style.opacity = 0.1;
+        item.style.pointerEvents = "none";
+    });
+}
+
+function handleCloseDetailModal() {
+    appraisal360DetailModal.classList.add("close-modal");
+    document.body.style.overflow = "auto";
+    markedForDeHighlighting.forEach((item) => {
+        item.style.opacity = 1;
+        item.style.pointerEvents = "auto";
+    });
+}
+
 function handleOpen360DegreeAppraisalModal(e) {
     e.stopPropagation();
     appraisal360Modal.classList.remove("close-modal");
@@ -139,5 +170,8 @@ window.addEventListener("click", (e) => {
     // condition - if the modal is currently rendered && if the click is not within the modal 
     if (!appraisal360Modal.classList.contains("close-modal") && !appraisal360Modal.contains(e.target)) {
         handleClose360DegreeAppraisalModal();
+    }
+    if (!appraisal360DetailModal.classList.contains("close-modal") && !appraisal360DetailModal.contains(e.target)) {
+        handleCloseDetailModal();
     }
 });

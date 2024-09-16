@@ -2,6 +2,8 @@ const loanRequestTable = document.querySelector(".module-table");
 const loanRequestModal = document.querySelector(".loan-request-module-modal");
 const loanRequestForm = document.querySelector(".module-modal-form");
 const loanRequestConfirmationModal = document.querySelector(".loan-request-confirmation-modal");
+const loanRequestDetailModal = document.querySelector(".module-detail-modal");
+const loanRequestDetailBox = document.querySelector(".module-modal-detail-box");
 const markedForDeHighlighting = document.querySelectorAll(".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav");
 const headers = ["S/N", "Name", "Company", "Department", "Task Date", "Task Title", "Time Spent", "Manager's Remark", "Status", "View"];
 const rows = [""];
@@ -19,7 +21,10 @@ loanRequestTable.innerHTML = rows.length > 0 ? (
         </thead>
         <tbody>
         ${rows?.map((row, index) => `
-                <tr key=${index}>
+                <tr
+                    key=${index}
+                    onclick="handleOpenDetailModal(event)"
+                >
                     <td>
                         <input 
                             type="checkbox"
@@ -96,6 +101,32 @@ loanRequestForm.innerHTML = (`
     </form>
 `)
 
+loanRequestDetailBox.innerHTML = (`
+        <div>
+            // details would go in here
+            
+        </div>
+    `)
+
+function handleOpenDetailModal(e) {
+    e.stopPropagation();
+    loanRequestDetailModal.classList.remove("close-modal");
+    document.body.style.overflow = "hidden";
+    markedForDeHighlighting.forEach((item) => {
+        item.style.opacity = 0.1;
+        item.style.pointerEvents = "none";
+    });
+}
+
+function handleCloseDetailModal() {
+    loanRequestDetailModal.classList.add("close-modal");
+    document.body.style.overflow = "auto";
+    markedForDeHighlighting.forEach((item) => {
+        item.style.opacity = 1;
+        item.style.pointerEvents = "auto";
+    });
+}
+
 function handleOpenLoanRequestModal(e) {
     e.stopPropagation();
     loanRequestModal.classList.remove("close-modal");
@@ -139,5 +170,8 @@ window.addEventListener("click", (e) => {
     // condition - if the modal is currently rendered && if the click is not within the modal 
     if (!loanRequestModal.classList.contains("close-modal") && !loanRequestModal.contains(e.target)) {
         handleCloseLoanRequestModal();
+    }
+    if (!loanRequestDetailModal.classList.contains("close-modal") && !loanRequestDetailModal.contains(e.target)) {
+        handleCloseDetailModal();
     }
 });

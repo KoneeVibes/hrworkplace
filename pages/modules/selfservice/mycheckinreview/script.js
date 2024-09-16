@@ -2,6 +2,8 @@ const checkInReviewTable = document.querySelector(".module-table");
 const checkInReviewModal = document.querySelector(".check-in-review-module-modal");
 const checkInReviewForm = document.querySelector(".module-modal-form");
 const checkInReviewConfirmationModal = document.querySelector(".check-in-review-confirmation-modal");
+const checkInReviewDetailModal = document.querySelector(".module-detail-modal");
+const checkInReviewDetailBox = document.querySelector(".module-modal-detail-box");
 const markedForDeHighlighting = document.querySelectorAll(".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav");
 const headers = ["S/N", "Name", "Company", "Department", "Task Date", "Task Title", "Time Spent", "Manager's Remark", "Status", "View"];
 const rows = [""];
@@ -19,7 +21,10 @@ checkInReviewTable.innerHTML = rows.length > 0 ? (
         </thead>
         <tbody>
         ${rows?.map((row, index) => `
-                <tr key=${index}>
+                <tr
+                    key=${index}
+                    onclick="handleOpenDetailModal(event)"
+                >
                     <td>
                         <input 
                             type="checkbox"
@@ -96,6 +101,32 @@ checkInReviewForm.innerHTML = (`
     </form>
 `)
 
+checkInReviewDetailBox.innerHTML = (`
+        <div>
+            // details would go in here
+            
+        </div>
+    `)
+
+function handleOpenDetailModal(e) {
+    e.stopPropagation();
+    checkInReviewDetailModal.classList.remove("close-modal");
+    document.body.style.overflow = "hidden";
+    markedForDeHighlighting.forEach((item) => {
+        item.style.opacity = 0.1;
+        item.style.pointerEvents = "none";
+    });
+}
+
+function handleCloseDetailModal() {
+    checkInReviewDetailModal.classList.add("close-modal");
+    document.body.style.overflow = "auto";
+    markedForDeHighlighting.forEach((item) => {
+        item.style.opacity = 1;
+        item.style.pointerEvents = "auto";
+    });
+}
+
 function handleOpenCheckInReviewModal(e) {
     e.stopPropagation();
     checkInReviewModal.classList.remove("close-modal");
@@ -139,5 +170,8 @@ window.addEventListener("click", (e) => {
     // condition - if the modal is currently rendered && if the click is not within the modal 
     if (!checkInReviewModal.classList.contains("close-modal") && !checkInReviewModal.contains(e.target)) {
         handleCloseCheckInReviewModal();
+    }
+    if (!checkInReviewDetailModal.classList.contains("close-modal") && !checkInReviewDetailModal.contains(e.target)) {
+        handleCloseDetailModal();
     }
 });

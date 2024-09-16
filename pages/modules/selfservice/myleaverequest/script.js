@@ -2,6 +2,8 @@ const leaveRequestTable = document.querySelector(".module-table");
 const leaveRequestModal = document.querySelector(".leave-request-module-modal");
 const leaveRequestForm = document.querySelector(".module-modal-form");
 const leaveRequestConfirmationModal = document.querySelector(".leave-request-confirmation-modal");
+const leaveRequestDetailModal = document.querySelector(".module-detail-modal");
+const leaveRequestDetailBox = document.querySelector(".module-modal-detail-box");
 const markedForDeHighlighting = document.querySelectorAll(".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav");
 const headers = ["S/N", "Name", "Company", "Department", "Task Date", "Task Title", "Time Spent", "Manager's Remark", "Status", "View"];
 const rows = [""];
@@ -19,7 +21,10 @@ leaveRequestTable.innerHTML = rows.length > 0 ? (
         </thead>
         <tbody>
         ${rows?.map((row, index) => `
-                <tr key=${index}>
+                <tr
+                    key=${index}
+                    onclick="handleOpenDetailModal(event)"
+                >
                     <td>
                         <input 
                             type="checkbox"
@@ -96,6 +101,32 @@ leaveRequestForm.innerHTML = (`
     </form>
 `)
 
+leaveRequestDetailBox.innerHTML = (`
+        <div>
+            // details would go in here
+            
+        </div>
+    `)
+
+function handleOpenDetailModal(e) {
+    e.stopPropagation();
+    leaveRequestDetailModal.classList.remove("close-modal");
+    document.body.style.overflow = "hidden";
+    markedForDeHighlighting.forEach((item) => {
+        item.style.opacity = 0.1;
+        item.style.pointerEvents = "none";
+    });
+}
+
+function handleCloseDetailModal() {
+    leaveRequestDetailModal.classList.add("close-modal");
+    document.body.style.overflow = "auto";
+    markedForDeHighlighting.forEach((item) => {
+        item.style.opacity = 1;
+        item.style.pointerEvents = "auto";
+    });
+}
+
 function handleOpenLeaveRequestModal(e) {
     e.stopPropagation();
     leaveRequestModal.classList.remove("close-modal");
@@ -139,5 +170,8 @@ window.addEventListener("click", (e) => {
     // condition - if the modal is currently rendered && if the click is not within the modal 
     if (!leaveRequestModal.classList.contains("close-modal") && !leaveRequestModal.contains(e.target)) {
         handleCloseLeaveRequestModal();
+    }
+    if (!leaveRequestDetailModal.classList.contains("close-modal") && !leaveRequestDetailModal.contains(e.target)) {
+        handleCloseDetailModal();
     }
 });

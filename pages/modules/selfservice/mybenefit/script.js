@@ -2,6 +2,8 @@ const benefitTable = document.querySelector(".module-table");
 const benefitModal = document.querySelector(".benefit-module-modal");
 const benefitForm = document.querySelector(".module-modal-form");
 const benefitConfirmationModal = document.querySelector(".benefit-confirmation-modal");
+const benefitDetailModal = document.querySelector(".module-detail-modal");
+const benefitDetailBox = document.querySelector(".module-modal-detail-box");
 const markedForDeHighlighting = document.querySelectorAll(".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav");
 const headers = ["S/N", "Name", "Company", "Department", "Task Date", "Task Title", "Time Spent", "Manager's Remark", "Status", "View"];
 const rows = [""];
@@ -19,7 +21,10 @@ benefitTable.innerHTML = rows.length > 0 ? (
         </thead>
         <tbody>
         ${rows?.map((row, index) => `
-                <tr key=${index}>
+                <tr
+                    key=${index}
+                    onclick="handleOpenDetailModal(event)"
+                >
                     <td>
                         <input 
                             type="checkbox"
@@ -96,6 +101,32 @@ benefitForm.innerHTML = (`
     </form>
 `)
 
+benefitDetailBox.innerHTML = (`
+        <div>
+            // details would go in here
+            
+        </div>
+    `)
+
+function handleOpenDetailModal(e) {
+    e.stopPropagation();
+    benefitDetailModal.classList.remove("close-modal");
+    document.body.style.overflow = "hidden";
+    markedForDeHighlighting.forEach((item) => {
+        item.style.opacity = 0.1;
+        item.style.pointerEvents = "none";
+    });
+}
+
+function handleCloseDetailModal() {
+    benefitDetailModal.classList.add("close-modal");
+    document.body.style.overflow = "auto";
+    markedForDeHighlighting.forEach((item) => {
+        item.style.opacity = 1;
+        item.style.pointerEvents = "auto";
+    });
+}
+
 function handleOpenBenefitModal(e) {
     e.stopPropagation();
     benefitModal.classList.remove("close-modal");
@@ -139,5 +170,8 @@ window.addEventListener("click", (e) => {
     // condition - if the modal is currently rendered && if the click is not within the modal 
     if (!benefitModal.classList.contains("close-modal") && !benefitModal.contains(e.target)) {
         handleCloseBenefitModal();
+    }
+    if (!benefitDetailModal.classList.contains("close-modal") && !benefitDetailModal.contains(e.target)) {
+        handleCloseDetailModal();
     }
 });

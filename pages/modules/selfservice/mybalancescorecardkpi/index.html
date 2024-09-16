@@ -17,7 +17,8 @@
     <section class="column side-nav hide-element">
         <div class="column logos">
             <div class="app-logo">
-                <img src="../../../../assets/logo.svg" class="logo-img" />
+                <img src="../../../../assets/logo.svg" class="logo-img"
+                    onclick="window.location.href='../../../dashboard/index.html'" />
             </div>
             <div class="row client-logo">
                 <img src="../../../../assets/client_logo.svg" />
@@ -41,7 +42,7 @@
     </section>
     <section class="row top-nav">
         <div class="app-logo">
-            <img src="../../../../assets/logo.svg" />
+            <img src="../../../../assets/logo.svg" onclick="window.location.href='../../../dashboard/index.html'" />
         </div>
         <div class="search-bar row">
             <i class="fa-solid fa-magnifying-glass"></i>
@@ -116,14 +117,23 @@
         <div class="module-modal balance-score-card-kpi-module-modal close-modal">
             <div class="row modal-title-box module-modal-title-box">
                 <h2>Balance Score Card KPI</h2>
-                <i class=" fa-solid fa-xmark balance-score-card-kpi-modal-close-icon" onclick="handleCloseBalanceScoreCardKPIModal()"></i>
+                <i class=" fa-solid fa-xmark balance-score-card-kpi-modal-close-icon"
+                    onclick="handleCloseBalanceScoreCardKPIModal()"></i>
             </div>
             <div class="module-modal-form"></div>
+        </div>
+        <div class="module-detail-modal close-modal">
+            <div class="row modal-title-box module-modal-title-box">
+                <h2>Balance Score Card KPI</h2>
+                <i class=" fa-solid fa-xmark time-sheet-modal-close-icon" onclick="handleCloseDetailModal()"></i>
+            </div>
+            <div class="module-modal-detail-box"></div>
         </div>
         <div class="module-modal balance-score-card-kpi-confirmation-modal close-modal">
             <img src="../../../../assets/timesheeticon.svg" alt="time-clock" />
             <h2>Submit balance score card KPI</h2>
-            <p>By submitting this balance score card KPI you show your availability and the task you accomplished for the day</p>
+            <p>By submitting this balance score card KPI you show your availability and the task you accomplished for
+                the day</p>
             <form>
                 <label>
                     <input type="checkbox" />

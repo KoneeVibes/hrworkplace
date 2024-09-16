@@ -2,6 +2,8 @@ const travelRequestTable = document.querySelector(".module-table");
 const travelRequestModal = document.querySelector(".travel-request-module-modal");
 const travelRequestForm = document.querySelector(".module-modal-form");
 const travelRequestConfirmationModal = document.querySelector(".travel-request-confirmation-modal");
+const travelRequestDetailModal = document.querySelector(".module-detail-modal");
+const travelRequestDetailBox = document.querySelector(".module-modal-detail-box");
 const markedForDeHighlighting = document.querySelectorAll(".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav");
 const headers = ["S/N", "Name", "Company", "Department", "Task Date", "Task Title", "Time Spent", "Manager's Remark", "Status", "View"];
 const rows = [""];
@@ -19,7 +21,10 @@ travelRequestTable.innerHTML = rows.length > 0 ? (
         </thead>
         <tbody>
         ${rows?.map((row, index) => `
-                <tr key=${index}>
+                <tr
+                    key=${index}
+                    onclick="handleOpenDetailModal(event)"
+                >
                     <td>
                         <input 
                             type="checkbox"
@@ -96,6 +101,32 @@ travelRequestForm.innerHTML = (`
     </form>
 `)
 
+travelRequestDetailBox.innerHTML = (`
+        <div>
+            // details would go in here
+            
+        </div>
+    `)
+
+function handleOpenDetailModal(e) {
+    e.stopPropagation();
+    travelRequestDetailModal.classList.remove("close-modal");
+    document.body.style.overflow = "hidden";
+    markedForDeHighlighting.forEach((item) => {
+        item.style.opacity = 0.1;
+        item.style.pointerEvents = "none";
+    });
+}
+
+function handleCloseDetailModal() {
+    travelRequestDetailModal.classList.add("close-modal");
+    document.body.style.overflow = "auto";
+    markedForDeHighlighting.forEach((item) => {
+        item.style.opacity = 1;
+        item.style.pointerEvents = "auto";
+    });
+}
+
 function handleOpenTravelRequestModal(e) {
     e.stopPropagation();
     travelRequestModal.classList.remove("close-modal");
@@ -139,5 +170,8 @@ window.addEventListener("click", (e) => {
     // condition - if the modal is currently rendered && if the click is not within the modal 
     if (!travelRequestModal.classList.contains("close-modal") && !travelRequestModal.contains(e.target)) {
         handleCloseTravelRequestModal();
+    }
+    if (!travelRequestDetailModal.classList.contains("close-modal") && !travelRequestDetailModal.contains(e.target)) {
+        handleCloseDetailModal();
     }
 });
