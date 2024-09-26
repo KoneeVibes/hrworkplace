@@ -5,91 +5,220 @@ const sideNavItems = [
     navItem: "Employee",
     icon: "fa-solid fa-user-group",
     subItems: [
-      "Employee Management",
-      "Assigned's Asset",
-      "Resource Management",
-      "Benefit Management",
-      "Contract Management",
-      "WorkForce Budget Mgt",
-      "Attendance Management",
-      "List of Competencies",
+      {
+        name: "Employee Management",
+        url: "/admin/employeemanagement/index.html",
+      },
+      {
+        name: "Assigned's Asset",
+        url: "/admin/assigned'sasset/index.html",
+      },
+      {
+        name: "Resource Management",
+        url: "/admin/resourcemanagement/index.html",
+      },
+      {
+        name: "Benefit Management",
+        url: "/admin/benefitmanagement/index.html",
+      },
+      {
+        name: "Contract Management",
+        url: "/admin/contractmanagement/index.html",
+      },
+      {
+        name: "WorkForce Budget Mgt",
+        url: "/admin/workforcebudgetmgt/index.html",
+      },
+      {
+        name: "Attendance Management",
+        url: "/admin/attendancemanagement/index.html",
+      },
+      {
+        name: "List of Competencies",
+        url: "/admin/listofcompetencies/index.html",
+      },
     ]
   },
   {
     navItem: "Career",
     icon: "fa-solid fa-briefcase",
     subItems: [
-      "Business Academic Management",
-      "Job Description Management",
-      "Redeployment Management",
-      "Rehire Management",
-      "Promotion Management",
-      "Training Request Management",
-      "Employee Training Management",
-      "Training Cost Management",
-      "New Hire Management",
+      {
+        name: "Business Academic Management",
+        url: "/admin/businessacademicmanagement"
+      },
+      {
+        name: "Job Description Management",
+        url: "/admin/jobdescriptionmanagement/index.html",
+      },
+      {
+        name: "Redeployment Management",
+        url: "/admin/redeploymentmanagement/index.html",
+      },
+      {
+        name: "Rehire Management",
+        url: "/admin/rehiremanagement/index.html",
+      },
+      {
+        name: "Promotion Management",
+        url: "/admin/promotionmanagement/index.html",
+      },
+      {
+        name: "Training Request Management",
+        url: "/admin/trainingrequestmanagement/index.html",
+      },
+      {
+        name: "Employee Training Management",
+        url: "/admin/employeetrainingmanagement/index.html",
+      },
+      {
+        name: "Training Cost Management",
+        url: "/admin/trainingcostmanagement/index.html",
+      },
+      {
+        name: "New Hire Management",
+        url: "/admin/newhiremanagement/index.html",
+      },
     ]
   },
   {
     navItem: "Leave & Travel",
     icon: "fa-solid fa-book-open-reader",
     subItems: [
-      "Leave Planner Management",
-      "Leave Request Management",
-      "Travel Request Management",
+      {
+        name: "Leave Planner Management",
+        url: "/admin/leaveplannermanagement/index.html",
+      },
+      {
+        name: "Leave Request Management",
+        url: "/admin/leaverequestmanagement/index.html",
+      },
+      {
+        name: "Travel Request Management",
+        url: "/admin/travelrequestmanagement/index.html",
+      },
     ]
   },
   {
     navItem: "Performance",
     icon: "fa-solid fa-chart-simple",
     subItems: [
-      "Employee BSC Management",
-      "Corporate BSC Management",
-      "Check-In Review Management",
-      "360 Degree Management",
-      "Result & Behaviour KPI",
-      "Result & Behaviour Appraisal Mgt.",
-      "Time Sheet Management",
-      "Task Management",
-      "Confirmation Management",
+      {
+        name: "Employee BSC Management",
+        url: "/admin/employeebscmanagement/index.html",
+      },
+      {
+        name: "Corporate BSC Management",
+        url: "/admin/corporatebscmanagement/index.html",
+      },
+      {
+        name: "Check-In Review Management",
+        url: "/admin/checkinreviewmanagement/index.html",
+      },
+      {
+        name: "360 Degree Management",
+        url: "/admin/360degreemanagement/index.html",
+      },
+      {
+        name: "Result & Behaviour KPI",
+        url: "/admin/result&behaviourkpi/index.html",
+      },
+      {
+        name: "Result & Behaviour Appraisal Mgt.",
+        url: "/admin/result&behaviourappraisalmgt/index.html",
+      },
+      {
+        name: "Time Sheet Management",
+        url: "/admin/timesheetmanagement/index.html",
+      },
+      {
+        name: "Task Management",
+        url: "/admin/taskmanagement/index.html",
+      },
+      {
+        name: "Confirmation Management",
+        url: "/admin/confirmationmanagement/index.html",
+      },
     ]
   },
   {
     navItem: "Discipline",
     icon: "fa-solid fa-house-laptop",
     subItems: [
-      "Query Management",
-      "Sanction Management",
+      {
+        name: "Query Management",
+        url: "/admin/querymanagement/index.html",
+      },
+      {
+        name: "Sanction Management",
+        url: "/admin/sanctionmanagement/index.html",
+      },
     ]
   },
   {
     navItem: "Loan",
     icon: "fa-solid fa-money-check-dollar",
     subItems: [
-      "Loan Request Management",
-      "Loan Repay Management",
-      "Loan Migration Management",
+      {
+        name: "Loan Request Management",
+        url: "/admin/loanrequestmanagement/index.html"
+      },
+      {
+        name: "Loan Repay Management",
+        url: "/admin/loanrepaymanagement/index.html"
+      },
+      {
+        name: "Loan Migration Management",
+        url: "/admin/loanmigrationmanagement/index.html",
+      },
     ]
   },
   {
     navItem: "Payroll",
     icon: "fa-solid fa-coins",
     subItems: [
-      "Overtime Tracking By HR",
-      "Overtime Management",
-      "Payroll Managent",
-      "Payroll Extra Upload",
-      "Payroll Approval Management",
-      "Remove Payroll",
+      {
+        name: "Overtime Tracking By HR",
+        url: "/admin/overtimetrackingbyhr/index.html",
+      },
+      {
+        name: "Overtime Management",
+        url: "/admin/overtimemanagement/index.html",
+      },
+      {
+        name: "Payroll Managent",
+        url: "/admin/payrollmanagement/index.html",
+      },
+      {
+        name: "Payroll Extra Upload",
+        url: "/admin/payrollextraupload/index.html",
+      },
+      {
+        name: "Payroll Approval Management",
+        url: "/admin/payrollapprovalmanagement/index.html",
+      },
+      {
+        name: "Remove Payroll",
+        url: "/admin/removepayroll/index.html",
+      },
     ]
   },
   {
     navItem: "Expense",
     icon: "fa-solid fa-money-bills",
     subItems: [
-      "Expense Claims Management",
-      "Cash Advance Management",
-      "Cash Retirement Management",
+      {
+        name: "Expense Claims Management",
+        url: "/admin/expenseclaimsmanagement/index.html",
+      },
+      {
+        name: "Cash Advance Management",
+        url: "/admin/cashadvancemanagement/index.html",
+      },
+      {
+        name: "Cash Retirement Management",
+        url: "/admin/cashretirementmanagement/index.html",
+      },
     ]
   },
 
@@ -97,51 +226,114 @@ const sideNavItems = [
     navItem: "Succession Plan",
     icon: "fa-solid fa-clipboard",
     subItems: [
-      "Skill Set Management",
-      "Succession Management",
-      "Reporting Hierarchy",
+      {
+        name: "Skill Set Management",
+        url: "/admin/skillsetmanagement/index.html",
+      },
+      {
+        name: "Succession Management",
+        url: "/admin/successionmanagement/index.html",
+      },
+      {
+        name: "Reporting Hierarchy",
+        url: "/admin/reportinghierarchy/index.html",
+      },
     ]
   },
   {
     navItem: "Health and Safety",
     icon: "fa-solid fa-laptop-medical",
     subItems: [
-      "Illness Management",
-      "Injury Management",
-      "Medical Service Management",
+      {
+        name: "Illness Management",
+        url: "/admin/illnessmanagement/index.html",
+      },
+      {
+        name: "Injury Management",
+        url: "/admin/injurymanagement/index.html",
+      },
+      {
+        name: "Medical Service Management",
+        url: "/admin/medicalservicemanagement/index.html",
+      },
     ]
   },
   {
     navItem: "Strategic Plan Warehousing",
     icon: "fa-solid fa-warehouse",
     subItems: [
-      "Strategic Intent Management",
-      "Long Term Objectives Management",
-      "Yearly Objectives Management",
-      "Action Plans Management"
+      {
+        name: "Strategic Intent Management",
+        url: "/admin/strategicintentmanagement/index.html"
+      },
+      {
+        name: "Long Term Objectives Management",
+        url: "/admin/longtermobjectivesmanagement/index.html",
+      },
+      {
+        name: "Yearly Objectives Management",
+        url: "/admin/yearlyobjectivesmanagement/index.html",
+      },
+      {
+        name: "Action Plans Management",
+        url: "/admin/actionplansmanagement/index.html",
+      },
     ]
   },
   {
     navItem: "Reports",
     icon: "fa-solid fa-chart-line",
     subItems: [
-      "Employee Dashboard",
-      "Leave Request",
-      "Cash Advance",
-      "Cash Retirement",
-      "Expense Claims Dashboard",
-      "Payroll"
+      {
+        name: "Employee Dashboard",
+        url: "/admin/employeedashboard/index.html",
+      },
+      {
+        name: "Leave Request",
+        url: "/admin/leaverequest/index.html",
+      },
+      {
+        name: "Cash Advance",
+        url: "/admin/cashadvance/index.html",
+      },
+      {
+        name: "Cash Retirement",
+        url: "/admin/cashretirement/index.html",
+      },
+      {
+        name: "Expense Claims Dashboard",
+        url: "/admin/expenseclaimsdashboard",
+      },
+      {
+        name: "Payroll",
+        url: "/admin/payroll/index.html",
+      },
     ]
   },
   {
     navItem: "Exit",
     icon: "fa-solid fa-circle-xmark",
     subItems: [
-      "Exit Management",
-      "Exit By HR",
-      "Exit Bulk Employees",
-      "Exit Clearance Management",
-      "Exit Interview Management",
+      {
+        name: "Exit Management",
+        url: "/admin/exitmanagement/index.html",
+      },
+      {
+        nmae: "Exit By HR",
+        url: "/admin/exitbyhr/index.html",
+      },
+      {
+        name: "Exit Bulk Employees",
+        url: "/admin/exitbulkemployees/index.html",
+      },
+      {
+        name: "Exit Clearance Management",
+        url: "/admin/exitclearancemanagement/index.html",
+      },
+      {
+        name: "Exit Interview Management",
+        url: "/admin/exitinterviewmanagement/index.html",
+      },
     ]
   },
 
@@ -149,17 +341,50 @@ const sideNavItems = [
     navItem: "Admin",
     icon: "fa-solid fa-money-check",
     subItems: [
-      "Setup Management",
-      "Change Setup Value",
-      "Change Employee Username",
-      "Access Right Management",
-      "Notice Management",
-      "Short Message Service[SMS]",
-      "MD's Desk Management",
-      "News Managemet",
-      "Feedback Management",
-      "Audit Trail Management",
-      "Task Monitoring Management",
+      {
+        name: "Setup Management",
+        url: "/admin/setupmanagement/index.html"
+      },
+      {
+        name: "Change Setup Value",
+        url: "/admin/changesetupvalue/index.html",
+      },
+      {
+        name: "Change Employee Username",
+        url: "/admin/changeemployeeusername/index.html",
+      },
+      {
+        name: "Access Right Management",
+        url: "/admin/accessrightmanagement/index.html",
+      },
+      {
+        name: "Notice Management",
+        url: "/admin/noticemanagement/index.html",
+      },
+      {
+        name: "Short Message Service[SMS]",
+        url: "/admin/shortmessageservice/index.html",
+      },
+      {
+        name: "MD's Desk Management",
+        url: "/admin/md'sdeskmanagement/index.html",
+      },
+      {
+        name: "News Managemet",
+        url: "/admin/newsmanagement/index.html",
+      },
+      {
+        name: "Feedback Management",
+        url: "/admin/feedbackmanagement/index.html",
+      },
+      {
+        name: "Audit Trail Management",
+        url: "/admin/audittrailmanagement/index.html",
+      },
+      {
+        name: "Task Monitoring Management",
+        url: "/admin/taskmonitoringmanagement/index.html",
+      },
     ]
   },
 ];
@@ -175,7 +400,9 @@ if (sideNavItemsColumn) {
           ${sideNavItem.subItems ? `
               <div class="side-nav-link-item sub-items hide">
                   ${sideNavItem.subItems.map(subItem => `
-                      <div class="sub-item">${subItem}</div>
+                      <div class="sub-item">
+                        <a href="/pages/modules${subItem.url || "#"}">${subItem.name || subItem}</a>
+                      </div>
                   `).join('')}
               </div>
           ` : ''}
