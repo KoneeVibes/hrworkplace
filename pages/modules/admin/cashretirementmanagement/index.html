@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../../../../index.css">
+    <link rel="stylesheet" href="../../../dashboard/style.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <section class="column side-nav hide-element">
+        <div class="column logos">
+            <div class="app-logo">
+                <img src="../../../../assets/logo.svg" class="logo-img"
+                    onclick="window.location.href='../../../dashboard/index.html'">
+            </div>
+            <div class="row client-logo">
+                <img src="../../../../assets/client_logo.svg" />
+                <span class="side-nav-link-item">Interswitch</span>
+            </div>
+        </div>
+        <div class="column side-nav-items"></div>
+        <div class="user">
+            <div class="row user-credential">
+                <div class="user-avatar">
+                    <img src="../../../../assets/avatar.svg" class="logo-img" />
+                </div>
+                <div class="column user-details side-nav-link-item">
+                    <h2>Mike Obanjo</h2>
+                    <p>ade.obi@rogbodiyan.io</p>
+                </div>
+                <i class="fa-solid fa-greater-than side-nav-link-item-dropdown"></i>
+            </div>
+            <div class="column user-detail-items side-nav-link-item hide"></div>
+        </div>
+    </section>
+    <section class="row top-nav">
+        <div class="app-logo">
+            <img src="../../../../assets/logo.svg" onclick="window.location.href='../../../dashboard/index.html'" />
+        </div>
+        <div class="search-bar row">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Search Anything" class="search-anything"
+                onfocus="handleOpenSearchModal(event)">
+        </div>
+        <div class="self-service">
+            <!-- <i class="fa-solid fa-arrow-down-wide-short"></i> -->
+            <div class="row self-service-button" onclick="handleOpenSelfServiceModal(event)">
+                <span>Self Service</span>
+                <i class="fa-solid fa-greater-than self-service-link-item-dropdown"></i>
+            </div>
+            <i class="fa-regular fa-bell handle-pending-task-icon" onclick="handleOpenPendingTaskModal(event)"></i>
+            <i class="fa-solid fa-bars hamburger-icon show" onclick="handleHamburgerClick()"></i>
+            <i class="fa-solid fa-circle-xmark close-icon" onclick="handleHamburgerClick()"></i>
+        </div>
+    </section>
+    <section class="modal search-modal close-modal">
+        <div class="column modal-title-box search-modal-title-box">
+            <h2>Searching for</h2>
+            <div class="row search-chips"></div>
+        </div>
+        <div class="modal-items">
+            <h2>Search prompt examples</h2>
+            <div class="search-modal-items">
+                <div class="row search-prompt">
+                    <i class="fa-regular fa-star"></i>
+                    <p>Filter your timesheet</p>
+                </div>
+                <div class="row search-prompt">
+                    <i class="fa-regular fa-star"></i>
+                    <p>See upcoming events</p>
+                </div>
+                <div class="row search-prompt">
+                    <i class="fa-regular fa-star"></i>
+                    <p>Leave request</p>
+                </div>
+                <div class="row search-prompt">
+                    <i class="fa-regular fa-star"></i>
+                    <p>See reports</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="modal pending-task-modal close-modal">
+        <div class="row modal-title-box pending-task-modal-title-box">
+            <i class="fa-solid fa-xmark handle-pending-task-icon" onclick="handleClosePendingTaskModal()"></i>
+            <h2>Pending Task</h2>
+        </div>
+    </section>
+    <section class="modal self-service-modal close-modal">
+        <div class="row modal-title-box self-service-modal-title-box">
+            <i class="fa-solid fa-xmark handle-pending-task-icon" onclick="handleCloseSelfServiceModal()"></i>
+            <h2>Self Service</h2>
+        </div>
+        <div class="modal-items self-service-modal-items"></div>
+    </section>
+    <section class="main-area">
+        <div class="row module-title-box">
+            <h1>Cash Retirement Management</h1>
+            <button class="row" onclick="handleOpenCashRetirementManagementModal(event)">
+                <i class="fa-solid fa-plus"></i>
+                <span>Add New Cash Retirement Management</span>
+            </button>
+        </div>
+        <div class="row module-navigation">
+            <span class="previous">Home</span>
+            <i class="fa-solid fa-greater-than previous"></i>
+            <span>Cash Retirement Management</span>
+        </div>
+        <div class="module-table"></div>
+        <div class="module-modal cash-retirement-management-module-modal close-modal">
+            <div class="row modal-title-box module-modal-title-box">
+                <h2>Cash Retirement Management</h2>
+                <i class=" fa-solid fa-xmark cash-retirement-management-modal-close-icon" onclick="handleCloseCashRetirementManagementModal()"></i>
+            </div>
+            <div class="module-modal-form"></div>
+        </div>
+        <div class="module-detail-modal close-modal">
+            <div class="row modal-title-box module-modal-title-box">
+                <h2>Cash Retirement Management</h2>
+                <i class=" fa-solid fa-xmark cash-retirement-management-modal-close-icon" onclick="handleCloseDetailModal()"></i>
+            </div>
+            <div class="module-modal-detail-box"></div>
+        </div>
+        <div class="module-modal cash-retirement-management-confirmation-modal close-modal">
+            <img src="../../../../assets/timesheeticon.svg" alt="time-clock" />
+            <h2>Submit cash retirement management</h2>
+            <p>By submitting this cash retirement management you show your availability and the task you accomplished for the day</p>
+            <form>
+                <label>
+                    <input type="checkbox" />
+                    Don’t show this again
+                </label>
+                <div class="row confirmation-cta">
+                    <button type="reset" onclick="handleCloseConfirmationModal()">
+                        <span>Cancel</span>
+                    </button>
+                    <button type="submit">
+                        <span>Confirm</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Local scripts -->
+    <script src="../../../dashboard/layout.js"></script>
+    <script src="./script.js"></script>
+</body>
+
+</html>

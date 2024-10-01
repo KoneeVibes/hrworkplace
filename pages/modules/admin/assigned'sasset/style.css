@@ -1,0 +1,297 @@
+.module-title-box {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border-bottom: 1px solid #EAECF0;
+    padding-bottom: var(--basic-padding);
+    overflow: hidden;
+}
+
+.module-title-box>h1 {
+    margin-block: 0;
+    color: #101828;
+}
+
+.module-title-box button {
+    align-items: center;
+    gap: calc(var(--flex-gap)/2);
+    background-color: #FFFFFF;
+    color: #344054;
+    border: 1px solid #D0D5DD;
+    overflow: hidden;
+}
+
+.module-navigation {
+    padding: calc(var(--basic-padding)/2) 0;
+    border-bottom: 1px solid #EAECF0;
+    align-items: center;
+    gap: calc(var(--flex-gap)/2);
+    overflow: hidden;
+}
+
+.module-navigation .previous {
+    color: #98A2B3;
+}
+
+.module-table {
+    overflow: auto;
+}
+
+.call-to-action {
+    text-align: center;
+    padding: calc(2 * var(--basic-padding));
+}
+
+.call-to-action button {
+    color: #FFFFFF;
+    border: none;
+    background-color: #217834;
+}
+
+.call-to-action p {
+    color: #667085;
+}
+
+.cta-box {
+    overflow: hidden;
+}
+
+.assigned-assets-module-modal {
+    position: fixed;
+    left: calc(2 * var(--basic-padding));
+    top: var(--basic-padding);
+    right: calc(2 * var(--basic-padding));
+    bottom: var(--basic-padding);
+    z-index: 1;
+    background-color: #FFFFFF;
+    box-shadow: 0px 20px 24px -4px #10182814;
+    border-radius: 12px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.module-modal.close-modal {
+    display: none;
+}
+
+.module-modal-title-box {
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.module-modal-title-box>h2 {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: normal;
+}
+
+.module-modal-form {
+    overflow: hidden;
+}
+
+.module-modal-form>form {
+    padding: 0 var(--basic-padding);
+}
+
+.module-modal-form>form .form-field-set {
+    padding-block: calc(var(--basic-padding));
+    border-bottom: 1px solid #EAECF0;
+    flex-wrap: wrap;
+    overflow: hidden;
+    justify-content: space-between;
+}
+
+.module-modal-form>form .form-field-set>label,
+.module-modal-form>form .form-field-set>input {
+    flex: 0 0 45%;
+}
+
+.module-modal-form>form .form-field-set>input {
+    border: 1px solid #D0D5DD;
+    border-radius: 0.5rem;
+    padding: calc(var(--basic-padding)/4);
+    outline: none;
+}
+
+.module-modal-form>form fieldset {
+    border: none;
+    padding-block: var(--basic-padding);
+    margin-inline: 0;
+    padding-inline: 0;
+    min-inline-size: auto;
+}
+
+.module-modal-form>form fieldset>h3 {
+    margin-block: 0;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: normal;
+}
+
+.module-modal-form>form fieldset>p {
+    margin-block-end: 0;
+}
+
+.assigned-assets-modal-close-icon {
+    cursor: pointer;
+}
+
+.form-cta {
+    flex-wrap: wrap;
+    overflow: hidden;
+    margin-bottom: var(--basic-padding);
+}
+
+.form-cta>button:nth-child(1) {
+    background-color: transparent;
+    border: 1px solid #D0D5DD;
+    box-shadow: 0px 1px 2px 0px #1018280D;
+}
+
+.form-cta>button:nth-child(1)>span {
+    color: #344054;
+}
+
+.form-cta>button:nth-child(2) {
+    background-color: #217834;
+    border: 1px solid #217834;
+    box-shadow: 0px 1px 2px 0px #1018280D;
+}
+
+.form-cta>button:nth-child(2)>span {
+    color: #FFFFFF;
+}
+
+.assigned-assets-confirmation-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #FFFFFF;
+    box-shadow: 0px 20px 24px -4px #10182814;
+    border-radius: 12px;
+    padding: var(--basic-padding);
+    max-width: 25rem;
+    z-index: 1;
+}
+
+.assigned-assets-confirmation-modal>img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.assigned-assets-confirmation-modal>h2 {
+    text-align: center;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: normal;
+}
+
+.assigned-assets-confirmation-modal>p {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: normal;
+    color: #98A2B3;
+}
+
+.assigned-assets-confirmation-modal>form {
+    overflow: hidden;
+}
+
+.assigned-assets-confirmation-modal>form>.confirmation-cta {
+    gap: calc(var(--flex-gap)/2);
+    margin-block-start: var(--basic-padding);
+    flex-wrap: wrap;
+    overflow: hidden;
+}
+
+.assigned-assets-confirmation-modal>form>.confirmation-cta>button {
+    flex: 1;
+}
+
+.assigned-assets-confirmation-modal>form>.confirmation-cta>button:nth-child(1) {
+    background-color: transparent;
+    border: 1px solid #D0D5DD;
+    box-shadow: 0px 1px 2px 0px #1018280D;
+}
+
+.assigned-assets-confirmation-modal>form>.confirmation-cta>button:nth-child(1)>span {
+    color: #344054;
+}
+
+.assigned-assets-confirmation-modal>form>.confirmation-cta>button:nth-child(2) {
+    background-color: #217834;
+    border: 1px solid #217834;
+    box-shadow: 0px 1px 2px 0px #1018280D;
+}
+
+.assigned-assets-confirmation-modal>form>.confirmation-cta>button:nth-child(2)>span {
+    color: #FFFFFF;
+}
+
+.module-detail-modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    background-color: #FFFFFF;
+    box-shadow: 0px 20px 24px -4px #10182814;
+    border-radius: 12px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.module-detail-modal.close-modal {
+    display: none;
+}
+
+.module-modal-detail-box>div {
+    padding: var(--basic-padding);
+}
+
+@media screen and (max-width: 425px) {
+    .call-to-action img {
+        width: 100%;
+        height: auto;
+    }
+
+    .module-modal-form>form .form-field-set>input {
+        width: 100%;
+    }
+
+    .form-cta {
+        gap: calc(var(--flex-gap)/2);
+    }
+
+    .form-cta button {
+        flex: 1;
+    }
+
+    .assigned-assets-confirmation-modal {
+        transform: unset;
+        right: calc(var(--basic-padding));
+        overflow: hidden;
+        left: calc(var(--basic-padding));
+        top: 18%;
+        overflow-y: auto;
+    }
+
+    .assigned-assets-confirmation-modal>img {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width:768px) {
+    .form-cta {
+        float: right;
+    }
+
+    .module-detail-modal {
+        left: calc(2 * var(--basic-padding));
+        top: var(--basic-padding);
+        right: calc(2 * var(--basic-padding));
+        bottom: var(--basic-padding);
+    }
+}

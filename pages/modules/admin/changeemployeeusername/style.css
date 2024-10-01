@@ -55,7 +55,7 @@
     overflow: hidden;
 }
 
-.training-cost-management-module-modal {
+.change-employee-username-module-modal {
     position: fixed;
     left: calc(2 * var(--basic-padding));
     top: var(--basic-padding);
@@ -131,7 +131,7 @@
     margin-block-end: 0;
 }
 
-.training-cost-management-modal-close-icon {
+.change-employee-username-modal-close-icon {
     cursor: pointer;
 }
 
@@ -161,7 +161,7 @@
     color: #FFFFFF;
 }
 
-.training-cost-management-confirmation-modal {
+.change-employee-username-confirmation-modal {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -174,58 +174,58 @@
     z-index: 1;
 }
 
-.training-cost-management-confirmation-modal>img {
+.change-employee-username-confirmation-modal>img {
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
 
-.training-cost-management-confirmation-modal>h2 {
+.change-employee-username-confirmation-modal>h2 {
     text-align: center;
     font-weight: 600;
     font-size: 18px;
     line-height: normal;
 }
 
-.training-cost-management-confirmation-modal>p {
+.change-employee-username-confirmation-modal>p {
     font-weight: 400;
     font-size: 14px;
     line-height: normal;
     color: #98A2B3;
 }
 
-.training-cost-management-confirmation-modal>form {
+.change-employee-username-confirmation-modal>form {
     overflow: hidden;
 }
 
-.training-cost-management-confirmation-modal>form>.confirmation-cta {
+.change-employee-username-confirmation-modal>form>.confirmation-cta {
     gap: calc(var(--flex-gap)/2);
     margin-block-start: var(--basic-padding);
     flex-wrap: wrap;
     overflow: hidden;
 }
 
-.training-cost-management-confirmation-modal>form>.confirmation-cta>button {
+.change-employee-username-confirmation-modal>form>.confirmation-cta>button {
     flex: 1;
 }
 
-.training-cost-management-confirmation-modal>form>.confirmation-cta>button:nth-child(1) {
+.change-employee-username-confirmation-modal>form>.confirmation-cta>button:nth-child(1) {
     background-color: transparent;
     border: 1px solid #D0D5DD;
     box-shadow: 0px 1px 2px 0px #1018280D;
 }
 
-.training-cost-management-confirmation-modal>form>.confirmation-cta>button:nth-child(1)>span {
+.change-employee-username-confirmation-modal>form>.confirmation-cta>button:nth-child(1)>span {
     color: #344054;
 }
 
-.training-cost-management-confirmation-modal>form>.confirmation-cta>button:nth-child(2) {
+.change-employee-username-confirmation-modal>form>.confirmation-cta>button:nth-child(2) {
     background-color: #217834;
     border: 1px solid #217834;
     box-shadow: 0px 1px 2px 0px #1018280D;
 }
 
-.training-cost-management-confirmation-modal>form>.confirmation-cta>button:nth-child(2)>span {
+.change-employee-username-confirmation-modal>form>.confirmation-cta>button:nth-child(2)>span {
     color: #FFFFFF;
 }
 
@@ -269,7 +269,7 @@
         flex: 1;
     }
 
-    .training-cost-management-confirmation-modal {
+    .change-employee-username-confirmation-modal {
         transform: unset;
         right: calc(var(--basic-padding));
         overflow: hidden;
@@ -278,7 +278,7 @@
         overflow-y: auto;
     }
 
-    .training-cost-management-confirmation-modal>img {
+    .change-employee-username-confirmation-modal>img {
         width: 100%;
     }
 }

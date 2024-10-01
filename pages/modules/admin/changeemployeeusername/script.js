@@ -1,14 +1,14 @@
-const sanctionManagementTable = document.querySelector(".module-table");
-const sanctionManagementModal = document.querySelector(".sanction-management-module-modal");
-const sanctionManagementForm = document.querySelector(".module-modal-form");
-const sanctionManagementConfirmationModal = document.querySelector(".sanction-management-confirmation-modal");
-const sanctionManagementDetailModal = document.querySelector(".module-detail-modal");
-const sanctionManagementDetailBox = document.querySelector(".module-modal-detail-box");
+const changeEmployeeUsernameTable = document.querySelector(".module-table");
+const changeEmployeeUsernameModal = document.querySelector(".change-employee-username-module-modal");
+const changeEmployeeUsernameForm = document.querySelector(".module-modal-form");
+const changeEmployeeUsernameConfirmationModal = document.querySelector(".change-employee-username-confirmation-modal");
+const changeEmployeeUsernameDetailModal = document.querySelector(".module-detail-modal");
+const changeEmployeeUsernameDetailBox = document.querySelector(".module-modal-detail-box");
 const markedForDeHighlighting = document.querySelectorAll(".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav");
 const headers = ["S/N", "Name", "Company", "Department", "Task Date", "Task Title", "Time Spent", "Manager's Remark", "Status", "View"];
 const rows = [""];
 
-sanctionManagementTable.innerHTML = rows.length > 0 ? (
+changeEmployeeUsernameTable.innerHTML = rows.length > 0 ? (
     `<table>
         <thead>
             <tr>
@@ -43,17 +43,17 @@ sanctionManagementTable.innerHTML = rows.length > 0 ? (
         </div>
         <div>
             <h3>Nothing to see here...yet</h3>
-            <p>When Ofofon logs his sanction management, they will show up here</p>
+            <p>When Ofofon logs his change employee username, they will show up here</p>
         </div>
         <div class="cta-box">
-            <button onclick="handleOpenSanctionManagementModal(event)">
-                <span>Add New Sanction Management</span>
+            <button onclick="handleOpenChangeEmployeeUsernameModal(event)">
+                <span>Add New Change Employee Username</span>
             </button>
         </div>
     </div>`
 );
 
-sanctionManagementForm.innerHTML = (`
+changeEmployeeUsernameForm.innerHTML = (`
     <form>
         <div class="row form-field-set">
             <label>Email</label>
@@ -92,7 +92,7 @@ sanctionManagementForm.innerHTML = (`
             </div>
         </fieldset>
         <div class="row form-cta">
-            <button type="reset" onclick="handleCloseSanctionManagementModal()">
+            <button type="reset" onclick="handleCloseChangeEmployeeUsernameModal()">
                 <span>Cancel</span>
             </button>
             <button type="button" onclick="handleOpenConfirmationModal(event)">
@@ -102,7 +102,7 @@ sanctionManagementForm.innerHTML = (`
     </form>
 `)
 
-sanctionManagementDetailBox.innerHTML = (`
+changeEmployeeUsernameDetailBox.innerHTML = (`
         <div>
             // details would go in here
             
@@ -111,7 +111,7 @@ sanctionManagementDetailBox.innerHTML = (`
 
 function handleOpenDetailModal(e) {
     e.stopPropagation();
-    sanctionManagementDetailModal.classList.remove("close-modal");
+    changeEmployeeUsernameDetailModal.classList.remove("close-modal");
     document.body.style.overflow = "hidden";
     markedForDeHighlighting.forEach((item) => {
         item.style.opacity = 0.1;
@@ -120,7 +120,7 @@ function handleOpenDetailModal(e) {
 }
 
 function handleCloseDetailModal() {
-    sanctionManagementDetailModal.classList.add("close-modal");
+    changeEmployeeUsernameDetailModal.classList.add("close-modal");
     document.body.style.overflow = "auto";
     markedForDeHighlighting.forEach((item) => {
         item.style.opacity = 1;
@@ -128,9 +128,9 @@ function handleCloseDetailModal() {
     });
 }
 
-function handleOpenSanctionManagementModal(e) {
+function handleOpenChangeEmployeeUsernameModal(e) {
     e.stopPropagation();
-    sanctionManagementModal.classList.remove("close-modal");
+    changeEmployeeUsernameModal.classList.remove("close-modal");
     document.body.style.overflow = "hidden";
     markedForDeHighlighting.forEach((item) => {
         item.style.opacity = 0.1;
@@ -138,8 +138,8 @@ function handleOpenSanctionManagementModal(e) {
     });
 }
 
-function handleCloseSanctionManagementModal() {
-    sanctionManagementModal.classList.add("close-modal");
+function handleCloseChangeEmployeeUsernameModal() {
+    changeEmployeeUsernameModal.classList.add("close-modal");
     document.body.style.overflow = "auto";
     markedForDeHighlighting.forEach((item) => {
         item.style.opacity = 1;
@@ -149,8 +149,8 @@ function handleCloseSanctionManagementModal() {
 
 function handleOpenConfirmationModal(e) {
     e.stopPropagation();
-    handleCloseSanctionManagementModal();
-    sanctionManagementConfirmationModal.classList.remove("close-modal");
+    handleCloseChangeEmployeeUsernameModal();
+    changeEmployeeUsernameConfirmationModal.classList.remove("close-modal");
     document.body.style.overflow = "hidden";
     markedForDeHighlighting.forEach((item) => {
         item.style.opacity = 0.1;
@@ -159,7 +159,7 @@ function handleOpenConfirmationModal(e) {
 }
 
 function handleCloseConfirmationModal() {
-    sanctionManagementConfirmationModal.classList.add("close-modal");
+    changeEmployeeUsernameConfirmationModal.classList.add("close-modal");
     document.body.style.overflow = "auto";
     markedForDeHighlighting.forEach((item) => {
         item.style.opacity = 1;
@@ -169,10 +169,10 @@ function handleCloseConfirmationModal() {
 
 window.addEventListener("click", (e) => {
     // condition - if the modal is currently rendered && if the click is not within the modal 
-    if (!sanctionManagementModal.classList.contains("close-modal") && !sanctionManagementModal.contains(e.target)) {
-        handleCloseSanctionManagementModal();
+    if (!changeEmployeeUsernameModal.classList.contains("close-modal") && !changeEmployeeUsernameModal.contains(e.target)) {
+        handleCloseChangeEmployeeUsernameModal();
     }
-    if (!sanctionManagementDetailModal.classList.contains("close-modal") && !sanctionManagementDetailModal.contains(e.target)) {
+    if (!changeEmployeeUsernameDetailModal.classList.contains("close-modal") && !changeEmployeeUsernameDetailModal.contains(e.target)) {
         handleCloseDetailModal();
     }
 });

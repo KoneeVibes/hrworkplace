@@ -319,7 +319,7 @@ const sideNavItems = [
         url: "/admin/exitmanagement/index.html",
       },
       {
-        nmae: "Exit By HR",
+        name: "Exit By HR",
         url: "/admin/exitbyhr/index.html",
       },
       {
