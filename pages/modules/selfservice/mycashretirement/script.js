@@ -38,7 +38,7 @@ cashRetirementTable.innerHTML = rows.length > 0 ? (
 ) : (
     `<div class="call-to-action">
         <div>
-            <img src=${"../../assets/search.svg"} alt="search-icon"/>
+            <img src=${"../../../../assets/search.svg"} alt="search-icon"/>
         </div>
         <div>
             <h3>Nothing to see here...yet</h3>
