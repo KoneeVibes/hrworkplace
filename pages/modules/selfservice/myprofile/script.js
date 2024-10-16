@@ -6,7 +6,7 @@ const profileDetailModal = document.querySelector(".module-detail-modal");
 const profileDetailBox = document.querySelector(".module-modal-detail-box");
 const markedForDeHighlighting = document.querySelectorAll(".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav");
 const headers = ["S/N", "Name", "Company", "Department", "Task Date", "Task Title", "Time Spent", "Manager's Remark", "Status", "View"];
-const rows = [""];
+const rows = [];
 
 profileTable.innerHTML = rows.length > 0 ? (
     `<table>
@@ -38,7 +38,7 @@ profileTable.innerHTML = rows.length > 0 ? (
 ) : (
     `<div class="call-to-action">
         <div>
-            <img src=${"../../assets/search.svg"} alt="search-icon"/>
+            <img src=${"../../../../assets/search.svg"} alt="search-icon"/>
         </div>
         <div>
             <h3>Nothing to see here...yet</h3>
