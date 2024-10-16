@@ -1,56 +1,14 @@
-const profileTable = document.querySelector(".module-table");
+const profileBody = document.querySelector(".module-body");
 const profileModal = document.querySelector(".profile-module-modal");
 const profileForm = document.querySelector(".module-modal-form");
 const profileConfirmationModal = document.querySelector(".profile-confirmation-modal");
 const profileDetailModal = document.querySelector(".module-detail-modal");
 const profileDetailBox = document.querySelector(".module-modal-detail-box");
+const profileCategoriesBox = document.querySelector(".profile-categories");
+const profileCategories = ["Overview", "Education", "Professional", "Experience", "Reference", "Next of KIN", "Documents"];
 const markedForDeHighlighting = document.querySelectorAll(".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav");
-const headers = ["S/N", "Name", "Company", "Department", "Task Date", "Task Title", "Time Spent", "Manager's Remark", "Status", "View"];
 const rows = [];
-
-profileTable.innerHTML = rows.length > 0 ? (
-    `<table>
-        <thead>
-            <tr>
-                ${headers?.map((header, index) => `
-                    <th key=${index}>
-                        ${header}
-                    </th>
-                `).join('')}
-            </tr>
-        </thead>
-        <tbody>
-        ${rows?.map((row, index) => `
-                <tr
-                    key=${index}
-                    onclick="handleOpenDetailModal(event)"
-                >
-                    <td>
-                        <input 
-                            type="checkbox"
-                        />
-                    </td>
-                    <td>${row}</td>
-                </tr>
-            `).join('')}
-        </tbody>
-    </table>`
-) : (
-    `<div class="call-to-action">
-        <div>
-            <img src=${"../../../../assets/search.svg"} alt="search-icon"/>
-        </div>
-        <div>
-            <h3>Nothing to see here...yet</h3>
-            <p>When Ofofon logs his profile, they will show up here</p>
-        </div>
-        <div class="cta-box">
-            <button onclick="handleOpenProfileModal(event)">
-                <span>Add New Profile</span>
-            </button>
-        </div>
-    </div>`
-);
+let activeProfileCategory = "Overview";
 
 profileForm.innerHTML = (`
     <form>
@@ -107,6 +65,44 @@ profileDetailBox.innerHTML = (`
             
         </div>
     `)
+
+profileCategoriesBox.innerHTML = profileCategories.map((category, index) => {
+    return (`
+        <button
+            key="${index}"
+            onclick="handleProfileCategorySelection(event, '${category}')"
+        >
+            <span>
+                ${category}
+            </span>
+        </button>
+    `);
+}).join('');
+
+function handleProfileCategorySelection(e, category) {
+    e.preventDefault();
+    activeProfileCategory = category;
+    profileBody.innerHTML = rows ? (
+        `<div>
+            <p>${activeProfileCategory}</p>
+        </div>`
+    ) : (
+        `<div class="call-to-action">
+            <div>
+                <img src=${"../../../../assets/search.svg"} alt="search-icon"/>
+            </div>
+            <div>
+                <h3>Nothing to see here...yet</h3>
+                <p>When Ofofon logs his profile, they will show up here</p>
+            </div>
+            <div class="cta-box">
+                <button onclick="handleOpenProfileModal(event)">
+                    <span>Add New Profile</span>
+                </button>
+            </div>
+        </div>`
+    );
+}
 
 function handleOpenDetailModal(e) {
     e.stopPropagation();

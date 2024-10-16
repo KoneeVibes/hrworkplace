@@ -102,10 +102,17 @@
     </section>
     <section class="main-area">
         <div class="row module-title-box">
-            <h1>My Profile</h1>
+            <div class="row profile-detail-box">
+                <i class="fa-solid fa-less-than"></i>
+                <img src="../../../../assets/profilepicture.svg" alt="profile-picture" />
+                <div class="column profile-name-and-role">
+                    <h1>Ofofon Umoren</h1>
+                    <p>Team Member</p>
+                </div>
+            </div>
             <button class="row" onclick="handleOpenProfileModal(event)">
-                <i class="fa-solid fa-plus"></i>
-                <span>Add New Profile</span>
+                <span>Edit Profile</span>
+                <i class="fa-regular fa-pen-to-square"></i>
             </button>
         </div>
         <div class="row module-navigation">
@@ -113,7 +120,17 @@
             <i class="fa-solid fa-greater-than previous"></i>
             <span>My Profile</span>
         </div>
-        <div class="module-table"></div>
+        <div class="row profile-categories"></div>
+        <div class="module-body">
+            <div>
+                <!-- IBK your code for personal information comes in here -->
+                <p>Overview</p>
+            </div>
+            <div>
+                <!-- IBK your code for address comes in here -->
+                <p>Overview</p>
+            </div>
+        </div>
         <div class="module-modal profile-module-modal close-modal">
             <div class="row modal-title-box module-modal-title-box">
                 <h2>Profile</h2>

@@ -1,14 +1,10 @@
 .module-title-box {
     flex-wrap: wrap;
+    align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid #EAECF0;
     padding-bottom: var(--basic-padding);
     overflow: hidden;
-}
-
-.module-title-box>h1 {
-    margin-block: 0;
-    color: #101828;
 }
 
 .module-title-box button {
@@ -30,10 +26,6 @@
 
 .module-navigation .previous {
     color: #98A2B3;
-}
-
-.module-table {
-    overflow: auto;
 }
 
 .call-to-action {
@@ -249,6 +241,45 @@
 
 .module-modal-detail-box>div {
     padding: var(--basic-padding);
+}
+
+.profile-detail-box {
+    gap: calc(var(--flex-gap)/1.5);
+    align-items: center;
+}
+
+.profile-name-and-role {
+    gap: calc(var(--flex-gap)/4);
+}
+
+.profile-name-and-role>h1 {
+    margin-block: 0;
+    color: #101828;
+    font-size: 25px;
+}
+
+.profile-name-and-role>p {
+    margin-block: 0;
+    color: #667085;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.profile-categories {
+    padding: calc(var(--basic-padding)/2) 0;
+    border-bottom: 1px solid #EAECF0;
+    gap: calc(var(--flex-gap)/2);
+    overflow: auto;
+}
+
+.profile-categories>button {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+}
+
+.profile-categories>button span {
+    white-space: nowrap;
 }
 
 @media screen and (max-width: 425px) {
