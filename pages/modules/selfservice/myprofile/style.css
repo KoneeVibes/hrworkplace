@@ -282,6 +282,87 @@
     white-space: nowrap;
 }
 
+.personal-information {
+    display: flex;
+    gap: var(--flex-gap);
+    padding-bottom: var(--basic-padding);
+    padding-top: var(--basic-padding);
+}
+
+.personal {
+    gap:calc(var(--flex-gap)*4.5);
+}
+
+.information-card {
+    margin-top: var(--basic-padding) ;
+    background-color: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+}
+
+.information-card label {
+    color: #667085;
+}
+
+.information-card h1 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 0.0625rem solid #eee;
+    background-color: #fbfbfb;
+}
+
+.address-information{
+    display: flex;
+    gap:calc(var(--flex-gap)*4.5);
+    padding-bottom: var(--basic-padding);
+    padding-top: var(--basic-padding);
+}
+
+.address {
+    gap:calc(var(--flex-gap)*5);
+}
+
+.address-card {
+    margin-top: var(--basic-padding) ;
+    background-color: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+}
+
+.address-card h1 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 0.0625rem solid #eee;
+    background-color: #fbfbfb;
+}
+
+.address-information label {
+    color:  #667085;
+}
+
+@media screen and (max-width:768px) {
+    .personal-information {
+        display: flex;
+        flex-direction: column;
+        gap: var(--flex-gap);
+        padding-bottom: var(--basic-padding);
+        padding-top: var(--basic-padding);
+    }
+
+    .address-information{
+        display: flex;
+        flex-direction: column;
+        gap:var(--flex-gap);
+        padding-bottom: var(--basic-padding);
+        padding-top: var(--basic-padding);
+    }
+}
+
+
 @media screen and (max-width: 425px) {
     .call-to-action img {
         width: 100%;
@@ -325,4 +406,5 @@
         right: calc(2 * var(--basic-padding));
         bottom: var(--basic-padding);
     }
+
 }
