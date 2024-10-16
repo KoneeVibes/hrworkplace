@@ -7,9 +7,17 @@ const profileDetailBox = document.querySelector(".module-modal-detail-box");
 const profileCategoriesBox = document.querySelector(".profile-categories");
 const profileCategories = ["Overview", "Education", "Professional", "Experience", "Reference", "Next of KIN", "Documents"];
 const markedForDeHighlighting = document.querySelectorAll(".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav");
-const rows = [];
+const rows = true;
 let activeProfileCategory = "Overview";
 
+// base profile profile body - overview
+profileBody.innerHTML = (
+    `<div>
+        <p>Heyya</p>
+    </div>`
+);
+
+// base profile form case - overview
 profileForm.innerHTML = (`
     <form>
         <div class="row form-field-set">
@@ -79,25 +87,73 @@ profileCategoriesBox.innerHTML = profileCategories.map((category, index) => {
     `);
 }).join('');
 
+function getBodyCategoryContent(activeProfileCategory) {
+    switch (activeProfileCategory) {
+        case 'Overview':
+        case 'Education':
+        case 'Professional':
+        case 'Experience':
+        case 'Reference':
+        case 'Next of KIN':
+        case 'Documents':
+        default:
+            return (
+                `<div>
+                    <p>${activeProfileCategory}</p>
+                </div>`
+            );
+    }
+}
+
+function getFormCategoryContent(activeProfileCategory) {
+    switch (activeProfileCategory) {
+        case 'Overview':
+        case 'Education':
+        case 'Professional':
+        case 'Experience':
+        case 'Reference':
+        case 'Next of KIN':
+        case 'Documents':
+        default:
+            return (
+                `<div>
+                    <p>${activeProfileCategory}</p>
+                </div>`
+            );
+    }
+}
+
 function handleProfileCategorySelection(e, category) {
     e.preventDefault();
     activeProfileCategory = category;
-    profileBody.innerHTML = rows ? (
-        `<div>
-            <p>${activeProfileCategory}</p>
-        </div>`
-    ) : (
+    profileBody.innerHTML = rows ? getBodyCategoryContent(activeProfileCategory) : (
         `<div class="call-to-action">
             <div>
                 <img src=${"../../../../assets/search.svg"} alt="search-icon"/>
             </div>
             <div>
                 <h3>Nothing to see here...yet</h3>
-                <p>When Ofofon logs his profile, they will show up here</p>
+                <p>When Ofofon logs his ${activeProfileCategory}, they will show up here</p>
             </div>
             <div class="cta-box">
                 <button onclick="handleOpenProfileModal(event)">
-                    <span>Add New Profile</span>
+                    <span>Add New ${activeProfileCategory}</span>
+                </button>
+            </div>
+        </div>`
+    );
+    profileForm.innerHTML = rows ? getFormCategoryContent(activeProfileCategory) : (
+        `<div class="call-to-action">
+            <div>
+                <img src=${"../../../../assets/search.svg"} alt="search-icon"/>
+            </div>
+            <div>
+                <h3>Nothing to see here...yet</h3>
+                <p>When Ofofon logs his ${activeProfileCategory}, they will show up here</p>
+            </div>
+            <div class="cta-box">
+                <button onclick="handleOpenProfileModal(event)">
+                    <span>Add New ${activeProfileCategory}</span>
                 </button>
             </div>
         </div>`
