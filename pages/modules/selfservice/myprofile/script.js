@@ -12,10 +12,58 @@ let activeProfileCategory = "Overview";
 
 // base profile profile body - overview
 profileBody.innerHTML = (
-    `<div>
-        <p>Heyya</p>
-    </div>`
+    `
+    <div class="information-card">
+        <!-- IBK your code for personal information comes in here -->
+        <h1>Personal Information</h1>
+        <div class="personal-information personal">
+            <div class="personalInfo">
+                <label>First Name</label>
+                <p>Ofofon</p>
+            </div>
+            <div class="personalInfo">
+                <label>Last Name</label>
+                <p>Umoren</p>
+            </div>
+        </div>
+        <div class="personal-information">
+            <div class="personalInfo">
+                <label>Email</label>
+                <p>ofofonumoren@smartfocus.com</p>
+            </div>
+            <div class="personalInfo">
+                <label>Phone</label>
+                <p>+234 8323 483 945</p>
+            </div>
+        </div>
+    </div>
+    <div class="address-card">
+        <!-- IBK your code for address comes in here -->
+        <h1>Address</h1>
+        <div class="address-information address">
+            <div class="addressInfo">
+                <label>Country</label>
+                <p>Nigeria</p>
+            </div>
+            <div class="addressInfo">
+                <label>City/State</label>
+                <p>Ikeja Lagos</p>
+            </div>
+        </div>
+        <div class="address-information">
+            <div class="addressInfo">
+                <label>Postal Code</label>
+                <p>0924358</p>
+            </div>
+            <div class="addressInfo">
+                <label>Address</label>
+                <p>---</p>
+            </div>
+        </div>
+    </div>
+    `
 );
+
 
 // base profile form case - overview
 profileForm.innerHTML = (`
@@ -90,6 +138,54 @@ profileCategoriesBox.innerHTML = profileCategories.map((category, index) => {
 function getBodyCategoryContent(activeProfileCategory) {
     switch (activeProfileCategory) {
         case 'Overview':
+            return (`
+                <div class="information-card">
+                    <h1>Personal Information</h1>
+                    <div class="personal-information personal">
+                        <div class="personalInfo">
+                            <label>First Name</label>
+                            <p>Ofofon</p>
+                        </div>
+                        <div class="personalInfo">
+                            <label>Last Name</label>
+                            <p>Umoren</p>
+                        </div>
+                    </div>
+                    <div class="personal-information">
+                        <div class="personalInfo">
+                            <label>Email</label>
+                            <p>ofofonumoren@smartfocus.com</p>
+                        </div>
+                        <div class="personalInfo">
+                            <label>Phone</label>
+                            <p>+234 8323 483 945</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="address-card">
+                    <h1>Address</h1>
+                    <div class="address-information address">
+                        <div class="addressInfo">
+                            <label>Country</label>
+                            <p>Nigeria</p>
+                        </div>
+                        <div class="addressInfo">
+                            <label>City/State</label>
+                            <p>Ikeja Lagos</p>
+                        </div>
+                    </div>
+                    <div class="address-information">
+                        <div class="addressInfo">
+                            <label>Postal Code</label>
+                            <p>0924358</p>
+                        </div>
+                        <div class="addressInfo">
+                            <label>Address</label>
+                            <p>---</p>
+                        </div>
+                    </div>
+                </div>`
+            )
         case 'Education':
         case 'Professional':
         case 'Experience':

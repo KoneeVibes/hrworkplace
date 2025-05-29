@@ -57,11 +57,12 @@ input[type="email"],
 input[type="password"] {
     border-radius: 70px;
     padding: 10px;
-    border: 1px;
+    border: 1px solid;
     width: 100%;
     border-color: #ededed;
     /* color: #ededed; */
     box-sizing: border-box;
+    font-weight: 200;
 }
 
 input[type="checkbox"] {

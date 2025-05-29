@@ -56,7 +56,7 @@ leaveRequestForm.innerHTML = (`
     <form>
         <div class="row form-field-set">
             <label>Email</label>
-            <input placeholder="Enter Email"/>
+            <input type="email" placeholder="Enter Email"/>
         </div>
         <div class="row form-field-set">
             <label>Name</label>
