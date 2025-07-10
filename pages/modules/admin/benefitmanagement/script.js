@@ -8,6 +8,31 @@ const markedForDeHighlighting = document.querySelectorAll(".module-title-box, .m
 const headers = ["S/N", "Name", "Company", "Department", "Task Date", "Task Title", "Time Spent", "Manager's Remark", "Status", "View"];
 const rows = [""];
 
+const BASE_ENDPOINT = 'http://52.150.234.195:7268/api';
+const AUTH_TOKEN = "12345"
+
+const addBenefitManagementService = async (benefitDetails) => {
+    try {
+        const response = await fetch(`${BASE_ENDPOINT}/api/benefits/employees/assign-benefit`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${AUTH_TOKEN}`,
+            },
+            body: JSON.stringify(benefitDetails)
+        });
+        const res = await response.json();
+        if (!response.ok) {
+            console.error('Error:', res);
+            throw new Error(res.message);
+        }
+        return res;
+    } catch (error) {
+        console.error('API fetch error:', error);
+        throw error;
+    }
+};
+
 benefitManagementTable.innerHTML = rows.length > 0 ? (
     `<table>
         <thead>
@@ -165,6 +190,16 @@ function handleCloseConfirmationModal() {
         item.style.opacity = 1;
         item.style.pointerEvents = "auto";
     });
+}
+
+async function handleAddBenefitManagement(e) {
+    e.preventDefault();
+    try {
+        const response = await addBenefitManagementService({ benefitId: 12345, userId: 6789 });
+        console.log(response);
+    } catch (error) {
+        console.error('Login failed:', error);
+    }
 }
 
 window.addEventListener("click", (e) => {
