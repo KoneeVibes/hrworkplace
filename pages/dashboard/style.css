@@ -519,6 +519,16 @@
 
     .module-modal-content {
         overflow: hidden;
+        padding: calc(var(--basic-padding));
+        display: grid;
+        gap: var(--flex-gap);
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .module-modal-content .setup-management-item {
+        padding: calc(var(--basic-padding));
+        border: 1px solid #E6EAF1;
+        border-radius: 10px;
     }
 }
 

@@ -1,14 +1,14 @@
-const businessAcademicManagementTable = document.querySelector(".module-table");
-const businessAcademicManagementModal = document.querySelector(".business-academic-management-module-modal");
-const businessAcademicManagementForm = document.querySelector(".module-modal-form");
-const businessAcademicManagementConfirmationModal = document.querySelector(".business-academic-management-confirmation-modal");
-const businessAcademicManagementDetailModal = document.querySelector(".module-detail-modal");
-const businessAcademicManagementDetailBox = document.querySelector(".module-modal-detail-box");
+const setupCompanyTable = document.querySelector(".module-table");
+const setupCompanyModal = document.querySelector(".setup-company-module-modal");
+const setupCompanyForm = document.querySelector(".module-modal-form");
+const setupCompanyConfirmationModal = document.querySelector(".setup-company-confirmation-modal");
+const setupCompanyDetailModal = document.querySelector(".module-detail-modal");
+const setupCompanyDetailBox = document.querySelector(".module-modal-detail-box");
 const markedForDeHighlighting = document.querySelectorAll(".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav");
 const headers = ["S/N", "Name", "Company", "Department", "Task Date", "Task Title", "Time Spent", "Manager's Remark", "Status", "View"];
 const rows = [""];
 
-businessAcademicManagementTable.innerHTML = rows.length > 0 ? (
+setupCompanyTable.innerHTML = rows.length > 0 ? (
     `<table>
         <thead>
             <tr>
@@ -43,17 +43,17 @@ businessAcademicManagementTable.innerHTML = rows.length > 0 ? (
         </div>
         <div>
             <h3>Nothing to see here...yet</h3>
-            <p>When Ofofon logs his business academic management, they will show up here</p>
+            <p>When Ofofon logs his setup company, they will show up here</p>
         </div>
         <div class="cta-box">
-            <button onclick="handleOpenBusinessAcademicManagementModal(event)">
-                <span>Add New Time Sheet</span>
+            <button onclick="handleOpenSetupCompanyModal(event)">
+                <span>Add New Setup Company</span>
             </button>
         </div>
     </div>`
 );
 
-businessAcademicManagementForm.innerHTML = (`
+setupCompanyForm.innerHTML = (`
     <form>
         <div class="row form-field-set">
             <label>Email</label>
@@ -92,7 +92,7 @@ businessAcademicManagementForm.innerHTML = (`
             </div>
         </fieldset>
         <div class="row form-cta">
-            <button type="reset" onclick="handleCloseBusinessAcademicManagementModal()">
+            <button type="reset" onclick="handleCloseSetupCompanyModal()">
                 <span>Cancel</span>
             </button>
             <button type="button" onclick="handleOpenConfirmationModal(event)">
@@ -102,7 +102,7 @@ businessAcademicManagementForm.innerHTML = (`
     </form>
 `)
 
-businessAcademicManagementDetailBox.innerHTML = (`
+setupCompanyDetailBox.innerHTML = (`
         <div>
             // details would go in here
             
@@ -111,7 +111,7 @@ businessAcademicManagementDetailBox.innerHTML = (`
 
 function handleOpenDetailModal(e) {
     e.stopPropagation();
-    businessAcademicManagementDetailModal.classList.remove("close-modal");
+    setupCompanyDetailModal.classList.remove("close-modal");
     document.body.style.overflow = "hidden";
     markedForDeHighlighting.forEach((item) => {
         item.style.opacity = 0.1;
@@ -120,7 +120,7 @@ function handleOpenDetailModal(e) {
 }
 
 function handleCloseDetailModal() {
-    businessAcademicManagementDetailModal.classList.add("close-modal");
+    setupCompanyDetailModal.classList.add("close-modal");
     document.body.style.overflow = "auto";
     markedForDeHighlighting.forEach((item) => {
         item.style.opacity = 1;
@@ -128,9 +128,9 @@ function handleCloseDetailModal() {
     });
 }
 
-function handleOpenBusinessAcademicManagementModal(e) {
+function handleOpenSetupCompanyModal(e) {
     e.stopPropagation();
-    businessAcademicManagementModal.classList.remove("close-modal");
+    setupCompanyModal.classList.remove("close-modal");
     document.body.style.overflow = "hidden";
     markedForDeHighlighting.forEach((item) => {
         item.style.opacity = 0.1;
@@ -138,8 +138,8 @@ function handleOpenBusinessAcademicManagementModal(e) {
     });
 }
 
-function handleCloseBusinessAcademicManagementModal() {
-    businessAcademicManagementModal.classList.add("close-modal");
+function handleCloseSetupCompanyModal() {
+    setupCompanyModal.classList.add("close-modal");
     document.body.style.overflow = "auto";
     markedForDeHighlighting.forEach((item) => {
         item.style.opacity = 1;
@@ -149,8 +149,8 @@ function handleCloseBusinessAcademicManagementModal() {
 
 function handleOpenConfirmationModal(e) {
     e.stopPropagation();
-    handleCloseBusinessAcademicManagementModal();
-    businessAcademicManagementConfirmationModal.classList.remove("close-modal");
+    handleCloseSetupCompanyModal();
+    setupCompanyConfirmationModal.classList.remove("close-modal");
     document.body.style.overflow = "hidden";
     markedForDeHighlighting.forEach((item) => {
         item.style.opacity = 0.1;
@@ -159,7 +159,7 @@ function handleOpenConfirmationModal(e) {
 }
 
 function handleCloseConfirmationModal() {
-    businessAcademicManagementConfirmationModal.classList.add("close-modal");
+    setupCompanyConfirmationModal.classList.add("close-modal");
     document.body.style.overflow = "auto";
     markedForDeHighlighting.forEach((item) => {
         item.style.opacity = 1;
@@ -167,31 +167,12 @@ function handleCloseConfirmationModal() {
     });
 }
 
-function handleOpenSetupManagementModal(e) {
-    e.stopPropagation();
-    setupManagementModal.classList.remove("close-modal");
-    document.body.style.overflow = "hidden";
-    markedForDeHighlighting.forEach((item) => {
-        item.style.opacity = 0.1;
-        item.style.pointerEvents = "none";
-    });
-};
-
-function handleCloseSetupManagementModal() {
-    setupManagementModal.classList.add("close-modal");
-    document.body.style.overflow = "auto";
-    markedForDeHighlighting.forEach((item) => {
-        item.style.opacity = 1;
-        item.style.pointerEvents = "auto";
-    });
-};
-
 window.addEventListener("click", (e) => {
     // condition - if the modal is currently rendered && if the click is not within the modal 
-    if (!businessAcademicManagementModal.classList.contains("close-modal") && !businessAcademicManagementModal.contains(e.target)) {
-        handleCloseBusinessAcademicManagementModal();
+    if (!setupCompanyModal.classList.contains("close-modal") && !setupCompanyModal.contains(e.target)) {
+        handleCloseSetupCompanyModal();
     }
-    if (!businessAcademicManagementDetailModal.classList.contains("close-modal") && !businessAcademicManagementDetailModal.contains(e.target)) {
+    if (!setupCompanyDetailModal.classList.contains("close-modal") && !setupCompanyDetailModal.contains(e.target)) {
         handleCloseDetailModal();
     }
 });

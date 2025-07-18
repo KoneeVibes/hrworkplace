@@ -192,11 +192,29 @@ function handleCloseConfirmationModal() {
     });
 }
 
+function handleOpenSetupManagementModal(e) {
+    e.stopPropagation();
+    setupManagementModal.classList.remove("close-modal");
+    document.body.style.overflow = "hidden";
+    markedForDeHighlighting.forEach((item) => {
+        item.style.opacity = 0.1;
+        item.style.pointerEvents = "none";
+    });
+};
+
+function handleCloseSetupManagementModal() {
+    setupManagementModal.classList.add("close-modal");
+    document.body.style.overflow = "auto";
+    markedForDeHighlighting.forEach((item) => {
+        item.style.opacity = 1;
+        item.style.pointerEvents = "auto";
+    });
+};
+
 async function handleAddBenefitManagement(e) {
     e.preventDefault();
     try {
         const response = await addBenefitManagementService({ benefitId: 12345, userId: 6789 });
-        console.log(response);
     } catch (error) {
         console.error('Login failed:', error);
     }

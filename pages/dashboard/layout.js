@@ -1,5 +1,6 @@
 const sideNavItemsColumn = document.querySelector(".side-nav-items");
 const setupManagementModal = document.querySelector(".setup-management-module-modal");
+const setupManagementModalBody = document.querySelector(".module-modal-content");
 const markedForDeHighlightingInDashboard = document.querySelectorAll(".top-nav, .side-nav, .data-area, .news-marquee, .jumbotron");
 
 const sideNavItems = [
@@ -772,6 +773,204 @@ if (searchChips) {
     `).join("")
 };
 
+const setupManagementItems = {
+  "Organizational Setup": [
+    {
+      name: "Setup Company",
+      url: "../setupcompany/index.html"
+    },
+    {
+      name: "Setup Department",
+      url: "../setupdepartment/index.html"
+    },
+  ],
+  "Approval setup": [
+    {
+      name: "Setup Company",
+      url: "../setupcompany/index.html"
+    },
+    {
+      name: "Setup Department",
+      url: "../setupdepartment/index.html"
+    },
+  ],
+  "Loan Setup": [
+    {
+      name: "Setup Company",
+      url: "../setupcompany/index.html"
+    },
+    {
+      name: "Setup Department",
+      url: "../setupdepartment/index.html"
+    },
+  ],
+  "Leave Setup": [
+    {
+      name: "Setup Company",
+      url: "../setupcompany/index.html"
+    },
+    {
+      name: "Setup Department",
+      url: "../setupdepartment/index.html"
+    },
+  ],
+  "Training Setup": [
+    {
+      name: "Setup Company",
+      url: "../setupcompany/index.html"
+    },
+    {
+      name: "Setup Department",
+      url: "../setupdepartment/index.html"
+    },
+  ],
+  "Health & Safety Setup": [
+    {
+      name: "Setup Company",
+      url: "../setupcompany/index.html"
+    },
+    {
+      name: "Setup Department",
+      url: "../setupdepartment/index.html"
+    },
+  ],
+  "Proficiency Setup": [
+    {
+      name: "Setup Company",
+      url: "../setupcompany/index.html"
+    },
+    {
+      name: "Setup Department",
+      url: "../setupdepartment/index.html"
+    },
+  ],
+  "Performance Setup": [
+    {
+      name: "Setup Company",
+      url: "../setupcompany/index.html"
+    },
+    {
+      name: "Setup Department",
+      url: "../setupdepartment/index.html"
+    },
+  ],
+  "Personalization Setup": [
+    {
+      name: "Setup Company",
+      url: "../setupcompany/index.html"
+    },
+    {
+      name: "Setup Department",
+      url: "../setupdepartment/index.html"
+    },
+  ],
+  "Overtime Setup": [
+    {
+      name: "Setup Company",
+      url: "../setupcompany/index.html"
+    },
+    {
+      name: "Setup Department",
+      url: "../setupdepartment/index.html"
+    },
+  ],
+  "Payroll Setup": [
+    {
+      name: "Setup Company",
+      url: "../setupcompany/index.html"
+    },
+    {
+      name: "Setup Department",
+      url: "../setupdepartment/index.html"
+    },
+  ],
+  "Competency Setup": [
+    {
+      name: "Setup Company",
+      url: "../setupcompany/index.html"
+    },
+    {
+      name: "Setup Department",
+      url: "../setupdepartment/index.html"
+    },
+  ],
+  "Bulk Uploads": [
+    {
+      name: "Setup Company",
+      url: "../setupcompany/index.html"
+    },
+    {
+      name: "Setup Department",
+      url: "../setupdepartment/index.html"
+    },
+  ],
+  "Travel Setup": [
+    {
+      name: "Setup Travel Approval Flow",
+      url: "../setuptravelapprovalflow/index.html"
+    },
+    {
+      name: "Setup Department",
+      url: "../setupdepartment/index.html"
+    },
+  ],
+  "Petty Cash": [
+    {
+      name: "Setup Company",
+      url: "../setupcompany/index.html"
+    },
+    {
+      name: "Setup Department",
+      url: "../setupdepartment/index.html"
+    },
+  ],
+  "Discipline Setup": [
+    {
+      name: "Setup Company",
+      url: "../setupcompany/index.html"
+    },
+    {
+      name: "Setup Department",
+      url: "../setupdepartment/index.html"
+    },
+  ],
+  "Promotion Setup": [
+    {
+      name: "Setup Company",
+      url: "../setupcompany/index.html"
+    },
+    {
+      name: "Setup Department",
+      url: "../setupdepartment/index.html"
+    },
+  ],
+  "Exit Setup": [
+    {
+      name: "Setup Company",
+      url: "../setupcompany/index.html"
+    },
+    {
+      name: "Setup Department",
+      url: "../setupdepartment/index.html"
+    },
+  ],
+};
+
+let html = "";
+
+for (const [category, items] of Object.entries(setupManagementItems)) {
+  html += `<div class="setup-management-item">`;
+  html += `<h3>${category}</h3>`;
+  html += `<ul>`;
+  for (const item of items) {
+    html += `<li><a href="${item.url}">${item.name}</a></li>`;
+  }
+  html += `</ul>`;
+  html += `</div>`;
+}
+
+setupManagementModalBody.innerHTML = html;
+
 function handleOpenSetupManagementModal(e) {
   e.stopPropagation();
   setupManagementModal.classList.remove("close-modal");
@@ -796,7 +995,6 @@ function handleSubItemClick(e) {
   const subItemData = e.currentTarget.dataset.subitem;
   const subItem = JSON.parse(subItemData);
   if (subItem.name === "Setup Management") {
-    console.log("Hello");
     return handleOpenSetupManagementModal(e);
   };
   window.location.href = `/pages/modules${subItem.url || "#"}`
