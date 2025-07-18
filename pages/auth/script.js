@@ -30,19 +30,18 @@ document.getElementById('loginButton').addEventListener('click', async function 
 
     try {
         const response = await signInUserService({ username: username, password: password });
-        console.log(response);
-        // if (response.status === "success") {
-        //     // setIsLoading(false);
-        //     // cookies.set("TOKEN", response.token, {
-        //     //     path: "/",
-        //     // });
-        //     // setIsAuthenticated(true);
-        //     window.location.href = '../../dashboard/index';
-        // } else {
-        //     // setIsLoading(false);
-        //     // setError('Authentication failed. Please check your credentials and try again.');
-        //     console.log("Fail to login")
-        // }
+        if (response.status === "Success") {
+            //     // setIsLoading(false);
+            //     // cookies.set("TOKEN", response.token, {
+            //     //     path: "/",
+            //     // });
+            //     // setIsAuthenticated(true);
+            window.location.href = '../dashboard/index.html';
+        } else {
+            //     // setIsLoading(false);
+            //     // setError('Authentication failed. Please check your credentials and try again.');
+            console.log("Fail to login");
+        }
     } catch (error) {
         // setIsLoading(false);
         // setError(`Login failed. ${error.message}`);

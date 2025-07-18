@@ -1,4 +1,7 @@
 const sideNavItemsColumn = document.querySelector(".side-nav-items");
+const setupManagementModal = document.querySelector(".setup-management-module-modal");
+const markedForDeHighlightingInDashboard = document.querySelectorAll(".top-nav, .side-nav, .data-area, .news-marquee, .jumbotron");
+
 const sideNavItems = [
   { navItem: "Home", icon: "fa-solid fa-house" },
   {
@@ -401,13 +404,17 @@ if (sideNavItemsColumn) {
               <div class="side-nav-link-item sub-items hide">
                   ${sideNavItem.subItems.map(subItem => `
                       <div class="sub-item">
-                        <a href="/pages/modules${subItem.url || "#"}">${subItem.name || subItem}</a>
+                        <a class="sub-item-link" data-subitem='${JSON.stringify(subItem)}'>${subItem.name || subItem}</a>
                       </div>
                   `).join('')}
               </div>
           ` : ''}
       </div>
   `).join("");
+
+  sideNavItemsColumn.querySelectorAll('.sub-item-link').forEach(el => {
+    el.addEventListener('click', handleSubItemClick);
+  });
 }
 
 document.querySelectorAll('.side-nav-link').forEach(item => {
@@ -763,7 +770,37 @@ if (searchChips) {
             <span class="">${item.navItem}</span>
         </div>
     `).join("")
-}
+};
+
+function handleOpenSetupManagementModal(e) {
+  e.stopPropagation();
+  setupManagementModal.classList.remove("close-modal");
+  document.body.style.overflow = "hidden";
+  markedForDeHighlightingInDashboard.forEach((item) => {
+    item.style.opacity = 0.1;
+    item.style.pointerEvents = "none";
+  });
+};
+
+function handleCloseSetupManagementModal() {
+  setupManagementModal.classList.add("close-modal");
+  document.body.style.overflow = "auto";
+  markedForDeHighlightingInDashboard.forEach((item) => {
+    item.style.opacity = 1;
+    item.style.pointerEvents = "auto";
+  });
+};
+
+function handleSubItemClick(e) {
+  e.preventDefault();
+  const subItemData = e.currentTarget.dataset.subitem;
+  const subItem = JSON.parse(subItemData);
+  if (subItem.name === "Setup Management") {
+    console.log("Hello");
+    return handleOpenSetupManagementModal(e);
+  };
+  window.location.href = `/pages/modules${subItem.url || "#"}`
+};
 
 function handleHamburgerClick() {
   if (sideNav && mainArea) {
@@ -883,5 +920,8 @@ window.addEventListener("click", (e) => {
   }
   if (!searchModal.classList.contains("close-modal") && !searchModal.contains(e.target)) {
     handleCloseSearchModal(e)
+  }
+  if (!setupManagementModal.classList.contains("close-modal") && !setupManagementModal.contains(e.target)) {
+    handleCloseSetupManagementModal()
   }
 });
