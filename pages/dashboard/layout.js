@@ -783,55 +783,135 @@ const setupManagementItems = {
       name: "Setup Department",
       url: "../setupdepartment/index.html"
     },
+    {
+      name: "Setup Team",
+      url: "../setupteam/index.html"   
+    },
+    {
+      name: "Setup Staff Level Group",
+      url: "../setupstafflevelgroup/index.html"   
+    },
+    {
+      name: "Setup Staff Level",
+      url: "../setupstafflevel/index.html"   
+    },
+    {
+      name: "Setup Staff Level Step",
+      url: "../setupstafflevelstep/index.html"   
+    },
+    {
+      name: "Setup Staff Type",
+      url: "../setupstafftype/index.html"   
+    },
+    {
+      name: "Setup Staff Class",
+      url: "../setupstaffclass/index.html"   
+    },
+    {
+      name: "Setup Job Position",
+      url: "../setupjobposition/index.html"   
+    },
+    {
+      name: "Setup Benefit",
+      url: "../setupbenefit/index.html"   
+    },
+    {
+      name: "Setup Bank",
+      url: "../setupbank/index.html"   
+    },
+    {
+      name: "Setup Pension",
+      url: "../setuppension/index.html"   
+    },
+    {
+      name: "Setup Office Location",
+      url: "../setupofficelocation/index.html"   
+    },
+    {
+      name: "Setup Asset",
+      url: "../setupasset/index.html"   
+    },
   ],
   "Approval setup": [
     {
-      name: "Setup Company",
-      url: "../setupcompany/index.html"
+      name: "Setup Approval Group",
+      url: "../setupapprovalgroup/index.html"
     },
     {
-      name: "Setup Department",
-      url: "../setupdepartment/index.html"
+      name: "Setup Approval Group Users",
+      url: "../setupapprovalgroupusers/index.html"
     },
   ],
   "Loan Setup": [
     {
-      name: "Setup Company",
-      url: "../setupcompany/index.html"
+      name: "Setup Loan Type",
+      url: "../setuploantype/index.html"
     },
     {
-      name: "Setup Department",
-      url: "../setupdepartment/index.html"
+      name: "Setup Loan Rate",
+      url: "../setuploanrate/index.html"
+    },
+    {
+      name: "Setup Loan Approval Flow",
+      url: "../setuploanapprovalflow/index.html"
+    },
+    {
+      name: "Setup Users-Loan Approval",
+      url: "../setupusersloanapproval/index.html"
     },
   ],
   "Leave Setup": [
     {
-      name: "Setup Company",
-      url: "../setupcompany/index.html"
+      name: "Setup Leave Type",
+      url: "../setupleavetype/index.html"
     },
     {
-      name: "Setup Department",
-      url: "../setupdepartment/index.html"
+      name: "Setup Leave Days",
+      url: "../setupleavedays/index.html"
+    },
+    {
+      name: "Setup Public Holiday",
+      url: "../setuppublicholiday/index.html"
+    },
+    {
+      name: "Setup Leave Approval Flow",
+      url: "../setupleaveapprovalflow/index.html"
+    },
+    {
+      name: "Setup Users-Leave Approval",
+      url: "../setupusersleaveapproval/index.html"
     },
   ],
   "Training Setup": [
     {
-      name: "Setup Company",
-      url: "../setupcompany/index.html"
+      name: "Setup Training Management",
+      url: "../setuptrainingmanagement/index.html"
     },
     {
-      name: "Setup Department",
-      url: "../setupdepartment/index.html"
+      name: "Setup Training Rating",
+      url: "../setuptrainingrating/index.html"
     },
   ],
   "Health & Safety Setup": [
     {
-      name: "Setup Company",
-      url: "../setupcompany/index.html"
+      name: "Setup Injury Type",
+      url: "../setupinjurytype/index.html"
     },
     {
-      name: "Setup Department",
-      url: "../setupdepartment/index.html"
+      name: "Setup Injury Outcome",
+      url: "../setupinjuryoutcome/index.html"
+    },
+    {
+      name: "Setup Illness Type",
+      url: "../setupillnesstype/index.html"
+    },
+    {
+      name: "Setup Medical Service Provider",
+      url: "../setupmedicalserviceprovider/index.html"
+    },
+    {
+      name: "Setup Medical Treatment Rating",
+      url: "../setupmedicaltreatmentrating/index.html"
     },
   ],
   "Proficiency Setup": [
