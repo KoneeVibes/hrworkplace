@@ -376,8 +376,8 @@ const sideNavItems = [
         url: "/admin/shortmessageservice/index.html",
       },
       {
-        name: "MD's Desk Management",
-        url: "/admin/md'sdeskmanagement/index.html",
+        name: `MD Desk Management`,
+        url: "/admin/mddeskmanagement/index.html",
       },
       {
         name: "News Managemet",
@@ -1163,6 +1163,7 @@ function handleCloseSetupManagementModal() {
 function handleSubItemClick(e) {
   e.preventDefault();
   const subItemData = e.currentTarget.dataset.subitem;
+  console.log("SUBITEM RAW:",e.currentTarget.dataset.subitem);
   const subItem = JSON.parse(subItemData);
   if (subItem.name === "Setup Management") {
     return handleOpenSetupManagementModal(e);
