@@ -840,275 +840,275 @@ const setupManagementItems = {
   "Organizational Setup": [
     {
       name: "Setup Company",
-      url: "../setupcompany/index.html",
+      url: "/pages/modules/admin/setupcompany/index.html",
     },
     {
       name: "Setup Department",
-      url: "../setupdepartment/index.html",
+      url: "/pages/modules/admin/setupdepartment/index.html",
     },
   ],
   "Approval setup": [
     {
       name: "Setup Company",
-      url: "../setupcompany/index.html",
+      url: "/pages/modules/admin/setupcompany/index.html",
     },
     {
       name: "Setup Department",
-      url: "../setupdepartment/index.html",
+      url: "/pages/modules/admin/setupdepartment/index.html",
     },
   ],
   "Loan Setup": [
     {
       name: "Setup Company",
-      url: "../setupcompany/index.html",
+      url: "/pages/modules/admin/setupcompany/index.html",
     },
     {
       name: "Setup Department",
-      url: "../setupdepartment/index.html",
+      url: "/pages/modules/admin/setupdepartment/index.html",
     },
   ],
   "Leave Setup": [
     {
       name: "Setup Company",
-      url: "../setupcompany/index.html",
+      url: "/pages/modules/admin/setupcompany/index.html",
     },
     {
       name: "Setup Department",
-      url: "../setupdepartment/index.html",
+      url: "/pages/modules/admin/setupdepartment/index.html",
     },
   ],
   "Training Setup": [
     {
       name: "Setup Company",
-      url: "../setupcompany/index.html",
+      url: "/pages/modules/admin/setupcompany/index.html",
     },
     {
       name: "Setup Department",
-      url: "../setupdepartment/index.html",
+      url: "/pages/modules/admin/setupdepartment/index.html",
     },
   ],
   "Health & Safety Setup": [
     {
       name: "Setup Company",
-      url: "../setupcompany/index.html",
+      url: "/pages/modules/admin/setupcompany/index.html",
     },
     {
       name: "Setup Department",
-      url: "../setupdepartment/index.html",
+      url: "/pages/modules/admin/setupdepartment/index.html",
     },
   ],
   "Proficiency Setup": [
     {
       name: "Setup Proficiency Level",
-      url: "../setupproficiencylevel/index.html",
+      url: "/pages/modules/admin/setupproficiencylevel/index.html",
     },
     {
       name: "Setup Proficiency Level Core Dimension",
-      url: "../setupproficiencylevelcore/index.html",
+      url: "/pages/modules/admin/setupproficiencylevelcore/index.html",
     },
     {
       name: "Setup Proficiency Level Attribute",
-      url: "../setupproficiencylevelattribute/index.html",
+      url: "/pages/modules/admin/setupproficiencylevelattribute/index.html",
     },
   ],
   "Performance Setup": {
     "Time Sheet": [
       {
         name: "Setup Task Activity",
-        url: "../setuptask/index.html",
+        url: "/pages/modules/admin/setuptask/index.html",
       },
     ],
     Confirmation: [
       {
         name: "Setup Confirmation Performance Attribute",
-        url: "../setupconfirmationperformance/index.html",
+        url: "/pages/modules/admin/setupconfirmationperformance/index.html",
       },
       {
         name: "Setup Confirmation Competencies",
-        url: "../setupconfirmationcompetence/index.html",
+        url: "/pages/modules/admin/setupconfirmationcompetence/index.html",
       },
       {
         name: "Setup Confirmation Approval Flow",
-        url: "../setupconfirmationapproval/index.html",
+        url: "/pages/modules/admin/setupconfirmationapproval/index.html",
       },
     ],
     "Balance Score Card [BSC]": [
       {
         name: "Setup BSC [Employee] Approval Flow",
-        url: "../setupbscapproval/index.html",
+        url: "/pages/modules/admin/setupbscapproval/index.html",
       },
       {
         name: "Setup Users - BSC [Employee] Approval",
-        url: "../setupusersbsc/index.html",
+        url: "/pages/modules/admin/setupusersbsc/index.html",
       },
       {
         name: "Setup Appraisal Period",
-        url: "../setupappraisalperiod/index.html",
+        url: "/pages/modules/admin/setupappraisalperiod/index.html",
       },
       {
         name: "Setup Check-In Period",
-        url: "../setupcheckinperiod/index.html",
+        url: "/pages/modules/admin/setupcheckinperiod/index.html",
       },
       {
         name: "Setup BSC KPI Category",
-        url: "../setupbsccategory/index.html",
+        url: "/pages/modules/admin/setupbsccategory/index.html",
       },
       {
         name: "Setup Balance Score Card Floor/Cap Values",
-        url: "../setupbscvalues/index.html",
+        url: "/pages/modules/admin/setupbscvalues/index.html",
       },
       {
         name: "Balance Score Card KPI Management",
-        url: "../bsckpimanagement/index.html",
+        url: "/pages/modules/admin/bsckpimanagement/index.html",
       },
     ],
   },
   "Personalization Setup": [
     {
       name: "Setup Nationality",
-      url: "../setupnationality/index.html",
+      url: "/pages/modules/admin/setupnationality/index.html",
     },
     {
       name: "Setup State",
-      url: "../setupstate/index.html",
+      url: "/pages/modules/admin/setupstate/index.html",
     },
     {
       name: "Setup Local Government",
-      url: "../setuplocalgovernment/index.html",
+      url: "/pages/modules/admin/setuplocalgovernment/index.html",
     },
     {
       name: "Setup Qualification",
-      url: "../setupqualification/index.html",
+      url: "/pages/modules/admin/setupqualification/index.html",
     },
     {
       name: "Setup Relationship",
-      url: "../setuprelationship/index.html",
+      url: "/pages/modules/admin/setuprelationship/index.html",
     },
     {
       name: "Setup Religion",
-      url: "../setupreligion/index.html",
+      url: "/pages/modules/admin/setupreligion/index.html",
     },
     {
       name: "Setup Marital Status",
-      url: "../setupmaritalstatus/index.html",
+      url: "/pages/modules/admin/setupmaritalstatus/index.html",
     },
   ],
   "Overtime Setup": [
     {
       name: "Setup Users - Overtime Claims Approval",
-      url: "../setupovertime/index.html",
+      url: "/pages/modules/admin/setupovertime/index.html",
     },
   ],
   "Payroll Setup": [
     {
       name: "Payroll Values Management (Default)",
-      url: "../payrollvaluemanagement/index.html",
+      url: "/pages/modules/admin/payrollvaluemanagement/index.html",
     },
     {
       name: "Setup Tax Reliefs Type",
-      url: "../setuptaxtype/index.html",
+      url: "/pages/modules/admin/setuptaxtype/index.html",
     },
     {
       name: "Setup Tax Table",
-      url: "../setuptaxtable/index.html",
+      url: "/pages/modules/admin/setuptaxtable/index.html",
     },
     {
       name: "Setup Payroll Approval Flow",
-      url: "../setuppayrollapproval/index.html",
+      url: "/pages/modules/admin/setuppayrollapproval/index.html",
     },
     {
       name: "Setup Users - Payroll Approval",
-      url: "../setupuserspayroll/index.html",
+      url: "/pages/modules/admin/setupuserspayroll/index.html",
     },
   ],
   "Competency Setup": [
     {
       name: "Setup Competency Group",
-      url: "../setupcompetencygroup/index.html",
+      url: "/pages/modules/admin/setupcompetencygroup/index.html",
     },
     {
       name: "Setup Competency Category",
-      url: "../setupcompetencycategory/index.html",
+      url: "/pages/modules/admin/setupcompetencycategory/index.html",
     },
     {
       name: "Competency Catalog",
-      url: "../competencycatalog/index.html",
+      url: "/pages/modules/admin/competencycatalog/index.html",
     },
   ],
   "Bulk Uploads": [
     {
       name: "Setup Company",
-      url: "../setupcompany/index.html",
+      url: "/pages/modules/admin/setupcompany/index.html",
     },
     {
       name: "Setup Department",
-      url: "../setupdepartment/index.html",
+      url: "/pages/modules/admin/setupdepartment/index.html",
     },
   ],
   "Travel Setup": [
     {
       name: "Setup Travel Approval Flow",
-      url: "../setuptravelapprovalflow/index.html",
+      url: "/pages/modules/admin/setuptravelapprovalflow/index.html",
     },
     {
       name: "Setup Department",
-      url: "../setupdepartment/index.html",
+      url: "/pages/modules/admin/setupdepartment/index.html",
     },
   ],
   "Petty Cash": [
     {
       name: "Setup Company",
-      url: "../setupcompany/index.html",
+      url: "/pages/modules/admin/setupcompany/index.html",
     },
     {
       name: "Setup Department",
-      url: "../setupdepartment/index.html",
+      url: "/pages/modules/admin/setupdepartment/index.html",
     },
   ],
   "Discipline Setup": [
     {
       name: "Setup Company",
-      url: "../setupcompany/index.html",
+      url: "/pages/modules/admin/setupcompany/index.html",
     },
     {
       name: "Setup Department",
-      url: "../setupdepartment/index.html",
+      url: "/pages/modules/admin/setupdepartment/index.html",
     },
   ],
   "Promotion Setup": [
     {
       name: "Setup Company",
-      url: "../setupcompany/index.html",
+      url: "/pages/modules/admin/setupcompany/index.html",
     },
     {
       name: "Setup Department",
-      url: "../setupdepartment/index.html",
+      url: "/pages/modules/admin/setupdepartment/index.html",
     },
   ],
   "Exit Setup": [
     {
       name: "Setup Exit Type",
-      url: "../setupexittype/index.html",
+      url: "/pages/modules/admin/setupexittype/index.html",
     },
     {
       name: "Setup Clearance Department",
-      url: "../setupclearancedepartment/index.html",
+      url: "/pages/modules/admin/setupclearancedepartment/index.html",
     },
-     {
+    {
       name: "Setup Users - Exit Approval",
-      url: "../setupusersexitapproval/index.html",
+      url: "/pages/modules/admin/setupusersexitapproval/index.html",
     },
-     {
+    {
       name: "Setup Exit Checklist",
-      url: "../setupexitchecklist/index.html",
+      url: "/pages/modules/admin/setupexitchecklist/index.html",
     },
-     {
+    {
       name: "Exit Interview Questions Management",
-      url: "../exitinterviewquestionmanagement/index.html",
+      url: "/pages/modules/admin/exitinterviewquestionmanagement/index.html",
     },
-     {
+    {
       name: "Setup Exit Indebtedness Template",
-      url: "../setupexitindebtednesstemplate/index.html",
+      url: "/pages/modules/admin/setupexitindebtednesstemplate/index.html",
     },
   ],
 };
@@ -1163,7 +1163,6 @@ function handleCloseSetupManagementModal() {
 function handleSubItemClick(e) {
   e.preventDefault();
   const subItemData = e.currentTarget.dataset.subitem;
-  console.log("SUBITEM RAW:",e.currentTarget.dataset.subitem);
   const subItem = JSON.parse(subItemData);
   if (subItem.name === "Setup Management") {
     return handleOpenSetupManagementModal(e);
