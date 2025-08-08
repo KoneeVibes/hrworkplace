@@ -314,6 +314,7 @@ function handleCloseConfirmationModal() {
     });
 }
 
+
 window.addEventListener("click", (e) => {
     // condition - if the modal is currently rendered && if the click is not within the modal 
     if (!profileModal.classList.contains("close-modal") && !profileModal.contains(e.target)) {

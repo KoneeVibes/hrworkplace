@@ -460,7 +460,7 @@ const selfServiceItems = [
       },
       {
         name: "My Profile",
-        url: "/selfservice/myprofile/index.html",
+        url: "../modules/selfservice/myprofile/index.html",
       },
       {
         name: "My Assigned's Asset",
@@ -777,7 +777,7 @@ const setupManagementItems = {
   "Organizational Setup": [
     {
       name: "Setup Company",
-      url: "../setupcompany/index.html"
+      url: "/pages/modules/admin/setupcompany/index.html"
     },
     {
       name: "Setup Department",
@@ -896,62 +896,170 @@ const setupManagementItems = {
   ],
   "Bulk Uploads": [
     {
-      name: "Setup Company",
-      url: "../setupcompany/index.html"
+      name: "Upload Employees",
+      url: "/pages/modules/admin/uploademployees/index.html"
     },
     {
-      name: "Setup Department",
-      url: "../setupdepartment/index.html"
+      name: "Upload Companies",
+      url: "/pages/modules/admin/uploadcompanies/index.html"
     },
+    {
+      name: "Upload Sub Departments",
+      url: "/pages/modules/admin/uploadsubdepartments/index.html"
+    },
+    {
+      name: "Upload Staff Levels",
+      url:"/pages/modules/admin/uploadstafflevels/index.html"
+    },
+    {
+      name: "Upload Staff Level Steps",
+      url: "/pages/modules/admin/uploadstafflevelsteps/index.html"
+    },
+    {
+      name: "Upload Job Positions",
+      url: "/pages/modules/admin/uploadjobpositions/index.html"
+    },
+    {
+      name: "Upload Promotions",
+      url: "/pages/modules/admin/uploadpromotions/index.html"
+    },
+    {
+      name: "Upload Redeployments",
+      url: "/pages/modules/admin/uploadredeployments/index.html"
+    },
+    {
+      name: "Upload Rehires",
+      url: "/pages/modules/admin/uploadrehires/index.html"
+    },
+    {
+      name: "Upload Benefits",
+      url: "/pages/modules/admin/uploadbenefits/index.html"
+    },
+    {
+      name: "Upload Employees' Benefits",
+      url: "/pages/modules/admin/uploademployees'benefits/index.html"
+    },
+    {
+      name: "Upload Annual Payroll Values",
+      url: "/pages/modules/admin/uploadannualpayrollvalues/index.html"
+    },
+    {
+      name: "Upload Confirmation Competency",
+      url: "/pages/modules/admin/uploadconfirmationcompetency/index.html"
+    },
+    {
+      name: "Leave Days Setup Upload",
+      url: "/pages/modules/admin/leavedayssetupupload/index.html"
+    },
+    {
+      name: "Reset Employee Password",
+      url: "/pages/modules/admin/resetemployeepassword/index.html"
+    }
   ],
   "Travel Setup": [
     {
       name: "Setup Travel Approval Flow",
-      url: "../setuptravelapprovalflow/index.html"
+      url: "/pages/modules/admin/setuptravelapprovalflow/index.html"
     },
     {
-      name: "Setup Department",
-      url: "../setupdepartment/index.html"
+      name: "Setup Users - Travel Approval",
+      url: "/pages/modules/admin/setupusers-travelapproval/index.html"
     },
+    {
+      name: "Setup Travel Cost",
+      url: "/pages/modules/admin/setuptravelcost/index.html"
+    }
   ],
   "Petty Cash": [
     {
-      name: "Setup Company",
-      url: "../setupcompany/index.html"
+      name: "Setup Expense Claims Type",
+      url: "/pages/modules/admin/setupexpenseclaimstype/index.html"
     },
     {
-      name: "Setup Department",
-      url: "../setupdepartment/index.html"
+      name: "Setup Users - Expense Claims Approval",
+      url: "/pages/modules/admin/setupusers-expenseclaimsapproval/index.html"
+    },
+    {
+      name: "Setup Users - Cash Advance Approval",
+      url: "/pages/modules/admin/setupusers-cashadvanceapproval/index.html"
+    },
+    {
+      name: "Setup Users - Cash Retirement Approval",
+      url: "/pages/modules/admin/setupusers-cashretirementapproval/index.html"
+    },
+  ],
+  "Result & Behavioural": [
+    {
+      name: "Setup Result KPI Category",
+      url: "/pages/modules/admin/setupresultkpicategory/index.html"
+    },
+    {
+      name: "Setup Result & Behaviour Approval Flow",
+      url: "/pages/modules/admin/setupresult&behaviourapprovalflow/index.html"
+    },
+    {
+      name: "Setup Users - Result & Behaviour",
+      url: "/pages/modules/admin/setupusers-result&behaviour/index.html"
+    },
+    {
+      name: "Approval",
+      url: "/pages/modules/admin/approval/index.html"
+    },
+    {
+      name: "Setup Appraisal Behaviours",
+      url: "/pages/modules/admin/setupappraisalbehaviours/index.html"
+    },
+  ],
+  "360 Degree": [
+    {
+      name: "Setup 360 Degree Type",
+      url: "/pages/modules/admin/setup360degreetype/index.html"
+    },
+    {
+      name: "Setup 360 Degree Attribute",
+      url: "/pages/modules/admin/setup360degreeattribute/index.html"
+    },
+    {
+      name: "Setup 360 Degree Question",
+      url: "/pages/modules/admin/setup360degreequestion/index.html"
     },
   ],
   "Discipline Setup": [
     {
-      name: "Setup Company",
-      url: "../setupcompany/index.html"
-    },
-    {
-      name: "Setup Department",
-      url: "../setupdepartment/index.html"
+      name: "Sanction Management",
+      url: "/pages/modules/admin/sanctionmanagement/index.html"
     },
   ],
   "Promotion Setup": [
     {
-      name: "Setup Company",
-      url: "../setupcompany/index.html"
-    },
-    {
-      name: "Setup Department",
-      url: "../setupdepartment/index.html"
+      name: "Setup Promotion Template",
+      url: "/pages/modules/admin/setuppromotiontemplate/index.html"
     },
   ],
   "Exit Setup": [
     {
-      name: "Setup Company",
-      url: "../setupcompany/index.html"
+      name: "Setup Exit Type",
+      url: "/pages/modules/admin/setupexittype/index.html"
     },
     {
-      name: "Setup Department",
-      url: "../setupdepartment/index.html"
+      name: "Setup Clearance Department",
+      url: "/pages/modules/admin/setupclearancedepartment/index.html"
+    },
+    {
+      name: "Setup Users - Exit Approval",
+      url: "/pages/modules/admin/setupusers-exitapproval/index.html"
+    },
+    {
+      name: "Setup Exit Checklist",
+      url: "/pages/modules/admin/setupexitchecklist/index.html"
+    },
+    {
+      name: "Exit Interview Questions Management",
+      url: "/pages/modules/admin/exitinterviewquestionsmanagement/index.html"
+    },
+    {
+      name: "Setup Exit Indebtedness Template",
+      url: "/pages/modules/admin/setupexitindebtednesstemplate/index.html"
     },
   ],
 };
@@ -969,7 +1077,7 @@ for (const [category, items] of Object.entries(setupManagementItems)) {
   html += `</div>`;
 }
 
-setupManagementModalBody.innerHTML = html;
+setupManagementModal.innerHTML = html;
 
 function handleOpenSetupManagementModal(e) {
   e.stopPropagation();
