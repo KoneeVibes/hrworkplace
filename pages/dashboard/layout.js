@@ -1,7 +1,13 @@
 const sideNavItemsColumn = document.querySelector(".side-nav-items");
-const setupManagementModal = document.querySelector(".setup-management-module-modal");
-const setupManagementModalBody = document.querySelector(".module-modal-content");
-const markedForDeHighlightingInDashboard = document.querySelectorAll(".top-nav, .side-nav, .data-area, .news-marquee, .jumbotron");
+const setupManagementModal = document.querySelector(
+  ".setup-management-module-modal"
+);
+const setupManagementModalBody = document.querySelector(
+  ".module-modal-content"
+);
+const markedForDeHighlightingInDashboard = document.querySelectorAll(
+  ".top-nav, .side-nav, .data-area, .news-marquee, .jumbotron"
+);
 
 const sideNavItems = [
   { navItem: "Home", icon: "fa-solid fa-house" },
@@ -41,7 +47,7 @@ const sideNavItems = [
         name: "List of Competencies",
         url: "/admin/listofcompetencies/index.html",
       },
-    ]
+    ],
   },
   {
     navItem: "Career",
@@ -49,7 +55,7 @@ const sideNavItems = [
     subItems: [
       {
         name: "Business Academic Management",
-        url: "/admin/businessacademicmanagement"
+        url: "/admin/businessacademicmanagement",
       },
       {
         name: "Job Description Management",
@@ -83,7 +89,7 @@ const sideNavItems = [
         name: "New Hire Management",
         url: "/admin/newhiremanagement/index.html",
       },
-    ]
+    ],
   },
   {
     navItem: "Leave & Travel",
@@ -101,7 +107,7 @@ const sideNavItems = [
         name: "Travel Request Management",
         url: "/admin/travelrequestmanagement/index.html",
       },
-    ]
+    ],
   },
   {
     navItem: "Performance",
@@ -143,7 +149,7 @@ const sideNavItems = [
         name: "Confirmation Management",
         url: "/admin/confirmationmanagement/index.html",
       },
-    ]
+    ],
   },
   {
     navItem: "Discipline",
@@ -157,7 +163,7 @@ const sideNavItems = [
         name: "Sanction Management",
         url: "/admin/sanctionmanagement/index.html",
       },
-    ]
+    ],
   },
   {
     navItem: "Loan",
@@ -165,17 +171,17 @@ const sideNavItems = [
     subItems: [
       {
         name: "Loan Request Management",
-        url: "/admin/loanrequestmanagement/index.html"
+        url: "/admin/loanrequestmanagement/index.html",
       },
       {
         name: "Loan Repay Management",
-        url: "/admin/loanrepaymanagement/index.html"
+        url: "/admin/loanrepaymanagement/index.html",
       },
       {
         name: "Loan Migration Management",
         url: "/admin/loanmigrationmanagement/index.html",
       },
-    ]
+    ],
   },
   {
     navItem: "Payroll",
@@ -205,7 +211,7 @@ const sideNavItems = [
         name: "Remove Payroll",
         url: "/admin/removepayroll/index.html",
       },
-    ]
+    ],
   },
   {
     navItem: "Expense",
@@ -223,7 +229,7 @@ const sideNavItems = [
         name: "Cash Retirement Management",
         url: "/admin/cashretirementmanagement/index.html",
       },
-    ]
+    ],
   },
 
   {
@@ -242,7 +248,7 @@ const sideNavItems = [
         name: "Reporting Hierarchy",
         url: "/admin/reportinghierarchy/index.html",
       },
-    ]
+    ],
   },
   {
     navItem: "Health and Safety",
@@ -260,7 +266,7 @@ const sideNavItems = [
         name: "Medical Service Management",
         url: "/admin/medicalservicemanagement/index.html",
       },
-    ]
+    ],
   },
   {
     navItem: "Strategic Plan Warehousing",
@@ -268,7 +274,7 @@ const sideNavItems = [
     subItems: [
       {
         name: "Strategic Intent Management",
-        url: "/admin/strategicintentmanagement/index.html"
+        url: "/admin/strategicintentmanagement/index.html",
       },
       {
         name: "Long Term Objectives Management",
@@ -282,7 +288,7 @@ const sideNavItems = [
         name: "Action Plans Management",
         url: "/admin/actionplansmanagement/index.html",
       },
-    ]
+    ],
   },
   {
     navItem: "Reports",
@@ -312,7 +318,7 @@ const sideNavItems = [
         name: "Payroll",
         url: "/admin/payroll/index.html",
       },
-    ]
+    ],
   },
   {
     navItem: "Exit",
@@ -338,7 +344,7 @@ const sideNavItems = [
         name: "Exit Interview Management",
         url: "/admin/exitinterviewmanagement/index.html",
       },
-    ]
+    ],
   },
 
   {
@@ -347,7 +353,7 @@ const sideNavItems = [
     subItems: [
       {
         name: "Setup Management",
-        url: "/admin/setupmanagement/index.html"
+        url: "/admin/setupmanagement/index.html",
       },
       {
         name: "Change Setup Value",
@@ -370,8 +376,8 @@ const sideNavItems = [
         url: "/admin/shortmessageservice/index.html",
       },
       {
-        name: "MD's Desk Management",
-        url: "/admin/md'sdeskmanagement/index.html",
+        name: `MD Desk Management`,
+        url: "/admin/mddeskmanagement/index.html",
       },
       {
         name: "News Managemet",
@@ -389,48 +395,66 @@ const sideNavItems = [
         name: "Task Monitoring Management",
         url: "/admin/taskmonitoringmanagement/index.html",
       },
-    ]
+    ],
   },
 ];
 
 if (sideNavItemsColumn) {
-  sideNavItemsColumn.innerHTML = sideNavItems.map((sideNavItem, index) => `
+  sideNavItemsColumn.innerHTML = sideNavItems
+    .map(
+      (sideNavItem, index) => `
       <div class="side-nav-item" key="${index}">
           <div class="row side-nav-link">
               <i class="${sideNavItem.icon} side-nav-link-item-icon"></i>
               <span class="side-nav-link-item">${sideNavItem.navItem}</span>
-              ${sideNavItem.subItems ? `<i class="fa-solid fa-greater-than side-nav-link-item-dropdown"></i>` : ''}
+              ${
+                sideNavItem.subItems
+                  ? `<i class="fa-solid fa-greater-than side-nav-link-item-dropdown"></i>`
+                  : ""
+              }
           </div>
-          ${sideNavItem.subItems ? `
+          ${
+            sideNavItem.subItems
+              ? `
               <div class="side-nav-link-item sub-items hide">
-                  ${sideNavItem.subItems.map(subItem => `
+                  ${sideNavItem.subItems
+                    .map(
+                      (subItem) => `
                       <div class="sub-item">
-                        <a class="sub-item-link" data-subitem='${JSON.stringify(subItem)}'>${subItem.name || subItem}</a>
+                        <a class="sub-item-link" data-subitem='${JSON.stringify(
+                          subItem
+                        )}'>${subItem.name || subItem}</a>
                       </div>
-                  `).join('')}
+                  `
+                    )
+                    .join("")}
               </div>
-          ` : ''}
+          `
+              : ""
+          }
       </div>
-  `).join("");
+  `
+    )
+    .join("");
 
-  sideNavItemsColumn.querySelectorAll('.sub-item-link').forEach(el => {
-    el.addEventListener('click', handleSubItemClick);
+  sideNavItemsColumn.querySelectorAll(".sub-item-link").forEach((el) => {
+    el.addEventListener("click", handleSubItemClick);
   });
 }
 
-document.querySelectorAll('.side-nav-link').forEach(item => {
-  item.addEventListener('click', () => {
+document.querySelectorAll(".side-nav-link").forEach((item) => {
+  item.addEventListener("click", () => {
     const subItems = item.nextElementSibling;
-    const dropdownIcon = item.querySelector('.side-nav-link-item-dropdown');
+    const dropdownIcon = item.querySelector(".side-nav-link-item-dropdown");
 
     if (subItems) {
-      subItems.classList.toggle('hide');
-      if (subItems.classList.contains('hide')) {
-        dropdownIcon.classList.remove('fa-chevron-down');
-        dropdownIcon.classList.add('fa-greater-than');
+      subItems.classList.toggle("hide");
+      if (subItems.classList.contains("hide")) {
+        dropdownIcon.classList.remove("fa-chevron-down");
+        dropdownIcon.classList.add("fa-greater-than");
       } else {
-        dropdownIcon.classList.remove('fa-greater-than');
-        dropdownIcon.classList.add('fa-chevron-down');
+        dropdownIcon.classList.remove("fa-greater-than");
+        dropdownIcon.classList.add("fa-chevron-down");
       }
     }
   });
@@ -438,16 +462,20 @@ document.querySelectorAll('.side-nav-link').forEach(item => {
 
 const sideNav = document.querySelector(".side-nav");
 const mainArea = document.querySelector(".main-area");
-const collapsibleNavItems = document.querySelectorAll(".side-nav-link-item, .side-nav-link-item-dropdown");
-const hamburgerIcon = document.querySelector('.hamburger-icon');
-const closeIcon = document.querySelector('.close-icon');
+const collapsibleNavItems = document.querySelectorAll(
+  ".side-nav-link-item, .side-nav-link-item-dropdown"
+);
+const hamburgerIcon = document.querySelector(".hamburger-icon");
+const closeIcon = document.querySelector(".close-icon");
 const appLogo = document.querySelector(".logo-img");
 const searchModal = document.querySelector(".search-modal");
 const searchField = document.querySelector(".search-anything");
 const searchChips = document.querySelector(".search-chips");
 const pendingTaskModal = document.querySelector(".pending-task-modal");
 const selfServiceModal = document.querySelector(".self-service-modal");
-const selfServiceItemsColumn = document.querySelector(".self-service-modal-items")
+const selfServiceItemsColumn = document.querySelector(
+  ".self-service-modal-items"
+);
 const selfServiceItems = [
   {
     headItem: "My Employees",
@@ -474,7 +502,7 @@ const selfServiceItems = [
         name: "Change Password",
         url: "/selfservice/changepassword/index.html",
       },
-    ]
+    ],
   },
   {
     headItem: "My Careers",
@@ -507,7 +535,7 @@ const selfServiceItems = [
         name: "My Training",
         url: "/selfservice/mytraining/index.html",
       },
-    ]
+    ],
   },
   {
     headItem: "My Leave",
@@ -516,7 +544,7 @@ const selfServiceItems = [
         name: "My Leave Request",
         url: "/selfservice/myleaverequest/index.html",
       },
-    ]
+    ],
   },
   {
     headItem: "My Travels",
@@ -525,56 +553,56 @@ const selfServiceItems = [
         name: "My Travel Request",
         url: "/selfservice/mytravelrequest/index.html",
       },
-    ]
+    ],
   },
   {
     headItem: "My Performance",
     subDetails: [
       {
         name: "My 360 Degree Appraisal",
-        url: "/selfservice/my360degreeappraisal/index.html"
+        url: "/selfservice/my360degreeappraisal/index.html",
       },
       {
         name: "My 360 Degree Task",
-        url: "/selfservice/my360degreetask/index.html"
+        url: "/selfservice/my360degreetask/index.html",
       },
       {
         name: "My Balance Score Card KPI",
-        url: "/selfservice/mybalancescorecardkpi/index.html"
+        url: "/selfservice/mybalancescorecardkpi/index.html",
       },
       {
         name: "My Balance Score Card",
-        url: "/selfservice/mybalancescorecard/index.html"
+        url: "/selfservice/mybalancescorecard/index.html",
       },
       {
         name: "My Corporate Balance Score Card",
-        url: "/selfservice/mycorporatebalancescorecard/index.html"
+        url: "/selfservice/mycorporatebalancescorecard/index.html",
       },
       {
         name: "My Check-In Review",
-        url: "/selfservice/mycheckinreview/index.html"
+        url: "/selfservice/mycheckinreview/index.html",
       },
       {
         name: "My Confirmation",
-        url: "/selfservice/myconfirmation/index.html"
+        url: "/selfservice/myconfirmation/index.html",
       },
       {
         name: "My Result & Behaviour KPI",
-        url: "/selfservice/myresult&behaviourkpi/index.html"
+        url: "/selfservice/myresult&behaviourkpi/index.html",
       },
       {
         name: "My Result & Behaviour Appraisal Mgt.",
-        url: "/selfservice/myresult&behaviourappraisalmgt/index.html"
+        url: "/selfservice/myresult&behaviourappraisalmgt/index.html",
       },
       {
         name: "My Time Sheet",
-        url: "/selfservice/mytimesheet/index.html"
+        url: "/selfservice/mytimesheet/index.html",
       },
       {
         name: "My Task",
-        url: "/selfservice/mytask/index.html"
+        url: "/selfservice/mytask/index.html",
       },
-    ]
+    ],
   },
   {
     headItem: "My Discipline",
@@ -587,7 +615,7 @@ const selfServiceItems = [
         name: "My Query",
         url: "/selfservice/myquery/index.html",
       },
-    ]
+    ],
   },
   {
     headItem: "My Benefit",
@@ -596,7 +624,7 @@ const selfServiceItems = [
         name: "My Benefit",
         url: "/selfservice/mybenefit/index.html",
       },
-    ]
+    ],
   },
   {
     headItem: "My Loan",
@@ -609,7 +637,7 @@ const selfServiceItems = [
         name: "My Loan Repayment",
         url: "/selfservice/myloanrepayment/index.html",
       },
-    ]
+    ],
   },
   {
     headItem: "My Payroll ",
@@ -622,24 +650,24 @@ const selfServiceItems = [
         name: "My Payroll",
         url: "/selfservice/mypayroll/index.html",
       },
-    ]
+    ],
   },
   {
     headItem: "My Expense",
     subDetails: [
       {
         name: "My Expense Claims",
-        url: "/selfservice/expenseclaims/index.html"
+        url: "/selfservice/expenseclaims/index.html",
       },
       {
         name: "My Cash Advance",
-        url: "/selfservice/mycashadvance/index.html"
+        url: "/selfservice/mycashadvance/index.html",
       },
       {
         name: "My Cash Retirement",
-        url: "/selfservice/mycashretirement/index.html"
+        url: "/selfservice/mycashretirement/index.html",
       },
-    ]
+    ],
   },
   {
     headItem: "My Succession Plan",
@@ -652,7 +680,7 @@ const selfServiceItems = [
         name: "My Succession Plan",
         url: "/selfservice/mysuccessionplan/index.html",
       },
-    ]
+    ],
   },
   {
     headItem: "My Medical Service",
@@ -661,7 +689,7 @@ const selfServiceItems = [
         name: "My Medical Service",
         url: "/selfservice/mymedicalservice/index.html",
       },
-    ]
+    ],
   },
   {
     headItem: "My Feedback",
@@ -670,7 +698,7 @@ const selfServiceItems = [
         name: "My Feedback",
         url: "/selfservice/myfeedback/index.html",
       },
-    ]
+    ],
   },
   {
     headItem: "My Exit",
@@ -683,43 +711,63 @@ const selfServiceItems = [
         name: "Exit Interview",
         url: "/selfservice/exitinterview/index.html",
       },
-    ]
+    ],
   },
 ];
 
 if (selfServiceItemsColumn) {
-  selfServiceItemsColumn.innerHTML = selfServiceItems.map((selfServiceItem, index) => `
+  selfServiceItemsColumn.innerHTML = selfServiceItems
+    .map(
+      (selfServiceItem, index) => `
     <div class="self-service-item" key="${index}"> 
       <div class="row self-service-link">
         <span class="self-service-link-item">${selfServiceItem.headItem}</span>
-        ${selfServiceItem.subDetails ? `<i class="fa-solid fa-greater-than self-service-link-item-dropdown"></i>` : ''}
+        ${
+          selfServiceItem.subDetails
+            ? `<i class="fa-solid fa-greater-than self-service-link-item-dropdown"></i>`
+            : ""
+        }
       </div> 
-      ${selfServiceItem.subDetails ? `
+      ${
+        selfServiceItem.subDetails
+          ? `
         <div class="side-nav-link-item sub-items hide">
-            ${selfServiceItem.subDetails.map(subDetail => `
+            ${selfServiceItem.subDetails
+              .map(
+                (subDetail) => `
                 <div class="sub-detail">
-                  <a href="/pages/modules${subDetail.url || "#"}">${subDetail.name || subDetail}</a>
+                  <a href="/pages/modules${subDetail.url || "#"}">${
+                  subDetail.name || subDetail
+                }</a>
                 </div>
-            `).join('')}
+            `
+              )
+              .join("")}
         </div>
-      ` : ''}
+      `
+          : ""
+      }
     </div>
-  `).join("");
+  `
+    )
+    .join("");
 }
 
-document.querySelectorAll('.self-service-link').forEach(headItem => {
-  headItem.addEventListener('click', () => {
+document.querySelectorAll(".self-service-link").forEach((headItem) => {
+  headItem.addEventListener("click", () => {
     const subDetails = headItem.nextElementSibling;
-    const dropdownIcon = headItem.querySelector('.self-service-link-item-dropdown');
+    const dropdownIcon = headItem.querySelector(
+      ".self-service-link-item-dropdown"
+    );
 
     if (subDetails) {
-      subDetails.classList.toggle('hide');
-      if (subDetails.classList.contains('hide')) {
-        dropdownIcon.classList.remove('fa-chevron-down');
-        dropdownIcon.classList.add('fa-greater-than');
+      subDetails.classList.toggle("hide");
+      if (subDetails.classList.contains("hide")) {
+        dropdownIcon.classList.remove("fa-chevron-down");
+        dropdownIcon.classList.add("fa-greater-than");
       } else {
-        dropdownIcon.classList.remove('fa-greater-than');
-        dropdownIcon.classList.add('fa-chevron-down');
+        dropdownIcon.classList.remove("fa-greater-than");
+        dropdownIcon.classList.add("fa-chevron-down");
       }
     }
   });
@@ -736,52 +784,67 @@ const userDetailItems = [
 ];
 
 if (userDetailItemsColumn) {
-  userDetailItemsColumn.innerHTML = userDetailItems.map((userDetailItem, index) => `
+  userDetailItemsColumn.innerHTML = userDetailItems
+    .map(
+      (userDetailItem, index) => `
         <div class="user-detail-item" key="${index}">
             <div class="row user-detail-link">
-                ${userDetailItem.icon ? `<i class="${userDetailItem.icon} user-detail-link-item-icon"></i>` : ''}
-                <span class="user-detail-link-item">${userDetailItem.detailItem}</span>
+                ${
+                  userDetailItem.icon
+                    ? `<i class="${userDetailItem.icon} user-detail-link-item-icon"></i>`
+                    : ""
+                }
+                <span class="user-detail-link-item">${
+                  userDetailItem.detailItem
+                }</span>
             </div>
         </div>
-    `).join("");
+    `
+    )
+    .join("");
 }
 
-document.querySelectorAll('.user-credential').forEach(headItem => {
-  headItem.addEventListener('click', () => {
+document.querySelectorAll(".user-credential").forEach((headItem) => {
+  headItem.addEventListener("click", () => {
     const subDetails = headItem.nextElementSibling;
-    const dropdownIcon = headItem.querySelector('.side-nav-link-item-dropdown');
+    const dropdownIcon = headItem.querySelector(".side-nav-link-item-dropdown");
 
     if (subDetails) {
-      subDetails.classList.toggle('hide');
-      if (subDetails.classList.contains('hide')) {
-        dropdownIcon.classList.remove('fa-chevron-down');
-        dropdownIcon.classList.add('fa-greater-than');
+      subDetails.classList.toggle("hide");
+      if (subDetails.classList.contains("hide")) {
+        dropdownIcon.classList.remove("fa-chevron-down");
+        dropdownIcon.classList.add("fa-greater-than");
       } else {
-        dropdownIcon.classList.remove('fa-greater-than');
-        dropdownIcon.classList.add('fa-chevron-down');
+        dropdownIcon.classList.remove("fa-greater-than");
+        dropdownIcon.classList.add("fa-chevron-down");
       }
     }
   });
 });
 
 if (searchChips) {
-  searchChips.innerHTML = sideNavItems.slice(1).map((item, index) => `
+  searchChips.innerHTML = sideNavItems
+    .slice(1)
+    .map(
+      (item, index) => `
         <div class="row search-chip" key=${index}>
             <i class="${item.icon} "></i>
             <span class="">${item.navItem}</span>
         </div>
-    `).join("")
-};
+    `
+    )
+    .join("");
+}
 
 const setupManagementItems = {
   "Organizational Setup": [
     {
       name: "Setup Company",
-      url: "../setupcompany/index.html"
+      url: "/pages/modules/admin/setupcompany/index.html",
     },
     {
       name: "Setup Department",
-      url: "../setupdepartment/index.html"
+      url: "/pages/modules/admin/setupdepartment/index.html",
     },
     {
       name: "Setup Team",
@@ -916,122 +979,216 @@ const setupManagementItems = {
   ],
   "Proficiency Setup": [
     {
-      name: "Setup Company",
-      url: "../setupcompany/index.html"
+      name: "Setup Proficiency Level",
+      url: "/pages/modules/admin/setupproficiencylevel/index.html",
     },
     {
-      name: "Setup Department",
-      url: "../setupdepartment/index.html"
+      name: "Setup Proficiency Level Core Dimension",
+      url: "/pages/modules/admin/setupproficiencylevelcore/index.html",
+    },
+    {
+      name: "Setup Proficiency Level Attribute",
+      url: "/pages/modules/admin/setupproficiencylevelattribute/index.html",
     },
   ],
-  "Performance Setup": [
-    {
-      name: "Setup Company",
-      url: "../setupcompany/index.html"
-    },
-    {
-      name: "Setup Department",
-      url: "../setupdepartment/index.html"
-    },
-  ],
+  "Performance Setup": {
+    "Time Sheet": [
+      {
+        name: "Setup Task Activity",
+        url: "/pages/modules/admin/setuptask/index.html",
+      },
+    ],
+    Confirmation: [
+      {
+        name: "Setup Confirmation Performance Attribute",
+        url: "/pages/modules/admin/setupconfirmationperformance/index.html",
+      },
+      {
+        name: "Setup Confirmation Competencies",
+        url: "/pages/modules/admin/setupconfirmationcompetence/index.html",
+      },
+      {
+        name: "Setup Confirmation Approval Flow",
+        url: "/pages/modules/admin/setupconfirmationapproval/index.html",
+      },
+    ],
+    "Balance Score Card [BSC]": [
+      {
+        name: "Setup BSC [Employee] Approval Flow",
+        url: "/pages/modules/admin/setupbscapproval/index.html",
+      },
+      {
+        name: "Setup Users - BSC [Employee] Approval",
+        url: "/pages/modules/admin/setupusersbsc/index.html",
+      },
+      {
+        name: "Setup Appraisal Period",
+        url: "/pages/modules/admin/setupappraisalperiod/index.html",
+      },
+      {
+        name: "Setup Check-In Period",
+        url: "/pages/modules/admin/setupcheckinperiod/index.html",
+      },
+      {
+        name: "Setup BSC KPI Category",
+        url: "/pages/modules/admin/setupbsccategory/index.html",
+      },
+      {
+        name: "Setup Balance Score Card Floor/Cap Values",
+        url: "/pages/modules/admin/setupbscvalues/index.html",
+      },
+      {
+        name: "Balance Score Card KPI Management",
+        url: "/pages/modules/admin/bsckpimanagement/index.html",
+      },
+    ],
+  },
   "Personalization Setup": [
     {
-      name: "Setup Company",
-      url: "../setupcompany/index.html"
+      name: "Setup Nationality",
+      url: "/pages/modules/admin/setupnationality/index.html",
     },
     {
-      name: "Setup Department",
-      url: "../setupdepartment/index.html"
+      name: "Setup State",
+      url: "/pages/modules/admin/setupstate/index.html",
+    },
+    {
+      name: "Setup Local Government",
+      url: "/pages/modules/admin/setuplocalgovernment/index.html",
+    },
+    {
+      name: "Setup Qualification",
+      url: "/pages/modules/admin/setupqualification/index.html",
+    },
+    {
+      name: "Setup Relationship",
+      url: "/pages/modules/admin/setuprelationship/index.html",
+    },
+    {
+      name: "Setup Religion",
+      url: "/pages/modules/admin/setupreligion/index.html",
+    },
+    {
+      name: "Setup Marital Status",
+      url: "/pages/modules/admin/setupmaritalstatus/index.html",
     },
   ],
   "Overtime Setup": [
     {
-      name: "Setup Company",
-      url: "../setupcompany/index.html"
-    },
-    {
-      name: "Setup Department",
-      url: "../setupdepartment/index.html"
+      name: "Setup Users - Overtime Claims Approval",
+      url: "/pages/modules/admin/setupovertime/index.html",
     },
   ],
   "Payroll Setup": [
     {
-      name: "Setup Company",
-      url: "../setupcompany/index.html"
+      name: "Payroll Values Management (Default)",
+      url: "/pages/modules/admin/payrollvaluemanagement/index.html",
     },
     {
-      name: "Setup Department",
-      url: "../setupdepartment/index.html"
+      name: "Setup Tax Reliefs Type",
+      url: "/pages/modules/admin/setuptaxtype/index.html",
+    },
+    {
+      name: "Setup Tax Table",
+      url: "/pages/modules/admin/setuptaxtable/index.html",
+    },
+    {
+      name: "Setup Payroll Approval Flow",
+      url: "/pages/modules/admin/setuppayrollapproval/index.html",
+    },
+    {
+      name: "Setup Users - Payroll Approval",
+      url: "/pages/modules/admin/setupuserspayroll/index.html",
     },
   ],
   "Competency Setup": [
     {
-      name: "Setup Company",
-      url: "../setupcompany/index.html"
+      name: "Setup Competency Group",
+      url: "/pages/modules/admin/setupcompetencygroup/index.html",
     },
     {
-      name: "Setup Department",
-      url: "../setupdepartment/index.html"
+      name: "Setup Competency Category",
+      url: "/pages/modules/admin/setupcompetencycategory/index.html",
+    },
+    {
+      name: "Competency Catalog",
+      url: "/pages/modules/admin/competencycatalog/index.html",
     },
   ],
   "Bulk Uploads": [
     {
       name: "Setup Company",
-      url: "../setupcompany/index.html"
+      url: "/pages/modules/admin/setupcompany/index.html",
     },
     {
       name: "Setup Department",
-      url: "../setupdepartment/index.html"
+      url: "/pages/modules/admin/setupdepartment/index.html",
     },
   ],
   "Travel Setup": [
     {
       name: "Setup Travel Approval Flow",
-      url: "../setuptravelapprovalflow/index.html"
+      url: "/pages/modules/admin/setuptravelapprovalflow/index.html",
     },
     {
       name: "Setup Department",
-      url: "../setupdepartment/index.html"
+      url: "/pages/modules/admin/setupdepartment/index.html",
     },
   ],
   "Petty Cash": [
     {
       name: "Setup Company",
-      url: "../setupcompany/index.html"
+      url: "/pages/modules/admin/setupcompany/index.html",
     },
     {
       name: "Setup Department",
-      url: "../setupdepartment/index.html"
+      url: "/pages/modules/admin/setupdepartment/index.html",
     },
   ],
   "Discipline Setup": [
     {
       name: "Setup Company",
-      url: "../setupcompany/index.html"
+      url: "/pages/modules/admin/setupcompany/index.html",
     },
     {
       name: "Setup Department",
-      url: "../setupdepartment/index.html"
+      url: "/pages/modules/admin/setupdepartment/index.html",
     },
   ],
   "Promotion Setup": [
     {
       name: "Setup Company",
-      url: "../setupcompany/index.html"
+      url: "/pages/modules/admin/setupcompany/index.html",
     },
     {
       name: "Setup Department",
-      url: "../setupdepartment/index.html"
+      url: "/pages/modules/admin/setupdepartment/index.html",
     },
   ],
   "Exit Setup": [
     {
-      name: "Setup Company",
-      url: "../setupcompany/index.html"
+      name: "Setup Exit Type",
+      url: "/pages/modules/admin/setupexittype/index.html",
     },
     {
-      name: "Setup Department",
-      url: "../setupdepartment/index.html"
+      name: "Setup Clearance Department",
+      url: "/pages/modules/admin/setupclearancedepartment/index.html",
+    },
+    {
+      name: "Setup Users - Exit Approval",
+      url: "/pages/modules/admin/setupusersexitapproval/index.html",
+    },
+    {
+      name: "Setup Exit Checklist",
+      url: "/pages/modules/admin/setupexitchecklist/index.html",
+    },
+    {
+      name: "Exit Interview Questions Management",
+      url: "/pages/modules/admin/exitinterviewquestionmanagement/index.html",
+    },
+    {
+      name: "Setup Exit Indebtedness Template",
+      url: "/pages/modules/admin/setupexitindebtednesstemplate/index.html",
     },
   ],
 };
@@ -1041,11 +1198,24 @@ let html = "";
 for (const [category, items] of Object.entries(setupManagementItems)) {
   html += `<div class="setup-management-item">`;
   html += `<h3>${category}</h3>`;
-  html += `<ul>`;
-  for (const item of items) {
-    html += `<li><a href="${item.url}">${item.name}</a></li>`;
+
+  if (Array.isArray(items)) {
+    html += `<ul>`;
+    for (const item of items) {
+      html += `<li><a href="${item.url}">${item.name}</a></li>`;
+    }
+    html += `</ul>`;
+  } else {
+    for (const [subCategory, subItems] of Object.entries(items)) {
+      html += `<h6>${subCategory}</h6>`;
+      html += `<ul>`;
+      for (const subItem of subItems) {
+        html += `<li><a href="${subItem.url}">${subItem.name}</a></li>`;
+      }
+      html += `</ul>`;
+    }
   }
-  html += `</ul>`;
+
   html += `</div>`;
 }
 
@@ -1059,7 +1229,7 @@ function handleOpenSetupManagementModal(e) {
     item.style.opacity = 0.1;
     item.style.pointerEvents = "none";
   });
-};
+}
 
 function handleCloseSetupManagementModal() {
   setupManagementModal.classList.add("close-modal");
@@ -1068,7 +1238,7 @@ function handleCloseSetupManagementModal() {
     item.style.opacity = 1;
     item.style.pointerEvents = "auto";
   });
-};
+}
 
 function handleSubItemClick(e) {
   e.preventDefault();
@@ -1076,22 +1246,28 @@ function handleSubItemClick(e) {
   const subItem = JSON.parse(subItemData);
   if (subItem.name === "Setup Management") {
     return handleOpenSetupManagementModal(e);
-  };
-  window.location.href = `/pages/modules${subItem.url || "#"}`
-};
+  }
+  window.location.href = `/pages/modules${subItem.url || "#"}`;
+}
 
 function handleHamburgerClick() {
   if (sideNav && mainArea) {
     const screenSize = window.innerWidth;
     const isHidden = sideNav.classList.toggle("hide-element");
-    const maxSideNavWidth = screenSize < 425 ? "-webkit-fill-available" : "16rem";
+    const maxSideNavWidth =
+      screenSize < 425 ? "-webkit-fill-available" : "16rem";
     if (hamburgerIcon && closeIcon) {
-      hamburgerIcon.classList.toggle('show');
-      closeIcon.classList.toggle('show');
+      hamburgerIcon.classList.toggle("show");
+      closeIcon.classList.toggle("show");
     }
     mainArea.style.display = isHidden ? "block" : "none";
-    document.documentElement.style.setProperty('--side-nav-width', maxSideNavWidth);
-    collapsibleNavItems.forEach(item => item.classList.remove("hide-element"));
+    document.documentElement.style.setProperty(
+      "--side-nav-width",
+      maxSideNavWidth
+    );
+    collapsibleNavItems.forEach((item) =>
+      item.classList.remove("hide-element")
+    );
   }
 }
 
@@ -1100,7 +1276,9 @@ function handleMouseOver() {
   const maxSideNavWidth = screenSize < 425 ? "-webkit-fill-available" : "16rem";
   if (mainArea) {
     appLogo.style.width = "auto";
-    collapsibleNavItems.forEach(item => item.classList.remove("hide-element"));
+    collapsibleNavItems.forEach((item) =>
+      item.classList.remove("hide-element")
+    );
     if (screenSize < 768) {
       mainArea.style.opacity = 0.1;
       mainArea.style.pointerEvents = "none";
@@ -1108,7 +1286,10 @@ function handleMouseOver() {
       mainArea.style.opacity = 1;
       mainArea.style.pointerEvents = "auto";
     }
-    document.documentElement.style.setProperty('--side-nav-width', maxSideNavWidth);
+    document.documentElement.style.setProperty(
+      "--side-nav-width",
+      maxSideNavWidth
+    );
   }
 }
 
@@ -1118,8 +1299,11 @@ function handleMouseLeave() {
     appLogo.style.width = "100%";
     mainArea.style.opacity = 1;
     mainArea.style.pointerEvents = "auto";
-    document.documentElement.style.setProperty('--side-nav-width', minSideNavWidth);
-    collapsibleNavItems.forEach(item => item.classList.add("hide-element"));
+    document.documentElement.style.setProperty(
+      "--side-nav-width",
+      minSideNavWidth
+    );
+    collapsibleNavItems.forEach((item) => item.classList.add("hide-element"));
   }
 }
 
@@ -1135,17 +1319,28 @@ function collapseNavItems() {
     if (425 < screenSize && screenSize <= 1024) {
       appLogo.style.width = "100%";
       mainArea.style.display = "block";
-      document.documentElement.style.setProperty('--side-nav-width', minSideNavWidth);
-      collapsibleNavItems.forEach(item => item.classList.add("hide-element"));
+      document.documentElement.style.setProperty(
+        "--side-nav-width",
+        minSideNavWidth
+      );
+      collapsibleNavItems.forEach((item) => item.classList.add("hide-element"));
       sideNav.addEventListener("mouseover", handleMouseOver);
       sideNav.addEventListener("mouseleave", handleMouseLeave);
     } else {
       appLogo.style.width = "auto";
-      mainArea.style.display = screenSize < 425 && closeIcon?.classList.contains("show") ? "none" : "block";
+      mainArea.style.display =
+        screenSize < 425 && closeIcon?.classList.contains("show")
+          ? "none"
+          : "block";
       mainArea.style.opacity = 1;
       mainArea.style.pointerEvents = "auto";
-      document.documentElement.style.setProperty('--side-nav-width', maxSideNavWidth);
-      collapsibleNavItems.forEach(item => item.classList.remove("hide-element"));
+      document.documentElement.style.setProperty(
+        "--side-nav-width",
+        maxSideNavWidth
+      );
+      collapsibleNavItems.forEach((item) =>
+        item.classList.remove("hide-element")
+      );
     }
   }
 }
@@ -1189,17 +1384,29 @@ window.addEventListener("load", collapseNavItems);
 window.addEventListener("resize", collapseNavItems);
 // handle modal renders
 window.addEventListener("click", (e) => {
-  // condition - if the modal is currently rendered && if the click is not within the modal 
-  if (!pendingTaskModal.classList.contains("close-modal") && !pendingTaskModal.contains(e.target)) {
-    handleClosePendingTaskModal()
+  // condition - if the modal is currently rendered && if the click is not within the modal
+  if (
+    !pendingTaskModal.classList.contains("close-modal") &&
+    !pendingTaskModal.contains(e.target)
+  ) {
+    handleClosePendingTaskModal();
   }
-  if (!selfServiceModal.classList.contains("close-modal") && !selfServiceModal.contains(e.target)) {
-    handleCloseSelfServiceModal()
+  if (
+    !selfServiceModal.classList.contains("close-modal") &&
+    !selfServiceModal.contains(e.target)
+  ) {
+    handleCloseSelfServiceModal();
   }
-  if (!searchModal.classList.contains("close-modal") && !searchModal.contains(e.target)) {
-    handleCloseSearchModal(e)
+  if (
+    !searchModal.classList.contains("close-modal") &&
+    !searchModal.contains(e.target)
+  ) {
+    handleCloseSearchModal(e);
   }
-  if (!setupManagementModal.classList.contains("close-modal") && !setupManagementModal.contains(e.target)) {
-    handleCloseSetupManagementModal()
+  if (
+    !setupManagementModal.classList.contains("close-modal") &&
+    !setupManagementModal.contains(e.target)
+  ) {
+    handleCloseSetupManagementModal();
   }
 });

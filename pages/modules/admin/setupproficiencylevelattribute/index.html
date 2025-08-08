@@ -102,36 +102,38 @@
     </section>
     <section class="main-area">
         <div class="row module-title-box">
-            <h1>Md Desk Management</h1>
-            <button class="row" onclick="handleOpenMdDeskManagementModal(event)">
+            <h1>Setup Proficiency Level Attribute</h1>
+            <button class="row" onclick="handleOpenSetupProficiencyLevelAttribute(event)">
                 <i class="fa-solid fa-plus"></i>
-                <span>Add New Md Desk Management</span>
+                <span>Add New Setup Proficiency Level Attribute</span>
             </button>
         </div>
         <div class="row module-navigation">
             <span class="previous">Home</span>
             <i class="fa-solid fa-greater-than previous"></i>
-            <span>Md's Desk Management</span>
+            <span>Setup Proficiency Level Attribute</span>
         </div>
         <div class="module-table"></div>
-        <div class="module-modal md-desk-management-module-modal close-modal">
+        <div class="module-modal setup-proficiency-level-attribute-module-modal close-modal">
             <div class="row modal-title-box module-modal-title-box">
-                <h2>Md's Desk Management</h2>
-                <i class=" fa-solid fa-xmark md-desk-management-modal-close-icon" onclick="handleCloseMdDeskManagementModal()"></i>
+                <h2>Setup Proficiency Level Attribute</h2>
+                <i class=" fa-solid fa-xmark setup-proficiency-level-attribute-modal-close-icon"
+                    onclick="handleCloseSetupProficiencyLevelAttributeModal()"></i>
             </div>
             <div class="module-modal-form"></div>
         </div>
         <div class="module-detail-modal close-modal">
             <div class="row modal-title-box module-modal-title-box">
-                <h2>Md's Desk Management</h2>
-                <i class=" fa-solid fa-xmark md-desk-management-modal-close-icon" onclick="handleCloseDetailModal()"></i>
+                <h2>Setup Proficiency Level Attribute</h2>
+                <i class=" fa-solid fa-xmark setup-proficiency-level-attribute-modal-close-icon" onclick="handleCloseDetailModal()"></i>
             </div>
             <div class="module-modal-detail-box"></div>
         </div>
-        <div class="module-modal md-desk-management-confirmation-modal close-modal">
+        <div class="module-modal setup-proficiency-level-attribute-confirmation-modal close-modal">
             <img src="../../../../assets/timesheeticon.svg" alt="time-clock" />
-            <h2>Submit md's desk management</h2>
-            <p>By submitting this md's desk management you show your availability and the task you accomplished for the day</p>
+            <h2>Submit Setup Proficiency Level Attribute</h2>
+            <p>By submitting this Setup Proficiency Level Attribute you show your availability and the task you accomplished for the day
+            </p>
             <form>
                 <label>
                     <input type="checkbox" />
@@ -146,6 +148,14 @@
                     </button>
                 </div>
             </form>
+        </div>
+        <div class="module-modal setup-management-module-modal close-modal">
+            <div class="row modal-title-box module-modal-title-box">
+                <h2>Setup Management</h2>
+                <i class=" fa-solid fa-xmark setup-management-modal-close-icon"
+                    onclick="handleCloseSetupManagementModal()"></i>
+            </div>
+            <div class="module-modal-content"></div>
         </div>
     </section>
 

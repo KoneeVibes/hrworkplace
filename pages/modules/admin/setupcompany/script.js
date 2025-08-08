@@ -186,8 +186,6 @@ function handleCloseSetupManagementModal() {
     });
 }; 
 
-
-
 window.addEventListener("click", (e) => {
     // condition - if the modal is currently rendered && if the click is not within the modal 
     if (!setupCompanyModal.classList.contains("close-modal") && !setupCompanyModal.contains(e.target)) {

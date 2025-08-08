@@ -1,26 +1,54 @@
 const illnessManagementTable = document.querySelector(".module-table");
-const illnessManagementModal = document.querySelector(".illness-management-module-modal");
+const illnessManagementModal = document.querySelector(
+  ".illness-management-module-modal"
+);
 const illnessManagementForm = document.querySelector(".module-modal-form");
-const illnessManagementConfirmationModal = document.querySelector(".illness-management-confirmation-modal");
-const illnessManagementDetailModal = document.querySelector(".module-detail-modal");
-const illnessManagementDetailBox = document.querySelector(".module-modal-detail-box");
-const markedForDeHighlighting = document.querySelectorAll(".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav");
-const headers = ["S/N", "Name", "Company", "Department", "Task Date", "Task Title", "Time Spent", "Manager's Remark", "Status", "View"];
+const illnessManagementConfirmationModal = document.querySelector(
+  ".illness-management-confirmation-modal"
+);
+const illnessManagementDetailModal = document.querySelector(
+  ".module-detail-modal"
+);
+const illnessManagementDetailBox = document.querySelector(
+  ".module-modal-detail-box"
+);
+const markedForDeHighlighting = document.querySelectorAll(
+  ".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav"
+);
+const headers = [
+  "S/N",
+  "Name",
+  "Company",
+  "Department",
+  "Task Date",
+  "Task Title",
+  "Time Spent",
+  "Manager's Remark",
+  "Status",
+  "View",
+];
 const rows = [""];
 
-illnessManagementTable.innerHTML = rows.length > 0 ? (
-    `<table>
+illnessManagementTable.innerHTML =
+  rows.length > 0
+    ? `<table>
         <thead>
             <tr>
-                ${headers?.map((header, index) => `
+                ${headers
+                  ?.map(
+                    (header, index) => `
                     <th key=${index}>
                         ${header}
                     </th>
-                `).join('')}
+                `
+                  )
+                  .join("")}
             </tr>
         </thead>
         <tbody>
-        ${rows?.map((row, index) => `
+        ${rows
+          ?.map(
+            (row, index) => `
                 <tr 
                     key=${index}
                     onclick="handleOpenDetailModal(event)"
@@ -33,11 +61,12 @@ illnessManagementTable.innerHTML = rows.length > 0 ? (
                     <td>${row}</td>
                     <td>hii</td>
                 </tr>
-            `).join('')}
+            `
+          )
+          .join("")}
         </tbody>
     </table>`
-) : (
-    `<div class="call-to-action">
+    : `<div class="call-to-action">
         <div>
             <img src=${"../../assets/search.svg"} alt="search-icon"/>
         </div>
@@ -50,10 +79,9 @@ illnessManagementTable.innerHTML = rows.length > 0 ? (
                 <span>Add New Illness Management</span>
             </button>
         </div>
-    </div>`
-);
+    </div>`;
 
-illnessManagementForm.innerHTML = (`
+illnessManagementForm.innerHTML = `
     <form>
         <div class="row form-field-set">
             <label>Email</label>
@@ -100,79 +128,104 @@ illnessManagementForm.innerHTML = (`
             </button>
         </div>
     </form>
-`)
+`;
 
-illnessManagementDetailBox.innerHTML = (`
+illnessManagementDetailBox.innerHTML = `
         <div>
             // details would go in here
             
         </div>
-    `)
+    `;
 
 function handleOpenDetailModal(e) {
-    e.stopPropagation();
-    illnessManagementDetailModal.classList.remove("close-modal");
-    document.body.style.overflow = "hidden";
-    markedForDeHighlighting.forEach((item) => {
-        item.style.opacity = 0.1;
-        item.style.pointerEvents = "none";
-    });
+  e.stopPropagation();
+  illnessManagementDetailModal.classList.remove("close-modal");
+  document.body.style.overflow = "hidden";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 0.1;
+    item.style.pointerEvents = "none";
+  });
 }
 
 function handleCloseDetailModal() {
-    illnessManagementDetailModal.classList.add("close-modal");
-    document.body.style.overflow = "auto";
-    markedForDeHighlighting.forEach((item) => {
-        item.style.opacity = 1;
-        item.style.pointerEvents = "auto";
-    });
+  illnessManagementDetailModal.classList.add("close-modal");
+  document.body.style.overflow = "auto";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 1;
+    item.style.pointerEvents = "auto";
+  });
 }
 
 function handleOpenIllnessManagementModal(e) {
-    e.stopPropagation();
-    illnessManagementModal.classList.remove("close-modal");
-    document.body.style.overflow = "hidden";
-    markedForDeHighlighting.forEach((item) => {
-        item.style.opacity = 0.1;
-        item.style.pointerEvents = "none";
-    });
+  e.stopPropagation();
+  illnessManagementModal.classList.remove("close-modal");
+  document.body.style.overflow = "hidden";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 0.1;
+    item.style.pointerEvents = "none";
+  });
 }
 
 function handleCloseIllnessManagementModal() {
-    illnessManagementModal.classList.add("close-modal");
-    document.body.style.overflow = "auto";
-    markedForDeHighlighting.forEach((item) => {
-        item.style.opacity = 1;
-        item.style.pointerEvents = "auto";
-    });
+  illnessManagementModal.classList.add("close-modal");
+  document.body.style.overflow = "auto";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 1;
+    item.style.pointerEvents = "auto";
+  });
 }
 
 function handleOpenConfirmationModal(e) {
-    e.stopPropagation();
-    handleCloseIllnessManagementModal();
-    illnessManagementConfirmationModal.classList.remove("close-modal");
-    document.body.style.overflow = "hidden";
-    markedForDeHighlighting.forEach((item) => {
-        item.style.opacity = 0.1;
-        item.style.pointerEvents = "none";
-    });
+  e.stopPropagation();
+  handleCloseIllnessManagementModal();
+  illnessManagementConfirmationModal.classList.remove("close-modal");
+  document.body.style.overflow = "hidden";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 0.1;
+    item.style.pointerEvents = "none";
+  });
 }
 
 function handleCloseConfirmationModal() {
-    illnessManagementConfirmationModal.classList.add("close-modal");
-    document.body.style.overflow = "auto";
-    markedForDeHighlighting.forEach((item) => {
-        item.style.opacity = 1;
-        item.style.pointerEvents = "auto";
-    });
+  illnessManagementConfirmationModal.classList.add("close-modal");
+  document.body.style.overflow = "auto";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 1;
+    item.style.pointerEvents = "auto";
+  });
+}
+
+function handleOpenSetupManagementModal(e) {
+  e.stopPropagation();
+  setupManagementModal.classList.remove("close-modal");
+  document.body.style.overflow = "hidden";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 0.1;
+    item.style.pointerEvents = "none";
+  });
+}
+
+function handleCloseSetupManagementModal() {
+  setupManagementModal.classList.add("close-modal");
+  document.body.style.overflow = "auto";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 1;
+    item.style.pointerEvents = "auto";
+  });
 }
 
 window.addEventListener("click", (e) => {
-    // condition - if the modal is currently rendered && if the click is not within the modal 
-    if (!illnessManagementModal.classList.contains("close-modal") && !illnessManagementModal.contains(e.target)) {
-        handleCloseIllnessManagementModal();
-    }
-    if (!illnessManagementDetailModal.classList.contains("close-modal") && !illnessManagementDetailModal.contains(e.target)) {
-        handleCloseDetailModal();
-    }
+  // condition - if the modal is currently rendered && if the click is not within the modal
+  if (
+    !illnessManagementModal.classList.contains("close-modal") &&
+    !illnessManagementModal.contains(e.target)
+  ) {
+    handleCloseIllnessManagementModal();
+  }
+  if (
+    !illnessManagementDetailModal.classList.contains("close-modal") &&
+    !illnessManagementDetailModal.contains(e.target)
+  ) {
+    handleCloseDetailModal();
+  }
 });

@@ -1,26 +1,54 @@
 const injuryManagementTable = document.querySelector(".module-table");
-const injuryManagementModal = document.querySelector(".injury-management-module-modal");
+const injuryManagementModal = document.querySelector(
+  ".injury-management-module-modal"
+);
 const injuryManagementForm = document.querySelector(".module-modal-form");
-const injuryManagementConfirmationModal = document.querySelector(".injury-management-confirmation-modal");
-const injuryManagementDetailModal = document.querySelector(".module-detail-modal");
-const injuryManagementDetailBox = document.querySelector(".module-modal-detail-box");
-const markedForDeHighlighting = document.querySelectorAll(".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav");
-const headers = ["S/N", "Name", "Company", "Department", "Task Date", "Task Title", "Time Spent", "Manager's Remark", "Status", "View"];
+const injuryManagementConfirmationModal = document.querySelector(
+  ".injury-management-confirmation-modal"
+);
+const injuryManagementDetailModal = document.querySelector(
+  ".module-detail-modal"
+);
+const injuryManagementDetailBox = document.querySelector(
+  ".module-modal-detail-box"
+);
+const markedForDeHighlighting = document.querySelectorAll(
+  ".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav"
+);
+const headers = [
+  "S/N",
+  "Name",
+  "Company",
+  "Department",
+  "Task Date",
+  "Task Title",
+  "Time Spent",
+  "Manager's Remark",
+  "Status",
+  "View",
+];
 const rows = [""];
 
-injuryManagementTable.innerHTML = rows.length > 0 ? (
-    `<table>
+injuryManagementTable.innerHTML =
+  rows.length > 0
+    ? `<table>
         <thead>
             <tr>
-                ${headers?.map((header, index) => `
+                ${headers
+                  ?.map(
+                    (header, index) => `
                     <th key=${index}>
                         ${header}
                     </th>
-                `).join('')}
+                `
+                  )
+                  .join("")}
             </tr>
         </thead>
         <tbody>
-        ${rows?.map((row, index) => `
+        ${rows
+          ?.map(
+            (row, index) => `
                 <tr 
                     key=${index}
                     onclick="handleOpenDetailModal(event)"
@@ -33,11 +61,12 @@ injuryManagementTable.innerHTML = rows.length > 0 ? (
                     <td>${row}</td>
                     <td>hii</td>
                 </tr>
-            `).join('')}
+            `
+          )
+          .join("")}
         </tbody>
     </table>`
-) : (
-    `<div class="call-to-action">
+    : `<div class="call-to-action">
         <div>
             <img src=${"../../assets/search.svg"} alt="search-icon"/>
         </div>
@@ -50,10 +79,9 @@ injuryManagementTable.innerHTML = rows.length > 0 ? (
                 <span>Add New Injury Management</span>
             </button>
         </div>
-    </div>`
-);
+    </div>`;
 
-injuryManagementForm.innerHTML = (`
+injuryManagementForm.innerHTML = `
     <form>
         <div class="row form-field-set">
             <label>Email</label>
@@ -100,79 +128,104 @@ injuryManagementForm.innerHTML = (`
             </button>
         </div>
     </form>
-`)
+`;
 
-injuryManagementDetailBox.innerHTML = (`
+injuryManagementDetailBox.innerHTML = `
         <div>
             // details would go in here
             
         </div>
-    `)
+    `;
 
 function handleOpenDetailModal(e) {
-    e.stopPropagation();
-    injuryManagementDetailModal.classList.remove("close-modal");
-    document.body.style.overflow = "hidden";
-    markedForDeHighlighting.forEach((item) => {
-        item.style.opacity = 0.1;
-        item.style.pointerEvents = "none";
-    });
+  e.stopPropagation();
+  injuryManagementDetailModal.classList.remove("close-modal");
+  document.body.style.overflow = "hidden";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 0.1;
+    item.style.pointerEvents = "none";
+  });
 }
 
 function handleCloseDetailModal() {
-    injuryManagementDetailModal.classList.add("close-modal");
-    document.body.style.overflow = "auto";
-    markedForDeHighlighting.forEach((item) => {
-        item.style.opacity = 1;
-        item.style.pointerEvents = "auto";
-    });
+  injuryManagementDetailModal.classList.add("close-modal");
+  document.body.style.overflow = "auto";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 1;
+    item.style.pointerEvents = "auto";
+  });
 }
 
 function handleOpenInjuryManagementModal(e) {
-    e.stopPropagation();
-    injuryManagementModal.classList.remove("close-modal");
-    document.body.style.overflow = "hidden";
-    markedForDeHighlighting.forEach((item) => {
-        item.style.opacity = 0.1;
-        item.style.pointerEvents = "none";
-    });
+  e.stopPropagation();
+  injuryManagementModal.classList.remove("close-modal");
+  document.body.style.overflow = "hidden";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 0.1;
+    item.style.pointerEvents = "none";
+  });
 }
 
 function handleCloseInjuryManagementModal() {
-    injuryManagementModal.classList.add("close-modal");
-    document.body.style.overflow = "auto";
-    markedForDeHighlighting.forEach((item) => {
-        item.style.opacity = 1;
-        item.style.pointerEvents = "auto";
-    });
+  injuryManagementModal.classList.add("close-modal");
+  document.body.style.overflow = "auto";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 1;
+    item.style.pointerEvents = "auto";
+  });
 }
 
 function handleOpenConfirmationModal(e) {
-    e.stopPropagation();
-    handleCloseInjuryManagementModal();
-    injuryManagementConfirmationModal.classList.remove("close-modal");
-    document.body.style.overflow = "hidden";
-    markedForDeHighlighting.forEach((item) => {
-        item.style.opacity = 0.1;
-        item.style.pointerEvents = "none";
-    });
+  e.stopPropagation();
+  handleCloseInjuryManagementModal();
+  injuryManagementConfirmationModal.classList.remove("close-modal");
+  document.body.style.overflow = "hidden";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 0.1;
+    item.style.pointerEvents = "none";
+  });
 }
 
 function handleCloseConfirmationModal() {
-    injuryManagementConfirmationModal.classList.add("close-modal");
-    document.body.style.overflow = "auto";
-    markedForDeHighlighting.forEach((item) => {
-        item.style.opacity = 1;
-        item.style.pointerEvents = "auto";
-    });
+  injuryManagementConfirmationModal.classList.add("close-modal");
+  document.body.style.overflow = "auto";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 1;
+    item.style.pointerEvents = "auto";
+  });
+}
+
+function handleOpenSetupManagementModal(e) {
+  e.stopPropagation();
+  setupManagementModal.classList.remove("close-modal");
+  document.body.style.overflow = "hidden";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 0.1;
+    item.style.pointerEvents = "none";
+  });
+}
+
+function handleCloseSetupManagementModal() {
+  setupManagementModal.classList.add("close-modal");
+  document.body.style.overflow = "auto";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 1;
+    item.style.pointerEvents = "auto";
+  });
 }
 
 window.addEventListener("click", (e) => {
-    // condition - if the modal is currently rendered && if the click is not within the modal 
-    if (!injuryManagementModal.classList.contains("close-modal") && !injuryManagementModal.contains(e.target)) {
-        handleCloseInjuryManagementModal();
-    }
-    if (!injuryManagementDetailModal.classList.contains("close-modal") && !injuryManagementDetailModal.contains(e.target)) {
-        handleCloseDetailModal();
-    }
+  // condition - if the modal is currently rendered && if the click is not within the modal
+  if (
+    !injuryManagementModal.classList.contains("close-modal") &&
+    !injuryManagementModal.contains(e.target)
+  ) {
+    handleCloseInjuryManagementModal();
+  }
+  if (
+    !injuryManagementDetailModal.classList.contains("close-modal") &&
+    !injuryManagementDetailModal.contains(e.target)
+  ) {
+    handleCloseDetailModal();
+  }
 });
