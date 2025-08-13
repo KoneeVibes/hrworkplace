@@ -1,3 +1,5 @@
+const loginBtn = document.getElementById('loginButton');
+
 const BASE_ENDPOINT = 'http://52.150.234.195:7268/api';
 
 const signInUserService = async (authDetails) => {
@@ -21,27 +23,34 @@ const signInUserService = async (authDetails) => {
     }
 };
 
-document.getElementById('loginButton').addEventListener('click', async function (e) {
+loginBtn.addEventListener('click', async function (e) {
     e.preventDefault();
 
     const form = document.getElementById("login-form");
     const username = form.elements["username"].value;
     const password = form.elements["password"].value;
+    const errorMessage = form.querySelector('[class="error-message"]');
+
+    errorMessage.innerHTML = "";
+
+    const originalText = loginBtn.innerHTML;
+    loginBtn.innerHTML = '<span class="spinner"></span>';
+    loginBtn.disabled = true;
 
     try {
         const response = await signInUserService({ username: username, password: password });
         if (response.status === "Success") {
-            // setIsLoading(false);
             sessionStorage.setItem('access_token', response.data.token);
             window.location.href = '../dashboard/index.html';
         } else {
-            //     // setIsLoading(false);
-            //     // setError('Authentication failed. Please check your credentials and try again.');
+            errorMessage.innerHTML = ("Authentication failed. Please check your credentials and try again.");
             console.log("Fail to login");
         }
     } catch (error) {
-        // setIsLoading(false);
-        // setError(`Login failed. ${error.message}`);
+        errorMessage.innerHTML = (`Login failed. ${error.message}`);
         console.error('Login failed:', error);
+    } finally {
+        loginBtn.innerHTML = originalText;
+        loginBtn.disabled = false;
     }
 });
