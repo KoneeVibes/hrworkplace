@@ -1,14 +1,14 @@
-const setupClearanceDeptTable = document.querySelector(".module-table");
-const setupClearanceDeptModal = document.querySelector(".setup-clearance-dept-module-modal");
-const setupClearanceDeptForm = document.querySelector(".module-modal-form");
-const setupClearanceDeptConfirmationModal = document.querySelector(".setup-clearance-dept-confirmation-modal");
-const setupClearanceDeptDetailModal = document.querySelector(".module-detail-modal");
-const setupClearanceDeptDetailBox = document.querySelector(".module-modal-detail-box");
+const setupClearanceDepartmentTable = document.querySelector(".module-table");
+const setupClearanceDepartmentModal = document.querySelector(".setup-clearance-department-module-modal");
+const setupClearanceDepartmentForm = document.querySelector(".module-modal-form");
+const setupClearanceDepartmentConfirmationModal = document.querySelector(".setup-clearance-department-confirmation-modal");
+const setupClearanceDepartmentDetailModal = document.querySelector(".module-detail-modal");
+const setupClearanceDepartmentDetailBox = document.querySelector(".module-modal-detail-box");
 const markedForDeHighlighting = document.querySelectorAll(".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav");
 const headers = ["S/N", "Name", "Company", "Department", "Task Date", "Task Title", "Time Spent", "Manager's Remark", "Status", "View"];
 const rows = [""];
 
-setupClearanceDeptTable.innerHTML = rows.length > 0 ? (
+setupClearanceDepartmentTable.innerHTML = rows.length > 0 ? (
     `<table>
         <thead>
             <tr>
@@ -46,14 +46,14 @@ setupClearanceDeptTable.innerHTML = rows.length > 0 ? (
             <p>When Ofofon logs his setup clearance department, they will show up here</p>
         </div>
         <div class="cta-box">
-            <button onclick="handleOpenSetupClearanceDept(event)">
+            <button onclick="handleOpenSetupClearanceDepartmentModal(event)">
                 <span>Add New Setup Clearance Department</span>
             </button>
         </div>
     </div>`
 );
 
-setupClearanceDeptForm.innerHTML = (`
+setupClearanceDepartmentForm.innerHTML = (`
     <form>
         <div class="row form-field-set">
             <label>Email</label>
@@ -92,7 +92,7 @@ setupClearanceDeptForm.innerHTML = (`
             </div>
         </fieldset>
         <div class="row form-cta">
-            <button type="reset" onclick="handleCloseSetupClearanceDeptModal()">
+            <button type="reset" onclick="handleCloseSetupClearanceDepartmentModal()">
                 <span>Cancel</span>
             </button>
             <button type="button" onclick="handleOpenConfirmationModal(event)">
@@ -102,7 +102,7 @@ setupClearanceDeptForm.innerHTML = (`
     </form>
 `)
 
-setupClearanceDeptDetailBox.innerHTML = (`
+setupClearanceDepartmentDetailBox.innerHTML = (`
         <div>
             // details would go in here
             
@@ -111,7 +111,7 @@ setupClearanceDeptDetailBox.innerHTML = (`
 
 function handleOpenDetailModal(e) {
     e.stopPropagation();
-    setupClearanceDeptDetailModal.classList.remove("close-modal");
+    setupClearanceDepartmentDetailModal.classList.remove("close-modal");
     document.body.style.overflow = "hidden";
     markedForDeHighlighting.forEach((item) => {
         item.style.opacity = 0.1;
@@ -120,7 +120,7 @@ function handleOpenDetailModal(e) {
 }
 
 function handleCloseDetailModal() {
-    setupClearanceDeptDetailModal.classList.add("close-modal");
+    setupClearanceDepartmentDetailModal.classList.add("close-modal");
     document.body.style.overflow = "auto";
     markedForDeHighlighting.forEach((item) => {
         item.style.opacity = 1;
@@ -128,9 +128,9 @@ function handleCloseDetailModal() {
     });
 }
 
-function handleOpenSetupClearanceDept(e) {
+function handleOpenSetupClearanceDepartmentModal(e) {
     e.stopPropagation();
-    setupClearanceDeptModal.classList.remove("close-modal");
+    setupClearanceDepartmentModal.classList.remove("close-modal");
     document.body.style.overflow = "hidden";
     markedForDeHighlighting.forEach((item) => {
         item.style.opacity = 0.1;
@@ -138,8 +138,8 @@ function handleOpenSetupClearanceDept(e) {
     });
 }
 
-function handleCloseSetupClearanceDeptModal() {
-    setupClearanceDeptModal.classList.add("close-modal");
+function handleCloseSetupClearanceDepartmentModal() {
+    setupClearanceDepartmentModal.classList.add("close-modal");
     document.body.style.overflow = "auto";
     markedForDeHighlighting.forEach((item) => {
         item.style.opacity = 1;
@@ -149,8 +149,8 @@ function handleCloseSetupClearanceDeptModal() {
 
 function handleOpenConfirmationModal(e) {
     e.stopPropagation();
-    handleCloseSetupClearanceDeptModal();
-    setupClearanceDeptConfirmationModal.classList.remove("close-modal");
+    handleCloseSetupClearanceDepartmentModal();
+    setupClearanceDepartmentConfirmationModal.classList.remove("close-modal");
     document.body.style.overflow = "hidden";
     markedForDeHighlighting.forEach((item) => {
         item.style.opacity = 0.1;
@@ -159,14 +159,13 @@ function handleOpenConfirmationModal(e) {
 }
 
 function handleCloseConfirmationModal() {
-    setupClearanceDeptConfirmationModal.classList.add("close-modal");
+    setupClearanceDepartmentConfirmationModal.classList.add("close-modal");
     document.body.style.overflow = "auto";
     markedForDeHighlighting.forEach((item) => {
         item.style.opacity = 1;
         item.style.pointerEvents = "auto";
     });
 }
-
 function handleOpenSetupManagementModal(e) {
     e.stopPropagation();
     setupManagementModal.classList.remove("close-modal");
@@ -185,14 +184,12 @@ function handleCloseSetupManagementModal() {
         item.style.pointerEvents = "auto";
     });
 };
-
-
 window.addEventListener("click", (e) => {
     // condition - if the modal is currently rendered && if the click is not within the modal 
-    if (!setupClearanceDeptModal.classList.contains("close-modal") && !setupClearanceDeptModal.contains(e.target)) {
-        handleCloseSetupClearanceDeptModal();
+    if (!setupClearanceDepartmentModal.classList.contains("close-modal") && !setupClearanceDepartmentModal.contains(e.target)) {
+        handleCloseSetupClearanceDepartmentModal();
     }
-    if (!setupClearanceDeptDetailModal.classList.contains("close-modal") && !setupClearanceDeptDetailModal.contains(e.target)) {
+    if (!setupClearanceDepartmentDetailModal.classList.contains("close-modal") && !setupClearanceDepartmentDetailModal.contains(e.target)) {
         handleCloseDetailModal();
     }
 });

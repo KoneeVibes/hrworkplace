@@ -46,7 +46,7 @@ setupExitTypeTable.innerHTML = rows.length > 0 ? (
             <p>When Ofofon logs his setup exit type, they will show up here</p>
         </div>
         <div class="cta-box">
-            <button onclick="handleOpenSetupExitType(event)">
+            <button onclick="handleOpenSetupExitTypeModal(event)">
                 <span>Add New Setup Exit Type</span>
             </button>
         </div>
@@ -128,7 +128,7 @@ function handleCloseDetailModal() {
     });
 }
 
-function handleOpenSetupExitType(e) {
+function handleOpenSetupExitTypeModal(e) {
     e.stopPropagation();
     setupExitTypeModal.classList.remove("close-modal");
     document.body.style.overflow = "hidden";
@@ -166,7 +166,6 @@ function handleCloseConfirmationModal() {
         item.style.pointerEvents = "auto";
     });
 }
-
 function handleOpenSetupManagementModal(e) {
     e.stopPropagation();
     setupManagementModal.classList.remove("close-modal");
@@ -185,8 +184,6 @@ function handleCloseSetupManagementModal() {
         item.style.pointerEvents = "auto";
     });
 };
-
-
 window.addEventListener("click", (e) => {
     // condition - if the modal is currently rendered && if the click is not within the modal 
     if (!setupExitTypeModal.classList.contains("close-modal") && !setupExitTypeModal.contains(e.target)) {

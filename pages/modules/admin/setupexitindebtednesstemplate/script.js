@@ -1,14 +1,14 @@
-const setupExitIndebtednessTable = document.querySelector(".module-table");
-const setupExitIndebtednessModal = document.querySelector(".setup-exit-indebtedness-module-modal");
-const setupExitIndebtednessForm = document.querySelector(".module-modal-form");
-const setupExitIndebtednessConfirmationModal = document.querySelector(".setup-exit-indebtedness-confirmation-modal");
-const setupExitIndebtednessDetailModal = document.querySelector(".module-detail-modal");
-const setupExitIndebtednessDetailBox = document.querySelector(".module-modal-detail-box");
+const setupExitIndebtednessTemplateTable = document.querySelector(".module-table");
+const setupExitIndebtednessTemplateModal = document.querySelector(".setup-exit-indebtedness-template-module-modal");
+const setupExitIndebtednessTemplateForm = document.querySelector(".module-modal-form");
+const setupExitIndebtednessTemplateConfirmationModal = document.querySelector(".setup-exit-indebtedness-template-confirmation-modal");
+const setupExitIndebtednessTemplateDetailModal = document.querySelector(".module-detail-modal");
+const setupExitIndebtednessTemplateDetailBox = document.querySelector(".module-modal-detail-box");
 const markedForDeHighlighting = document.querySelectorAll(".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav");
 const headers = ["S/N", "Name", "Company", "Department", "Task Date", "Task Title", "Time Spent", "Manager's Remark", "Status", "View"];
 const rows = [""];
 
-setupExitIndebtednessTable.innerHTML = rows.length > 0 ? (
+setupExitIndebtednessTemplateTable.innerHTML = rows.length > 0 ? (
     `<table>
         <thead>
             <tr>
@@ -46,14 +46,14 @@ setupExitIndebtednessTable.innerHTML = rows.length > 0 ? (
             <p>When Ofofon logs his setup exit indebtedness template, they will show up here</p>
         </div>
         <div class="cta-box">
-            <button onclick="handleOpenSetupExitIndebtedness(event)">
+            <button onclick="handleOpenSetupExitIndebtednessTemplateModal(event)">
                 <span>Add New Setup Exit Indebtedness Template</span>
             </button>
         </div>
     </div>`
 );
 
-setupExitIndebtednessForm.innerHTML = (`
+setupExitIndebtednessTemplateForm.innerHTML = (`
     <form>
         <div class="row form-field-set">
             <label>Email</label>
@@ -92,7 +92,7 @@ setupExitIndebtednessForm.innerHTML = (`
             </div>
         </fieldset>
         <div class="row form-cta">
-            <button type="reset" onclick="handleCloseSetupExitIndebtednessModal()">
+            <button type="reset" onclick="handleCloseSetupExitIndebtednessTemplateModal()">
                 <span>Cancel</span>
             </button>
             <button type="button" onclick="handleOpenConfirmationModal(event)">
@@ -102,7 +102,7 @@ setupExitIndebtednessForm.innerHTML = (`
     </form>
 `)
 
-setupExitIndebtednessDetailBox.innerHTML = (`
+setupExitIndebtednessTemplateDetailBox.innerHTML = (`
         <div>
             // details would go in here
             
@@ -111,7 +111,7 @@ setupExitIndebtednessDetailBox.innerHTML = (`
 
 function handleOpenDetailModal(e) {
     e.stopPropagation();
-    setupExitIndebtednessDetailModal.classList.remove("close-modal");
+    setupExitIndebtednessTemplateDetailModal.classList.remove("close-modal");
     document.body.style.overflow = "hidden";
     markedForDeHighlighting.forEach((item) => {
         item.style.opacity = 0.1;
@@ -120,7 +120,7 @@ function handleOpenDetailModal(e) {
 }
 
 function handleCloseDetailModal() {
-    setupExitIndebtednessDetailModal.classList.add("close-modal");
+    setupExitIndebtednessTemplateDetailModal.classList.add("close-modal");
     document.body.style.overflow = "auto";
     markedForDeHighlighting.forEach((item) => {
         item.style.opacity = 1;
@@ -128,9 +128,9 @@ function handleCloseDetailModal() {
     });
 }
 
-function handleOpenSetupExitIndebtedness(e) {
+function handleOpenSetupExitIndebtednessTemplateModal(e) {
     e.stopPropagation();
-    setupExitIndebtednessModal.classList.remove("close-modal");
+    setupExitIndebtednessTemplateModal.classList.remove("close-modal");
     document.body.style.overflow = "hidden";
     markedForDeHighlighting.forEach((item) => {
         item.style.opacity = 0.1;
@@ -138,8 +138,8 @@ function handleOpenSetupExitIndebtedness(e) {
     });
 }
 
-function handleCloseSetupExitIndebtednessModal() {
-    setupExitIndebtednessModal.classList.add("close-modal");
+function handleCloseSetupExitIndebtednessTemplateModal() {
+    setupExitIndebtednessTemplateModal.classList.add("close-modal");
     document.body.style.overflow = "auto";
     markedForDeHighlighting.forEach((item) => {
         item.style.opacity = 1;
@@ -149,8 +149,8 @@ function handleCloseSetupExitIndebtednessModal() {
 
 function handleOpenConfirmationModal(e) {
     e.stopPropagation();
-    handleCloseSetupExitIndebtednessModal();
-    setupExitIndebtednessConfirmationModal.classList.remove("close-modal");
+    handleCloseSetupExitIndebtednessTemplateModal();
+    setupExitIndebtednessTemplateConfirmationModal.classList.remove("close-modal");
     document.body.style.overflow = "hidden";
     markedForDeHighlighting.forEach((item) => {
         item.style.opacity = 0.1;
@@ -159,14 +159,13 @@ function handleOpenConfirmationModal(e) {
 }
 
 function handleCloseConfirmationModal() {
-    setupExitIndebtednessConfirmationModal.classList.add("close-modal");
+    setupExitIndebtednessTemplateConfirmationModal.classList.add("close-modal");
     document.body.style.overflow = "auto";
     markedForDeHighlighting.forEach((item) => {
         item.style.opacity = 1;
         item.style.pointerEvents = "auto";
     });
 }
-
 function handleOpenSetupManagementModal(e) {
     e.stopPropagation();
     setupManagementModal.classList.remove("close-modal");
@@ -185,14 +184,12 @@ function handleCloseSetupManagementModal() {
         item.style.pointerEvents = "auto";
     });
 };
-
-
 window.addEventListener("click", (e) => {
     // condition - if the modal is currently rendered && if the click is not within the modal 
-    if (!setupExitIndebtednessModal.classList.contains("close-modal") && !setupExitIndebtednessModal.contains(e.target)) {
-        handleCloseSetupExitIndebtednessModal();
+    if (!setupExitIndebtednessTemplateModal.classList.contains("close-modal") && !setupExitIndebtednessTemplateModal.contains(e.target)) {
+        handleCloseSetupExitIndebtednessTemplateModal();
     }
-    if (!setupExitIndebtednessDetailModal.classList.contains("close-modal") && !setupExitIndebtednessDetailModal.contains(e.target)) {
+    if (!setupExitIndebtednessTemplateDetailModal.classList.contains("close-modal") && !setupExitIndebtednessTemplateDetailModal.contains(e.target)) {
         handleCloseDetailModal();
     }
 });

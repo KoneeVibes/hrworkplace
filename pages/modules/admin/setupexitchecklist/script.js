@@ -46,7 +46,7 @@ setupExitChecklistTable.innerHTML = rows.length > 0 ? (
             <p>When Ofofon logs his setup exit checklist, they will show up here</p>
         </div>
         <div class="cta-box">
-            <button onclick="handleOpenSetupExitChecklist(event)">
+            <button onclick="handleOpenSetupExitChecklistModal(event)">
                 <span>Add New Setup Exit Checklist</span>
             </button>
         </div>
@@ -128,7 +128,7 @@ function handleCloseDetailModal() {
     });
 }
 
-function handleOpenSetupExitChecklist(e) {
+function handleOpenSetupExitChecklistModal(e) {
     e.stopPropagation();
     setupExitChecklistModal.classList.remove("close-modal");
     document.body.style.overflow = "hidden";
@@ -166,7 +166,6 @@ function handleCloseConfirmationModal() {
         item.style.pointerEvents = "auto";
     });
 }
-
 function handleOpenSetupManagementModal(e) {
     e.stopPropagation();
     setupManagementModal.classList.remove("close-modal");
@@ -185,8 +184,6 @@ function handleCloseSetupManagementModal() {
         item.style.pointerEvents = "auto";
     });
 };
-
-
 window.addEventListener("click", (e) => {
     // condition - if the modal is currently rendered && if the click is not within the modal 
     if (!setupExitChecklistModal.classList.contains("close-modal") && !setupExitChecklistModal.contains(e.target)) {
