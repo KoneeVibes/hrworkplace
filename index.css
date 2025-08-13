@@ -132,6 +132,12 @@
         color: #101828;
     }
 
+    .error-message {
+        color: #F03D44;
+        margin-block-start: 0;
+        margin-block-end: 20px;
+    }
+
     .spinner {
         display: inline-block;
         width: 16px;

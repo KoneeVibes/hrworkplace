@@ -186,25 +186,29 @@ async function handleSetupCompetencyGroup(e) {
     const form = document.getElementById("setup-competency-group-form");
     const competencyGroupName = form.elements["name"].value;
 
+    const setupButton = document.querySelector('.confirmation-cta button[type="submit"]');
+    const errorMessage = document.querySelector('.error-message');
+
+    errorMessage.innerHTML = "";
+
+    const originalText = setupButton.innerHTML;
+    setupButton.innerHTML = '<span class="spinner"></span>';
+    setupButton.disabled = true;
+
     try {
         const response = await setupCompetencyGroupService(TOKEN, { name: competencyGroupName });
         if (response.status === "Success") {
-            //     // setIsLoading(false);
-            //     // cookies.set("TOKEN", response.token, {
-            //     //     path: "/",
-            //     // });
-            //     // setIsAuthenticated(true);
-            // window.location.href = '../dashboard/index.html';
-            console.log("I have been submitted")
+            handleCloseConfirmationModal();
         } else {
-            //     // setIsLoading(false);
-            //     // setError('Authentication failed. Please check your credentials and try again.');
-            console.log("Fail to setup competency group service");
+            errorMessage.innerHTML = (`Setup competency group failed. Please check your credentials and try again`);
+            console.log("Fail to setup competency group");
         }
     } catch (error) {
-        // setIsLoading(false);
-        // setError(`Login failed. ${error.message}`);
-        console.error('Competency group service setup failed:', error);
+        errorMessage.innerHTML = (`Setup competency group failed. Please check your credentials and try again`);
+        console.error('Competency group setup failed:', error);
+    } finally {
+        setupButton.innerHTML = originalText;
+        setupButton.disabled = false;
     }
 };
 

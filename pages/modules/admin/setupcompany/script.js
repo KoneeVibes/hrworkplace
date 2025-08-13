@@ -191,25 +191,33 @@ async function handleSetupCompany(e) {
     const companyName = form.elements["companyName"].value;
     const companyHeadUsername = form.elements["companyHeadUsername"].value;
 
+    const setupButton = document.querySelector('.confirmation-cta button[type="submit"]');
+    const errorMessage = document.querySelector('.error-message');
+
+    errorMessage.innerHTML = "";
+
+    const originalText = setupButton.innerHTML;
+    setupButton.innerHTML = '<span class="spinner"></span>';
+    setupButton.disabled = true;
+
     try {
-        const response = await setupCompanyService(TOKEN, { name: companyName});
+        const payload = {
+            name: companyName,
+            ...(companyHeadUsername.trim() && { companyHeadUsername })
+        };
+        const response = await setupCompanyService(TOKEN, payload);
         if (response.status === "Success") {
-            //     // setIsLoading(false);
-            //     // cookies.set("TOKEN", response.token, {
-            //     //     path: "/",
-            //     // });
-            //     // setIsAuthenticated(true);
-            // window.location.href = '../dashboard/index.html';
-            console.log("I have been submitted")
+            handleCloseConfirmationModal();
         } else {
-            //     // setIsLoading(false);
-            //     // setError('Authentication failed. Please check your credentials and try again.');
-            console.log("Fail to login");
+            errorMessage.innerHTML = (`Setup company failed. Please check your credentials and try again`);
+            console.log("Failed to setup company");
         }
     } catch (error) {
-        // setIsLoading(false);
-        // setError(`Login failed. ${error.message}`);
-        console.error('Login failed:', error);
+        errorMessage.innerHTML = (`Setup company failed. Please check your credentials and try again`);
+        console.error('Setup company failed:', error);
+    } finally {
+        setupButton.innerHTML = originalText;
+        setupButton.disabled = false;
     }
 };
 

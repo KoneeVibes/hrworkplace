@@ -103,12 +103,6 @@ h1 {
     text-overflow: ellipsis;
 }
 
-.error-message {
-    color: #F03D44;
-    margin-block-start: 0;
-    margin-block-end: 20px;
-}
-
 .overlay h1 {
     margin: 0;
     font-size: 5rem;
