@@ -55,7 +55,7 @@
     overflow: hidden;
 }
 
-.setup-clearance-dept-module-modal {
+.setup-clearance-department-module-modal {
     position: fixed;
     left: calc(2 * var(--basic-padding));
     top: var(--basic-padding);
@@ -131,7 +131,7 @@
     margin-block-end: 0;
 }
 
-.setup-clearance-dept-modal-close-icon {
+.setup-clearance-department-modal-close-icon {
     cursor: pointer;
 }
 
@@ -161,7 +161,7 @@
     color: #FFFFFF;
 }
 
-.setup-clearance-dept-confirmation-modal {
+.setup-clearance-department-confirmation-modal {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -174,58 +174,58 @@
     z-index: 1;
 }
 
-.setup-clearance-dept-confirmation-modal>img {
+.setup-clearance-department-confirmation-modal>img {
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
 
-.setup-clearance-dept-confirmation-modal>h2 {
+.setup-clearance-department-confirmation-modal>h2 {
     text-align: center;
     font-weight: 600;
     font-size: 18px;
     line-height: normal;
 }
 
-.setup-clearance-dept-confirmation-modal>p {
+.setup-clearance-department-confirmation-modal>p {
     font-weight: 400;
     font-size: 14px;
     line-height: normal;
     color: #98A2B3;
 }
 
-.setup-clearance-dept-confirmation-modal>form {
+.setup-clearance-department-confirmation-modal>form {
     overflow: hidden;
 }
 
-.setup-clearance-dept-confirmation-modal>form>.confirmation-cta {
+.setup-clearance-department-confirmation-modal>form>.confirmation-cta {
     gap: calc(var(--flex-gap)/2);
     margin-block-start: var(--basic-padding);
     flex-wrap: wrap;
     overflow: hidden;
 }
 
-.setup-clearance-dept-confirmation-modal>form>.confirmation-cta>button {
+.setup-clearance-department-confirmation-modal>form>.confirmation-cta>button {
     flex: 1;
 }
 
-.setup-clearance-dept-confirmation-modal>form>.confirmation-cta>button:nth-child(1) {
+.setup-clearance-department-confirmation-modal>form>.confirmation-cta>button:nth-child(1) {
     background-color: transparent;
     border: 1px solid #D0D5DD;
     box-shadow: 0px 1px 2px 0px #1018280D;
 }
 
-.setup-clearance-dept-confirmation-modal>form>.confirmation-cta>button:nth-child(1)>span {
+.setup-clearance-department-confirmation-modal>form>.confirmation-cta>button:nth-child(1)>span {
     color: #344054;
 }
 
-.setup-clearance-dept-confirmation-modal>form>.confirmation-cta>button:nth-child(2) {
+.setup-clearance-department-confirmation-modal>form>.confirmation-cta>button:nth-child(2) {
     background-color: #217834;
     border: 1px solid #217834;
     box-shadow: 0px 1px 2px 0px #1018280D;
 }
 
-.setup-clearance-dept-confirmation-modal>form>.confirmation-cta>button:nth-child(2)>span {
+.setup-clearance-department-confirmation-modal>form>.confirmation-cta>button:nth-child(2)>span {
     color: #FFFFFF;
 }
 
@@ -269,7 +269,7 @@
         flex: 1;
     }
 
-    .setup-clearance-dept-confirmation-modal {
+    .setup-clearance-department-confirmation-modal {
         transform: unset;
         right: calc(var(--basic-padding));
         overflow: hidden;
@@ -278,7 +278,7 @@
         overflow-y: auto;
     }
 
-    .setup-clearance-dept-confirmation-modal>img {
+    .setup-clearance-department-confirmation-modal>img {
         width: 100%;
     }
 }
