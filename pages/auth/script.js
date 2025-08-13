@@ -31,11 +31,8 @@ document.getElementById('loginButton').addEventListener('click', async function 
     try {
         const response = await signInUserService({ username: username, password: password });
         if (response.status === "Success") {
-            //     // setIsLoading(false);
-            //     // cookies.set("TOKEN", response.token, {
-            //     //     path: "/",
-            //     // });
-            //     // setIsAuthenticated(true);
+            // setIsLoading(false);
+            sessionStorage.setItem('access_token', response.data.token);
             window.location.href = '../dashboard/index.html';
         } else {
             //     // setIsLoading(false);

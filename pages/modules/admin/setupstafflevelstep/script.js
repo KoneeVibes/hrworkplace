@@ -1,14 +1,14 @@
-const mdDeskManagementTable = document.querySelector(".module-table");
-const mdDeskManagementModal = document.querySelector(".md-desk-management-module-modal");
-const mdDeskManagementForm = document.querySelector(".module-modal-form");
-const mdDeskManagementConfirmationModal = document.querySelector(".md-desk-management-confirmation-modal");
-const mdDeskManagementDetailModal = document.querySelector(".module-detail-modal");
-const mdDeskManagementDetailBox = document.querySelector(".module-modal-detail-box");
+const setupStaffLevelStepTable = document.querySelector(".module-table");
+const setupStaffLevelStepModal = document.querySelector(".setup-stafflevelstep-module-modal");
+const setupStaffLevelStepForm = document.querySelector(".module-modal-form");
+const setupStaffLevelStepConfirmationModal = document.querySelector(".setup-stafflevelstep-confirmation-modal");
+const setupStaffLevelStepDetailModal = document.querySelector(".module-detail-modal");
+const setupStaffLevelStepDetailBox = document.querySelector(".module-modal-detail-box");
 const markedForDeHighlighting = document.querySelectorAll(".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav");
 const headers = ["S/N", "Name", "Company", "Department", "Task Date", "Task Title", "Time Spent", "Manager's Remark", "Status", "View"];
 const rows = [""];
 
-mdDeskManagementTable.innerHTML = rows.length > 0 ? (
+setupStaffLevelStepTable.innerHTML = rows.length > 0 ? (
     `<table>
         <thead>
             <tr>
@@ -43,17 +43,17 @@ mdDeskManagementTable.innerHTML = rows.length > 0 ? (
         </div>
         <div>
             <h3>Nothing to see here...yet</h3>
-            <p>When Ofofon logs his Md's desk management, they will show up here</p>
+            <p>When Ofofon logs his setup staff level step, they will show up here</p>
         </div>
         <div class="cta-box">
-            <button onclick="handleOpenMdDeskManagementModal(event)">
-                <span>Add New Md's Desk Management</span>
+            <button onclick="handleOpenSetupStaffLevelStepModal(event)">
+                <span>Add New Setup Staff Level Step</span>
             </button>
         </div>
     </div>`
 );
 
-mdDeskManagementForm.innerHTML = (`
+setupStaffLevelStepForm.innerHTML = (`
     <form>
         <div class="row form-field-set">
             <label>Email</label>
@@ -92,7 +92,7 @@ mdDeskManagementForm.innerHTML = (`
             </div>
         </fieldset>
         <div class="row form-cta">
-            <button type="reset" onclick="handleCloseMdDeskManagementModal()">
+            <button type="reset" onclick="handleCloseSetupStaffLevelStepModal()">
                 <span>Cancel</span>
             </button>
             <button type="button" onclick="handleOpenConfirmationModal(event)">
@@ -102,7 +102,7 @@ mdDeskManagementForm.innerHTML = (`
     </form>
 `)
 
-mdDeskManagementDetailBox.innerHTML = (`
+setupStaffLevelStepDetailBox.innerHTML = (`
         <div>
             // details would go in here
             
@@ -111,7 +111,7 @@ mdDeskManagementDetailBox.innerHTML = (`
 
 function handleOpenDetailModal(e) {
     e.stopPropagation();
-    mdDeskManagementDetailModal.classList.remove("close-modal");
+    setupStaffLevelStepDetailModal.classList.remove("close-modal");
     document.body.style.overflow = "hidden";
     markedForDeHighlighting.forEach((item) => {
         item.style.opacity = 0.1;
@@ -120,7 +120,7 @@ function handleOpenDetailModal(e) {
 }
 
 function handleCloseDetailModal() {
-    mdDeskManagementDetailModal.classList.add("close-modal");
+    setupStaffLevelStepDetailModal.classList.add("close-modal");
     document.body.style.overflow = "auto";
     markedForDeHighlighting.forEach((item) => {
         item.style.opacity = 1;
@@ -128,9 +128,9 @@ function handleCloseDetailModal() {
     });
 }
 
-function handleOpenMdDeskManagementModal(e) {
+function handleOpenSetupStaffLevelStepModal(e) {
     e.stopPropagation();
-    mdDeskManagementModal.classList.remove("close-modal");
+    setupStaffLevelStepModal.classList.remove("close-modal");
     document.body.style.overflow = "hidden";
     markedForDeHighlighting.forEach((item) => {
         item.style.opacity = 0.1;
@@ -138,8 +138,8 @@ function handleOpenMdDeskManagementModal(e) {
     });
 }
 
-function handleCloseMdDeskManagementModal() {
-    mdDeskManagementModal.classList.add("close-modal");
+function handleCloseSetupStaffLevelStepModal() {
+    setupStaffLevelStepModal.classList.add("close-modal");
     document.body.style.overflow = "auto";
     markedForDeHighlighting.forEach((item) => {
         item.style.opacity = 1;
@@ -149,8 +149,8 @@ function handleCloseMdDeskManagementModal() {
 
 function handleOpenConfirmationModal(e) {
     e.stopPropagation();
-    handleCloseMdDeskManagementModal();
-    mdDeskManagementConfirmationModal.classList.remove("close-modal");
+    handleCloseSetupStaffLevelStepModal();
+    setupStaffLevelStepConfirmationModal.classList.remove("close-modal");
     document.body.style.overflow = "hidden";
     markedForDeHighlighting.forEach((item) => {
         item.style.opacity = 0.1;
@@ -159,7 +159,7 @@ function handleOpenConfirmationModal(e) {
 }
 
 function handleCloseConfirmationModal() {
-    mdDeskManagementConfirmationModal.classList.add("close-modal");
+    setupStaffLevelStepConfirmationModal.classList.add("close-modal");
     document.body.style.overflow = "auto";
     markedForDeHighlighting.forEach((item) => {
         item.style.opacity = 1;
@@ -167,12 +167,31 @@ function handleCloseConfirmationModal() {
     });
 }
 
+function handleOpenSetupManagementModal(e) {
+    e.stopPropagation();
+    setupManagementModal.classList.remove("close-modal");
+    document.body.style.overflow = "hidden";
+    markedForDeHighlighting.forEach((item) => {
+        item.style.opacity = 0.1;
+        item.style.pointerEvents = "none";
+    });
+};
+
+function handleCloseSetupManagementModal() {
+    setupManagementModal.classList.add("close-modal");
+    document.body.style.overflow = "auto";
+    markedForDeHighlighting.forEach((item) => {
+        item.style.opacity = 1;
+        item.style.pointerEvents = "auto";
+    });
+}; 
+
 window.addEventListener("click", (e) => {
     // condition - if the modal is currently rendered && if the click is not within the modal 
-    if (!mdDeskManagementModal.classList.contains("close-modal") && !mdDeskManagementModal.contains(e.target)) {
-        handleCloseMdDeskManagementModal();
+    if (!setupStaffLevelStepModal.classList.contains("close-modal") && !setupStaffLevelStepModal.contains(e.target)) {
+        handleCloseSetupStaffLevelStepModal();
     }
-    if (!mdDeskManagementDetailModal.classList.contains("close-modal") && !mdDeskManagementDetailModal.contains(e.target)) {
+    if (!setupStaffLevelStepDetailModal.classList.contains("close-modal") && !setupStaffLevelStepDetailModal.contains(e.target)) {
         handleCloseDetailModal();
     }
 });

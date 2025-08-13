@@ -1,26 +1,52 @@
 const travelRequestTable = document.querySelector(".module-table");
-const travelRequestModal = document.querySelector(".travel-request-module-modal");
+const travelRequestModal = document.querySelector(
+  ".travel-request-module-modal"
+);
 const travelRequestForm = document.querySelector(".module-modal-form");
-const travelRequestConfirmationModal = document.querySelector(".travel-request-confirmation-modal");
+const travelRequestConfirmationModal = document.querySelector(
+  ".travel-request-confirmation-modal"
+);
 const travelRequestDetailModal = document.querySelector(".module-detail-modal");
-const travelRequestDetailBox = document.querySelector(".module-modal-detail-box");
-const markedForDeHighlighting = document.querySelectorAll(".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav");
-const headers = ["S/N", "Name", "Company", "Department", "Task Date", "Task Title", "Time Spent", "Manager's Remark", "Status", "View"];
+const travelRequestDetailBox = document.querySelector(
+  ".module-modal-detail-box"
+);
+const markedForDeHighlighting = document.querySelectorAll(
+  ".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav"
+);
+const headers = [
+  "S/N",
+  "Name",
+  "Company",
+  "Department",
+  "Task Date",
+  "Task Title",
+  "Time Spent",
+  "Manager's Remark",
+  "Status",
+  "View",
+];
 const rows = [""];
 
-travelRequestTable.innerHTML = rows.length > 0 ? (
-    `<table>
+travelRequestTable.innerHTML =
+  rows.length > 0
+    ? `<table>
         <thead>
             <tr>
-                ${headers?.map((header, index) => `
+                ${headers
+                  ?.map(
+                    (header, index) => `
                     <th key=${index}>
                         ${header}
                     </th>
-                `).join('')}
+                `
+                  )
+                  .join("")}
             </tr>
         </thead>
         <tbody>
-        ${rows?.map((row, index) => `
+        ${rows
+          ?.map(
+            (row, index) => `
                 <tr
                     key=${index}
                     onclick="handleOpenDetailModal(event)"
@@ -32,11 +58,12 @@ travelRequestTable.innerHTML = rows.length > 0 ? (
                     </td>
                     <td>${row}</td>
                 </tr>
-            `).join('')}
+            `
+          )
+          .join("")}
         </tbody>
     </table>`
-) : (
-    `<div class="call-to-action">
+    : `<div class="call-to-action">
         <div>
             <img src=${"../../../../assets/search.svg"} alt="search-icon"/>
         </div>
@@ -49,10 +76,9 @@ travelRequestTable.innerHTML = rows.length > 0 ? (
                 <span>Add New Time Sheet</span>
             </button>
         </div>
-    </div>`
-);
+    </div>`;
 
-travelRequestForm.innerHTML = (`
+travelRequestForm.innerHTML = `
     <form>
         <div class="row form-field-set">
             <label>Email</label>
@@ -99,79 +125,104 @@ travelRequestForm.innerHTML = (`
             </button>
         </div>
     </form>
-`)
+`;
 
-travelRequestDetailBox.innerHTML = (`
+travelRequestDetailBox.innerHTML = `
         <div>
             // details would go in here
             
         </div>
-    `)
+    `;
 
 function handleOpenDetailModal(e) {
-    e.stopPropagation();
-    travelRequestDetailModal.classList.remove("close-modal");
-    document.body.style.overflow = "hidden";
-    markedForDeHighlighting.forEach((item) => {
-        item.style.opacity = 0.1;
-        item.style.pointerEvents = "none";
-    });
+  e.stopPropagation();
+  travelRequestDetailModal.classList.remove("close-modal");
+  document.body.style.overflow = "hidden";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 0.1;
+    item.style.pointerEvents = "none";
+  });
 }
 
 function handleCloseDetailModal() {
-    travelRequestDetailModal.classList.add("close-modal");
-    document.body.style.overflow = "auto";
-    markedForDeHighlighting.forEach((item) => {
-        item.style.opacity = 1;
-        item.style.pointerEvents = "auto";
-    });
+  travelRequestDetailModal.classList.add("close-modal");
+  document.body.style.overflow = "auto";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 1;
+    item.style.pointerEvents = "auto";
+  });
 }
 
 function handleOpenTravelRequestModal(e) {
-    e.stopPropagation();
-    travelRequestModal.classList.remove("close-modal");
-    document.body.style.overflow = "hidden";
-    markedForDeHighlighting.forEach((item) => {
-        item.style.opacity = 0.1;
-        item.style.pointerEvents = "none";
-    });
+  e.stopPropagation();
+  travelRequestModal.classList.remove("close-modal");
+  document.body.style.overflow = "hidden";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 0.1;
+    item.style.pointerEvents = "none";
+  });
 }
 
 function handleCloseTravelRequestModal() {
-    travelRequestModal.classList.add("close-modal");
-    document.body.style.overflow = "auto";
-    markedForDeHighlighting.forEach((item) => {
-        item.style.opacity = 1;
-        item.style.pointerEvents = "auto";
-    });
+  travelRequestModal.classList.add("close-modal");
+  document.body.style.overflow = "auto";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 1;
+    item.style.pointerEvents = "auto";
+  });
 }
 
 function handleOpenConfirmationModal(e) {
-    e.stopPropagation();
-    handleCloseTravelRequestModal();
-    travelRequestConfirmationModal.classList.remove("close-modal");
-    document.body.style.overflow = "hidden";
-    markedForDeHighlighting.forEach((item) => {
-        item.style.opacity = 0.1;
-        item.style.pointerEvents = "none";
-    });
+  e.stopPropagation();
+  handleCloseTravelRequestModal();
+  travelRequestConfirmationModal.classList.remove("close-modal");
+  document.body.style.overflow = "hidden";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 0.1;
+    item.style.pointerEvents = "none";
+  });
 }
 
 function handleCloseConfirmationModal() {
-    travelRequestConfirmationModal.classList.add("close-modal");
-    document.body.style.overflow = "auto";
-    markedForDeHighlighting.forEach((item) => {
-        item.style.opacity = 1;
-        item.style.pointerEvents = "auto";
-    });
+  travelRequestConfirmationModal.classList.add("close-modal");
+  document.body.style.overflow = "auto";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 1;
+    item.style.pointerEvents = "auto";
+  });
+}
+
+function handleOpenSetupManagementModal(e) {
+  e.stopPropagation();
+  setupManagementModal.classList.remove("close-modal");
+  document.body.style.overflow = "hidden";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 0.1;
+    item.style.pointerEvents = "none";
+  });
+}
+
+function handleCloseSetupManagementModal() {
+  setupManagementModal.classList.add("close-modal");
+  document.body.style.overflow = "auto";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 1;
+    item.style.pointerEvents = "auto";
+  });
 }
 
 window.addEventListener("click", (e) => {
-    // condition - if the modal is currently rendered && if the click is not within the modal 
-    if (!travelRequestModal.classList.contains("close-modal") && !travelRequestModal.contains(e.target)) {
-        handleCloseTravelRequestModal();
-    }
-    if (!travelRequestDetailModal.classList.contains("close-modal") && !travelRequestDetailModal.contains(e.target)) {
-        handleCloseDetailModal();
-    }
+  // condition - if the modal is currently rendered && if the click is not within the modal
+  if (
+    !travelRequestModal.classList.contains("close-modal") &&
+    !travelRequestModal.contains(e.target)
+  ) {
+    handleCloseTravelRequestModal();
+  }
+  if (
+    !travelRequestDetailModal.classList.contains("close-modal") &&
+    !travelRequestDetailModal.contains(e.target)
+  ) {
+    handleCloseDetailModal();
+  }
 });

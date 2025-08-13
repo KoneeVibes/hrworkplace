@@ -185,6 +185,25 @@ function handleCloseSetupManagementModal() {
     });
 };
 
+function handleOpenSetupManagementModal(e) {
+    e.stopPropagation();
+    setupManagementModal.classList.remove("close-modal");
+    document.body.style.overflow = "hidden";
+    markedForDeHighlighting.forEach((item) => {
+        item.style.opacity = 0.1;
+        item.style.pointerEvents = "none";
+    });
+};
+
+function handleCloseSetupManagementModal() {
+    setupManagementModal.classList.add("close-modal");
+    document.body.style.overflow = "auto";
+    markedForDeHighlighting.forEach((item) => {
+        item.style.opacity = 1;
+        item.style.pointerEvents = "auto";
+    });
+}; 
+
 window.addEventListener("click", (e) => {
     // condition - if the modal is currently rendered && if the click is not within the modal 
     if (!checkInReviewManagementModal.classList.contains("close-modal") && !checkInReviewManagementModal.contains(e.target)) {

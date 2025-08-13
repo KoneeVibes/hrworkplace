@@ -1,18 +1,29 @@
 const profileBody = document.querySelector(".module-body");
 const profileModal = document.querySelector(".profile-module-modal");
 const profileForm = document.querySelector(".module-modal-form");
-const profileConfirmationModal = document.querySelector(".profile-confirmation-modal");
+const profileConfirmationModal = document.querySelector(
+  ".profile-confirmation-modal"
+);
 const profileDetailModal = document.querySelector(".module-detail-modal");
 const profileDetailBox = document.querySelector(".module-modal-detail-box");
 const profileCategoriesBox = document.querySelector(".profile-categories");
-const profileCategories = ["Overview", "Education", "Professional", "Experience", "Reference", "Next of KIN", "Documents"];
-const markedForDeHighlighting = document.querySelectorAll(".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav");
+const profileCategories = [
+  "Overview",
+  "Education",
+  "Professional",
+  "Experience",
+  "Reference",
+  "Next of KIN",
+  "Documents",
+];
+const markedForDeHighlighting = document.querySelectorAll(
+  ".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav"
+);
 const rows = true;
 let activeProfileCategory = "Overview";
 
 // base profile profile body - overview
-profileBody.innerHTML = (
-    `
+profileBody.innerHTML = `
     <div class="information-card">
         <!-- IBK your code for personal information comes in here -->
         <h1>Personal Information</h1>
@@ -61,12 +72,10 @@ profileBody.innerHTML = (
             </div>
         </div>
     </div>
-    `
-);
-
+    `;
 
 // base profile form case - overview
-profileForm.innerHTML = (`
+profileForm.innerHTML = `
     <form>
         <div class="row form-field-set">
             <label>Email</label>
@@ -113,17 +122,18 @@ profileForm.innerHTML = (`
             </button>
         </div>
     </form>
-`)
+`;
 
-profileDetailBox.innerHTML = (`
+profileDetailBox.innerHTML = `
         <div>
             // details would go in here
             
         </div>
-    `)
+    `;
 
-profileCategoriesBox.innerHTML = profileCategories.map((category, index) => {
-    return (`
+profileCategoriesBox.innerHTML = profileCategories
+  .map((category, index) => {
+    return `
         <button
             key="${index}"
             onclick="handleProfileCategorySelection(event, '${category}')"
@@ -132,13 +142,14 @@ profileCategoriesBox.innerHTML = profileCategories.map((category, index) => {
                 ${category}
             </span>
         </button>
-    `);
-}).join('');
+    `;
+  })
+  .join("");
 
 function getBodyCategoryContent(activeProfileCategory) {
-    switch (activeProfileCategory) {
-        case 'Overview':
-            return (`
+  switch (activeProfileCategory) {
+    case "Overview":
+      return `
                 <div class="information-card">
                     <h1>Personal Information</h1>
                     <div class="personal-information personal">
@@ -184,46 +195,42 @@ function getBodyCategoryContent(activeProfileCategory) {
                             <p>---</p>
                         </div>
                     </div>
-                </div>`
-            )
-        case 'Education':
-        case 'Professional':
-        case 'Experience':
-        case 'Reference':
-        case 'Next of KIN':
-        case 'Documents':
-        default:
-            return (
-                `<div>
+                </div>`;
+    case "Education":
+    case "Professional":
+    case "Experience":
+    case "Reference":
+    case "Next of KIN":
+    case "Documents":
+    default:
+      return `<div>
                     <p>${activeProfileCategory}</p>
-                </div>`
-            );
-    }
+                </div>`;
+  }
 }
 
 function getFormCategoryContent(activeProfileCategory) {
-    switch (activeProfileCategory) {
-        case 'Overview':
-        case 'Education':
-        case 'Professional':
-        case 'Experience':
-        case 'Reference':
-        case 'Next of KIN':
-        case 'Documents':
-        default:
-            return (
-                `<div>
+  switch (activeProfileCategory) {
+    case "Overview":
+    case "Education":
+    case "Professional":
+    case "Experience":
+    case "Reference":
+    case "Next of KIN":
+    case "Documents":
+    default:
+      return `<div>
                     <p>${activeProfileCategory}</p>
-                </div>`
-            );
-    }
+                </div>`;
+  }
 }
 
 function handleProfileCategorySelection(e, category) {
-    e.preventDefault();
-    activeProfileCategory = category;
-    profileBody.innerHTML = rows ? getBodyCategoryContent(activeProfileCategory) : (
-        `<div class="call-to-action">
+  e.preventDefault();
+  activeProfileCategory = category;
+  profileBody.innerHTML = rows
+    ? getBodyCategoryContent(activeProfileCategory)
+    : `<div class="call-to-action">
             <div>
                 <img src=${"../../../../assets/search.svg"} alt="search-icon"/>
             </div>
@@ -236,10 +243,10 @@ function handleProfileCategorySelection(e, category) {
                     <span>Add New ${activeProfileCategory}</span>
                 </button>
             </div>
-        </div>`
-    );
-    profileForm.innerHTML = rows ? getFormCategoryContent(activeProfileCategory) : (
-        `<div class="call-to-action">
+        </div>`;
+  profileForm.innerHTML = rows
+    ? getFormCategoryContent(activeProfileCategory)
+    : `<div class="call-to-action">
             <div>
                 <img src=${"../../../../assets/search.svg"} alt="search-icon"/>
             </div>
@@ -252,75 +259,99 @@ function handleProfileCategorySelection(e, category) {
                     <span>Add New ${activeProfileCategory}</span>
                 </button>
             </div>
-        </div>`
-    );
+        </div>`;
 }
 
 function handleOpenDetailModal(e) {
-    e.stopPropagation();
-    profileDetailModal.classList.remove("close-modal");
-    document.body.style.overflow = "hidden";
-    markedForDeHighlighting.forEach((item) => {
-        item.style.opacity = 0.1;
-        item.style.pointerEvents = "none";
-    });
+  e.stopPropagation();
+  profileDetailModal.classList.remove("close-modal");
+  document.body.style.overflow = "hidden";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 0.1;
+    item.style.pointerEvents = "none";
+  });
 }
 
 function handleCloseDetailModal() {
-    profileDetailModal.classList.add("close-modal");
-    document.body.style.overflow = "auto";
-    markedForDeHighlighting.forEach((item) => {
-        item.style.opacity = 1;
-        item.style.pointerEvents = "auto";
-    });
+  profileDetailModal.classList.add("close-modal");
+  document.body.style.overflow = "auto";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 1;
+    item.style.pointerEvents = "auto";
+  });
 }
 
 function handleOpenProfileModal(e) {
-    e.stopPropagation();
-    profileModal.classList.remove("close-modal");
-    document.body.style.overflow = "hidden";
-    markedForDeHighlighting.forEach((item) => {
-        item.style.opacity = 0.1;
-        item.style.pointerEvents = "none";
-    });
+  e.stopPropagation();
+  profileModal.classList.remove("close-modal");
+  document.body.style.overflow = "hidden";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 0.1;
+    item.style.pointerEvents = "none";
+  });
 }
 
 function handleCloseProfileModal() {
-    profileModal.classList.add("close-modal");
-    document.body.style.overflow = "auto";
-    markedForDeHighlighting.forEach((item) => {
-        item.style.opacity = 1;
-        item.style.pointerEvents = "auto";
-    });
+  profileModal.classList.add("close-modal");
+  document.body.style.overflow = "auto";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 1;
+    item.style.pointerEvents = "auto";
+  });
 }
 
 function handleOpenConfirmationModal(e) {
-    e.stopPropagation();
-    handleCloseProfileModal();
-    profileConfirmationModal.classList.remove("close-modal");
-    document.body.style.overflow = "hidden";
-    markedForDeHighlighting.forEach((item) => {
-        item.style.opacity = 0.1;
-        item.style.pointerEvents = "none";
-    });
+  e.stopPropagation();
+  handleCloseProfileModal();
+  profileConfirmationModal.classList.remove("close-modal");
+  document.body.style.overflow = "hidden";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 0.1;
+    item.style.pointerEvents = "none";
+  });
 }
 
 function handleCloseConfirmationModal() {
-    profileConfirmationModal.classList.add("close-modal");
-    document.body.style.overflow = "auto";
-    markedForDeHighlighting.forEach((item) => {
-        item.style.opacity = 1;
-        item.style.pointerEvents = "auto";
-    });
+  profileConfirmationModal.classList.add("close-modal");
+  document.body.style.overflow = "auto";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 1;
+    item.style.pointerEvents = "auto";
+  });
+}
+
+function handleOpenSetupManagementModal(e) {
+  e.stopPropagation();
+  setupManagementModal.classList.remove("close-modal");
+  document.body.style.overflow = "hidden";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 0.1;
+    item.style.pointerEvents = "none";
+  });
+}
+
+function handleCloseSetupManagementModal() {
+  setupManagementModal.classList.add("close-modal");
+  document.body.style.overflow = "auto";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 1;
+    item.style.pointerEvents = "auto";
+  });
 }
 
 
 window.addEventListener("click", (e) => {
-    // condition - if the modal is currently rendered && if the click is not within the modal 
-    if (!profileModal.classList.contains("close-modal") && !profileModal.contains(e.target)) {
-        handleCloseProfileModal();
-    }
-    if (!profileDetailModal.classList.contains("close-modal") && !profileDetailModal.contains(e.target)) {
-        handleCloseDetailModal();
-    }
+  // condition - if the modal is currently rendered && if the click is not within the modal
+  if (
+    !profileModal.classList.contains("close-modal") &&
+    !profileModal.contains(e.target)
+  ) {
+    handleCloseProfileModal();
+  }
+  if (
+    !profileDetailModal.classList.contains("close-modal") &&
+    !profileDetailModal.contains(e.target)
+  ) {
+    handleCloseDetailModal();
+  }
 });

@@ -166,6 +166,7 @@ function handleCloseConfirmationModal() {
         item.style.pointerEvents = "auto";
     });
 }
+
 function handleOpenSetupManagementModal(e) {
     e.stopPropagation();
     setupManagementModal.classList.remove("close-modal");
@@ -183,7 +184,8 @@ function handleCloseSetupManagementModal() {
         item.style.opacity = 1;
         item.style.pointerEvents = "auto";
     });
-};
+}; 
+
 window.addEventListener("click", (e) => {
     // condition - if the modal is currently rendered && if the click is not within the modal 
     if (!timeSheetManagementModal.classList.contains("close-modal") && !timeSheetManagementModal.contains(e.target)) {

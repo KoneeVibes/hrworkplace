@@ -1,26 +1,55 @@
 const yearlyObjectivesManagementTable = document.querySelector(".module-table");
-const yearlyObjectivesManagementModal = document.querySelector(".yearly-objectives-management-module-modal");
-const yearlyObjectivesManagementForm = document.querySelector(".module-modal-form");
-const yearlyObjectivesManagementConfirmationModal = document.querySelector(".yearly-objectives-management-confirmation-modal");
-const yearlyObjectivesManagementDetailModal = document.querySelector(".module-detail-modal");
-const yearlyObjectivesManagementDetailBox = document.querySelector(".module-modal-detail-box");
-const markedForDeHighlighting = document.querySelectorAll(".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav");
-const headers = ["S/N", "Name", "Company", "Department", "Task Date", "Task Title", "Time Spent", "Manager's Remark", "Status", "View"];
+const yearlyObjectivesManagementModal = document.querySelector(
+  ".yearly-objectives-management-module-modal"
+);
+const yearlyObjectivesManagementForm =
+  document.querySelector(".module-modal-form");
+const yearlyObjectivesManagementConfirmationModal = document.querySelector(
+  ".yearly-objectives-management-confirmation-modal"
+);
+const yearlyObjectivesManagementDetailModal = document.querySelector(
+  ".module-detail-modal"
+);
+const yearlyObjectivesManagementDetailBox = document.querySelector(
+  ".module-modal-detail-box"
+);
+const markedForDeHighlighting = document.querySelectorAll(
+  ".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav"
+);
+const headers = [
+  "S/N",
+  "Name",
+  "Company",
+  "Department",
+  "Task Date",
+  "Task Title",
+  "Time Spent",
+  "Manager's Remark",
+  "Status",
+  "View",
+];
 const rows = [""];
 
-yearlyObjectivesManagementTable.innerHTML = rows.length > 0 ? (
-    `<table>
+yearlyObjectivesManagementTable.innerHTML =
+  rows.length > 0
+    ? `<table>
         <thead>
             <tr>
-                ${headers?.map((header, index) => `
+                ${headers
+                  ?.map(
+                    (header, index) => `
                     <th key=${index}>
                         ${header}
                     </th>
-                `).join('')}
+                `
+                  )
+                  .join("")}
             </tr>
         </thead>
         <tbody>
-        ${rows?.map((row, index) => `
+        ${rows
+          ?.map(
+            (row, index) => `
                 <tr 
                     key=${index}
                     onclick="handleOpenDetailModal(event)"
@@ -33,11 +62,12 @@ yearlyObjectivesManagementTable.innerHTML = rows.length > 0 ? (
                     <td>${row}</td>
                     <td>hii</td>
                 </tr>
-            `).join('')}
+            `
+          )
+          .join("")}
         </tbody>
     </table>`
-) : (
-    `<div class="call-to-action">
+    : `<div class="call-to-action">
         <div>
             <img src=${"../../assets/search.svg"} alt="search-icon"/>
         </div>
@@ -50,10 +80,9 @@ yearlyObjectivesManagementTable.innerHTML = rows.length > 0 ? (
                 <span>Add New Yearly Objectives Management</span>
             </button>
         </div>
-    </div>`
-);
+    </div>`;
 
-yearlyObjectivesManagementForm.innerHTML = (`
+yearlyObjectivesManagementForm.innerHTML = `
     <form>
         <div class="row form-field-set">
             <label>Email</label>
@@ -100,79 +129,104 @@ yearlyObjectivesManagementForm.innerHTML = (`
             </button>
         </div>
     </form>
-`)
+`;
 
-yearlyObjectivesManagementDetailBox.innerHTML = (`
+yearlyObjectivesManagementDetailBox.innerHTML = `
         <div>
             // details would go in here
             
         </div>
-    `)
+    `;
 
 function handleOpenDetailModal(e) {
-    e.stopPropagation();
-    yearlyObjectivesManagementDetailModal.classList.remove("close-modal");
-    document.body.style.overflow = "hidden";
-    markedForDeHighlighting.forEach((item) => {
-        item.style.opacity = 0.1;
-        item.style.pointerEvents = "none";
-    });
+  e.stopPropagation();
+  yearlyObjectivesManagementDetailModal.classList.remove("close-modal");
+  document.body.style.overflow = "hidden";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 0.1;
+    item.style.pointerEvents = "none";
+  });
 }
 
 function handleCloseDetailModal() {
-    yearlyObjectivesManagementDetailModal.classList.add("close-modal");
-    document.body.style.overflow = "auto";
-    markedForDeHighlighting.forEach((item) => {
-        item.style.opacity = 1;
-        item.style.pointerEvents = "auto";
-    });
+  yearlyObjectivesManagementDetailModal.classList.add("close-modal");
+  document.body.style.overflow = "auto";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 1;
+    item.style.pointerEvents = "auto";
+  });
 }
 
 function handleOpenYearlyObjectivesManagementModal(e) {
-    e.stopPropagation();
-    yearlyObjectivesManagementModal.classList.remove("close-modal");
-    document.body.style.overflow = "hidden";
-    markedForDeHighlighting.forEach((item) => {
-        item.style.opacity = 0.1;
-        item.style.pointerEvents = "none";
-    });
+  e.stopPropagation();
+  yearlyObjectivesManagementModal.classList.remove("close-modal");
+  document.body.style.overflow = "hidden";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 0.1;
+    item.style.pointerEvents = "none";
+  });
 }
 
 function handleCloseYearlyObjectivesManagementModal() {
-    yearlyObjectivesManagementModal.classList.add("close-modal");
-    document.body.style.overflow = "auto";
-    markedForDeHighlighting.forEach((item) => {
-        item.style.opacity = 1;
-        item.style.pointerEvents = "auto";
-    });
+  yearlyObjectivesManagementModal.classList.add("close-modal");
+  document.body.style.overflow = "auto";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 1;
+    item.style.pointerEvents = "auto";
+  });
 }
 
 function handleOpenConfirmationModal(e) {
-    e.stopPropagation();
-    handleCloseYearlyObjectivesManagementModal();
-    yearlyObjectivesManagementConfirmationModal.classList.remove("close-modal");
-    document.body.style.overflow = "hidden";
-    markedForDeHighlighting.forEach((item) => {
-        item.style.opacity = 0.1;
-        item.style.pointerEvents = "none";
-    });
+  e.stopPropagation();
+  handleCloseYearlyObjectivesManagementModal();
+  yearlyObjectivesManagementConfirmationModal.classList.remove("close-modal");
+  document.body.style.overflow = "hidden";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 0.1;
+    item.style.pointerEvents = "none";
+  });
 }
 
 function handleCloseConfirmationModal() {
-    yearlyObjectivesManagementConfirmationModal.classList.add("close-modal");
-    document.body.style.overflow = "auto";
-    markedForDeHighlighting.forEach((item) => {
-        item.style.opacity = 1;
-        item.style.pointerEvents = "auto";
-    });
+  yearlyObjectivesManagementConfirmationModal.classList.add("close-modal");
+  document.body.style.overflow = "auto";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 1;
+    item.style.pointerEvents = "auto";
+  });
+}
+
+function handleOpenSetupManagementModal(e) {
+  e.stopPropagation();
+  setupManagementModal.classList.remove("close-modal");
+  document.body.style.overflow = "hidden";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 0.1;
+    item.style.pointerEvents = "none";
+  });
+}
+
+function handleCloseSetupManagementModal() {
+  setupManagementModal.classList.add("close-modal");
+  document.body.style.overflow = "auto";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 1;
+    item.style.pointerEvents = "auto";
+  });
 }
 
 window.addEventListener("click", (e) => {
-    // condition - if the modal is currently rendered && if the click is not within the modal 
-    if (!yearlyObjectivesManagementModal.classList.contains("close-modal") && !yearlyObjectivesManagementModal.contains(e.target)) {
-        handleCloseYearlyObjectivesManagementModal();
-    }
-    if (!yearlyObjectivesManagementDetailModal.classList.contains("close-modal") && !yearlyObjectivesManagementDetailModal.contains(e.target)) {
-        handleCloseDetailModal();
-    }
+  // condition - if the modal is currently rendered && if the click is not within the modal
+  if (
+    !yearlyObjectivesManagementModal.classList.contains("close-modal") &&
+    !yearlyObjectivesManagementModal.contains(e.target)
+  ) {
+    handleCloseYearlyObjectivesManagementModal();
+  }
+  if (
+    !yearlyObjectivesManagementDetailModal.classList.contains("close-modal") &&
+    !yearlyObjectivesManagementDetailModal.contains(e.target)
+  ) {
+    handleCloseDetailModal();
+  }
 });

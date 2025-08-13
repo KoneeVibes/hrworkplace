@@ -184,6 +184,7 @@ function handleCloseSetupManagementModal() {
         item.style.pointerEvents = "auto";
     });
 };
+
 window.addEventListener("click", (e) => {
     // condition - if the modal is currently rendered && if the click is not within the modal 
     if (!sanctionManagementModal.classList.contains("close-modal") && !sanctionManagementModal.contains(e.target)) {
