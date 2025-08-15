@@ -1,26 +1,79 @@
 const setupNationalityTable = document.querySelector(".module-table");
-const setupNationalityModal = document.querySelector(".setup-nationality-module-modal");
+const setupNationalityModal = document.querySelector(
+  ".setup-nationality-module-modal"
+);
 const setupNationalityForm = document.querySelector(".module-modal-form");
-const setupNationalityConfirmationModal = document.querySelector(".setup-nationality-confirmation-modal");
-const setupNationalityDetailModal = document.querySelector(".module-detail-modal");
-const setupNationalityDetailBox = document.querySelector(".module-modal-detail-box");
-const markedForDeHighlighting = document.querySelectorAll(".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav");
-const headers = ["S/N", "Name", "Company", "Department", "Task Date", "Task Title", "Time Spent", "Manager's Remark", "Status", "View"];
+const setupNationalityConfirmationModal = document.querySelector(
+  ".setup-nationality-confirmation-modal"
+);
+const setupNationalityDetailModal = document.querySelector(
+  ".module-detail-modal"
+);
+const setupNationalityDetailBox = document.querySelector(
+  ".module-modal-detail-box"
+);
+const markedForDeHighlighting = document.querySelectorAll(
+  ".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav"
+);
+const headers = [
+  "S/N",
+  "Name",
+  "Company",
+  "Department",
+  "Task Date",
+  "Task Title",
+  "Time Spent",
+  "Manager's Remark",
+  "Status",
+  "View",
+];
 const rows = [""];
 
-setupNationalityTable.innerHTML = rows.length > 0 ? (
-    `<table>
+const TOKEN = sessionStorage.getItem("access_token");
+const BASE_ENDPOINT = "http://52.150.234.195:7268/api";
+
+const setupNationalityService = async (TOKEN, nationalityDetails) => {
+  try {
+    const response = await fetch(`${BASE_ENDPOINT}/Nationalities`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(nationalityDetails),
+    });
+    const res = await response.json();
+    if (!response.ok) {
+      console.error("Error:", res);
+      throw new Error(res.message);
+    }
+    return res;
+  } catch (error) {
+    console.error("API fetch error:", error);
+    throw error;
+  }
+};
+
+setupNationalityTable.innerHTML =
+  rows.length > 0
+    ? `<table>
         <thead>
             <tr>
-                ${headers?.map((header, index) => `
+                ${headers
+                  ?.map(
+                    (header, index) => `
                     <th key=${index}>
                         ${header}
                     </th>
-                `).join('')}
+                `
+                  )
+                  .join("")}
             </tr>
         </thead>
         <tbody>
-        ${rows?.map((row, index) => `
+        ${rows
+          ?.map(
+            (row, index) => `
                 <tr 
                     key=${index}
                     onclick="handleOpenDetailModal(event)"
@@ -33,11 +86,12 @@ setupNationalityTable.innerHTML = rows.length > 0 ? (
                     <td>${row}</td>
                     <td>hii</td>
                 </tr>
-            `).join('')}
+            `
+          )
+          .join("")}
         </tbody>
     </table>`
-) : (
-    `<div class="call-to-action">
+    : `<div class="call-to-action">
         <div>
             <img src=${"../../assets/search.svg"} alt="search-icon"/>
         </div>
@@ -50,47 +104,15 @@ setupNationalityTable.innerHTML = rows.length > 0 ? (
                 <span>Add New Setup Nationality</span>
             </button>
         </div>
-    </div>`
-);
+    </div>`;
 
-setupNationalityForm.innerHTML = (`
-    <form>
+setupNationalityForm.innerHTML = `
+    <form id="setup-nationality-form">
         <div class="row form-field-set">
-            <label>Email</label>
-            <input placeholder="Enter Email"/>
+            <label>Nationality</label>
+            <input name="nationalityName" placeholder="Enter Nationality"/>
         </div>
-        <div class="row form-field-set">
-            <label>Name</label>
-            <input placeholder="Enter Name"/>
-        </div>
-        <div class="row form-field-set">
-            <label>Job Position</label>
-            <input placeholder="Enter Position"/>
-        </div>
-        <div class="row form-field-set">
-            <label>Company</label>
-            <input placeholder="Enter Company"/>
-        </div>
-        <div class="row form-field-set">
-            <label>Department</label>
-            <input placeholder="Enter Department"/>
-        </div>
-        <fieldset>
-            <h3>Task Detail</h3>
-            <p>Provide Task details</p>
-            <div class="row form-field-set">
-                <label>Task Date</label>
-                <input placeholder="Enter Department"/>
-            </div>
-            <div class="row form-field-set">
-                <label>Task Title</label>
-                <input placeholder="Enter Task Title"/>
-            </div>
-            <div class="row form-field-set">
-                <label>Activity</label>
-                <input placeholder="Enter Activity"/>
-            </div>
-        </fieldset>
+        
         <div class="row form-cta">
             <button type="reset" onclick="handleCloseSetupNationalityModal()">
                 <span>Cancel</span>
@@ -100,99 +122,138 @@ setupNationalityForm.innerHTML = (`
             </button>
         </div>
     </form>
-`)
+`;
 
-setupNationalityDetailBox.innerHTML = (`
+setupNationalityDetailBox.innerHTML = `
         <div>
             // details would go in here
             
         </div>
-    `)
+    `;
 
 function handleOpenDetailModal(e) {
-    e.stopPropagation();
-    setupNationalityDetailModal.classList.remove("close-modal");
-    document.body.style.overflow = "hidden";
-    markedForDeHighlighting.forEach((item) => {
-        item.style.opacity = 0.1;
-        item.style.pointerEvents = "none";
-    });
+  e.stopPropagation();
+  setupNationalityDetailModal.classList.remove("close-modal");
+  document.body.style.overflow = "hidden";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 0.1;
+    item.style.pointerEvents = "none";
+  });
 }
 
 function handleCloseDetailModal() {
-    setupNationalityDetailModal.classList.add("close-modal");
-    document.body.style.overflow = "auto";
-    markedForDeHighlighting.forEach((item) => {
-        item.style.opacity = 1;
-        item.style.pointerEvents = "auto";
-    });
+  setupNationalityDetailModal.classList.add("close-modal");
+  document.body.style.overflow = "auto";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 1;
+    item.style.pointerEvents = "auto";
+  });
 }
 
 function handleOpenSetupNationality(e) {
-    e.stopPropagation();
-    setupNationalityModal.classList.remove("close-modal");
-    document.body.style.overflow = "hidden";
-    markedForDeHighlighting.forEach((item) => {
-        item.style.opacity = 0.1;
-        item.style.pointerEvents = "none";
-    });
+  e.stopPropagation();
+  setupNationalityModal.classList.remove("close-modal");
+  document.body.style.overflow = "hidden";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 0.1;
+    item.style.pointerEvents = "none";
+  });
 }
 
 function handleCloseSetupNationalityModal() {
-    setupNationalityModal.classList.add("close-modal");
-    document.body.style.overflow = "auto";
-    markedForDeHighlighting.forEach((item) => {
-        item.style.opacity = 1;
-        item.style.pointerEvents = "auto";
-    });
+  setupNationalityModal.classList.add("close-modal");
+  document.body.style.overflow = "auto";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 1;
+    item.style.pointerEvents = "auto";
+  });
 }
 
 function handleOpenConfirmationModal(e) {
-    e.stopPropagation();
-    handleCloseSetupNationalityModal();
-    setupNationalityConfirmationModal.classList.remove("close-modal");
-    document.body.style.overflow = "hidden";
-    markedForDeHighlighting.forEach((item) => {
-        item.style.opacity = 0.1;
-        item.style.pointerEvents = "none";
-    });
+  e.stopPropagation();
+  handleCloseSetupNationalityModal();
+  setupNationalityConfirmationModal.classList.remove("close-modal");
+  document.body.style.overflow = "hidden";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 0.1;
+    item.style.pointerEvents = "none";
+  });
 }
 
 function handleCloseConfirmationModal() {
-    setupNationalityConfirmationModal.classList.add("close-modal");
-    document.body.style.overflow = "auto";
-    markedForDeHighlighting.forEach((item) => {
-        item.style.opacity = 1;
-        item.style.pointerEvents = "auto";
-    });
+  setupNationalityConfirmationModal.classList.add("close-modal");
+  document.body.style.overflow = "auto";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 1;
+    item.style.pointerEvents = "auto";
+  });
 }
 
 function handleOpenSetupManagementModal(e) {
-    e.stopPropagation();
-    setupManagementModal.classList.remove("close-modal");
-    document.body.style.overflow = "hidden";
-    markedForDeHighlighting.forEach((item) => {
-        item.style.opacity = 0.1;
-        item.style.pointerEvents = "none";
-    });
-};
+  e.stopPropagation();
+  setupManagementModal.classList.remove("close-modal");
+  document.body.style.overflow = "hidden";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 0.1;
+    item.style.pointerEvents = "none";
+  });
+}
 
 function handleCloseSetupManagementModal() {
-    setupManagementModal.classList.add("close-modal");
-    document.body.style.overflow = "auto";
-    markedForDeHighlighting.forEach((item) => {
-        item.style.opacity = 1;
-        item.style.pointerEvents = "auto";
-    });
-};
+  setupManagementModal.classList.add("close-modal");
+  document.body.style.overflow = "auto";
+  markedForDeHighlighting.forEach((item) => {
+    item.style.opacity = 1;
+    item.style.pointerEvents = "auto";
+  });
+}
 
+async function handleSetupNationality(e) {
+  e.preventDefault();
+  const form = document.getElementById("setup-nationality-form");
+  const nationality = form.elements["nationalityName"].value;
+
+  const setupButton = document.querySelector(
+    '.confirmation-cta button[type="submit"]'
+  );
+  const errorMessage = document.querySelector(".error-message");
+
+  errorMessage.innerHTML = "";
+
+  const originalText = setupButton.innerHTML;
+  setupButton.innerHTML = '<span class="spinner"></span>';
+  setupButton.disabled = true;
+
+  try {
+    const payload = { ...{ name: nationality } };
+    const response = await setupNationalityService(TOKEN, payload);
+    if (response.status === "Success") {
+      handleCloseConfirmationModal();
+    } else {
+      errorMessage.innerHTML = `Setup Nationality failed. Please check your credentials and try again`;
+      console.log("Failed to setup nationality");
+    }
+  } catch (error) {
+    errorMessage.innerHTML = `Setup Nationality failed. Please check your credentials and try again`;
+    console.error("Setup Nationality failed:", error);
+  } finally {
+    setupButton.innerHTML = originalText;
+    setupButton.disabled = false;
+  }
+}
 
 window.addEventListener("click", (e) => {
-    // condition - if the modal is currently rendered && if the click is not within the modal 
-    if (!setupNationalityModal.classList.contains("close-modal") && !setupNationalityModal.contains(e.target)) {
-        handleCloseSetupNationalityModal();
-    }
-    if (!setupNationalityDetailModal.classList.contains("close-modal") && !setupNationalityDetailModal.contains(e.target)) {
-        handleCloseDetailModal();
-    }
+  // condition - if the modal is currently rendered && if the click is not within the modal
+  if (
+    !setupNationalityModal.classList.contains("close-modal") &&
+    !setupNationalityModal.contains(e.target)
+  ) {
+    handleCloseSetupNationalityModal();
+  }
+  if (
+    !setupNationalityDetailModal.classList.contains("close-modal") &&
+    !setupNationalityDetailModal.contains(e.target)
+  ) {
+    handleCloseDetailModal();
+  }
 });

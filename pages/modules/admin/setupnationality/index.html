@@ -134,7 +134,8 @@
             <h2>Submit Setup Nationality</h2>
             <p>By submitting this Setup Nationality you show your availability and the task you accomplished for the day
             </p>
-            <form>
+            <form onsubmit="handleSetupNationality(event)">
+                <p class="error-message"></p>
                 <label>
                     <input type="checkbox" />
                     Don’t show this again

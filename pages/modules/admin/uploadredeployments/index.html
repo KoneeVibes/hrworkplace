@@ -134,7 +134,8 @@
             <h2>Submit upload redeployments</h2>
             <p>By submitting this upload redeployments you show your availability and the task you accomplished for the day
             </p>
-            <form>
+            <form onsubmit="handleSetupRedeployment(event)">
+                <p class="error-message"></p>
                 <label>
                     <input type="checkbox" />
                     Don’t show this again
