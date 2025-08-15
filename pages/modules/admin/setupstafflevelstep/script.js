@@ -8,6 +8,31 @@ const markedForDeHighlighting = document.querySelectorAll(".module-title-box, .m
 const headers = ["S/N", "Name", "Company", "Department", "Task Date", "Task Title", "Time Spent", "Manager's Remark", "Status", "View"];
 const rows = [""];
 
+const TOKEN = sessionStorage.getItem('access_token');
+const BASE_ENDPOINT = 'http://52.150.234.195:7268/api';
+
+const setupStaffLevelStepService = async (TOKEN, stafflevelstepDetails) => {
+    try {
+        const response = await fetch(`${BASE_ENDPOINT}/StaffLevelSteps`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${TOKEN}`,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(stafflevelstepDetails)
+        });
+        const res = await response.json();
+        if (!response.ok) {
+            console.error('Error:', res);
+            throw new Error(res.message);
+        }
+        return res;
+    } catch (error) {
+        console.error('API fetch error:', error);
+        throw error;
+    }
+};
+
 setupStaffLevelStepTable.innerHTML = rows.length > 0 ? (
     `<table>
         <thead>
@@ -54,43 +79,28 @@ setupStaffLevelStepTable.innerHTML = rows.length > 0 ? (
 );
 
 setupStaffLevelStepForm.innerHTML = (`
-    <form>
+    <form id="setup-staff-level-step-form">
         <div class="row form-field-set">
-            <label>Email</label>
-            <input placeholder="Enter Email"/>
+            <label>Staff Level Step Name</label>
+            <input name="staffLevelStepName" placeholder="Enter Staff Level Step Name"/>
         </div>
         <div class="row form-field-set">
-            <label>Name</label>
-            <input placeholder="Enter Name"/>
+            <label>Staff Level Group</label>
+            <select name="staffLevelGroupId">
+              <option value="">Select Staff Level Group</option>
+              <option value="1">Group 1</option>
+              <option value="2">Group 2</option>
+            </select>
         </div>
         <div class="row form-field-set">
-            <label>Job Position</label>
-            <input placeholder="Enter Position"/>
+            <label>Staff Level</label>
+            <select name="staffLevelId">
+              <option value="">Select Staff Level</option>
+              <option value="1">Level 1</option>
+              <option value="2">Level 2</option>
+              <option value="3">Level 3</option>
+            </select>
         </div>
-        <div class="row form-field-set">
-            <label>Company</label>
-            <input placeholder="Enter Company"/>
-        </div>
-        <div class="row form-field-set">
-            <label>Department</label>
-            <input placeholder="Enter Department"/>
-        </div>
-        <fieldset>
-            <h3>Task Detail</h3>
-            <p>Provide Task details</p>
-            <div class="row form-field-set">
-                <label>Task Date</label>
-                <input placeholder="Enter Department"/>
-            </div>
-            <div class="row form-field-set">
-                <label>Task Title</label>
-                <input placeholder="Enter Task Title"/>
-            </div>
-            <div class="row form-field-set">
-                <label>Activity</label>
-                <input placeholder="Enter Activity"/>
-            </div>
-        </fieldset>
         <div class="row form-cta">
             <button type="reset" onclick="handleCloseSetupStaffLevelStepModal()">
                 <span>Cancel</span>
@@ -185,6 +195,45 @@ function handleCloseSetupManagementModal() {
         item.style.pointerEvents = "auto";
     });
 }; 
+
+async function handleSetupStaffLevelStep(e) {
+    e.preventDefault();
+    const form = document.getElementById("setup-staff-level-step-form");
+    const staffLevelStepName = form.elements["staffLevelStepName"].value;
+    const staffLevelGroupId = form.elements["staffLevelGroupId"].value;
+    const staffLevelId = form.elements["staffLevelId"].value;
+
+    const setupButton = document.querySelector('.confirmation-cta button[type="submit"]');
+    const errorMessage = document.querySelector('.error-message');
+
+    errorMessage.innerHTML = "";
+
+    const originalText = setupButton.innerHTML;
+    setupButton.innerHTML = '<span class="spinner"></span>';
+    setupButton.disabled = true;
+
+    try {
+        const payload = {
+            name: staffLevelStepName,
+            ...({staffLevelGroupId: Number(staffLevelGroupId) }),
+            
+            ...({staffLevelId: Number(staffLevelId) }),
+        };
+        const response = await setupStaffLevelStepService(TOKEN, payload);
+        if (response.status === "Success") {
+            handleCloseConfirmationModal();
+        } else {
+            errorMessage.innerHTML = (`Setup staff level step failed. Please check your credentials and try again`);
+            console.log("Failed to setup staff level step");
+        }
+    } catch (error) {
+        errorMessage.innerHTML = (`Setup staff level step failed. Please check your credentials and try again`);
+        console.error('Setup staff level step failed:', error);
+    } finally {
+        setupButton.innerHTML = originalText;
+        setupButton.disabled = false;
+    }
+};
 
 window.addEventListener("click", (e) => {
     // condition - if the modal is currently rendered && if the click is not within the modal 
