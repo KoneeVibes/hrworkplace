@@ -8,6 +8,31 @@ const markedForDeHighlighting = document.querySelectorAll(".module-title-box, .m
 const headers = ["S/N", "Name", "Company", "Department", "Task Date", "Task Title", "Time Spent", "Manager's Remark", "Status", "View"];
 const rows = [""];
 
+const TOKEN = sessionStorage.getItem('access_token');
+const BASE_ENDPOINT = 'http://52.150.234.195:7268/api';
+
+const setupCompetencyCategoryService = async (TOKEN, competencyCategoryDetails) => {
+    try {
+        const response = await fetch(`${BASE_ENDPOINT}/competency-categories`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${TOKEN}`,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(competencyCategoryDetails)
+        });
+        const res = await response.json();
+        if (!response.ok) {
+            console.error('Error:', res);
+            throw new Error(res.message);
+        }
+        return res;
+    } catch (error) {
+        console.error('API fetch error:', error);
+        throw error;
+    }
+};
+
 setupCompetencyCategoryTable.innerHTML = rows.length > 0 ? (
     `<table>
         <thead>
@@ -54,43 +79,20 @@ setupCompetencyCategoryTable.innerHTML = rows.length > 0 ? (
 );
 
 setupCompetencyCategoryForm.innerHTML = (`
-    <form>
+    <form  id="setup-competency-category-form">
         <div class="row form-field-set">
-            <label>Email</label>
-            <input placeholder="Enter Email"/>
+            <label>Competency Category Name</label>
+            <input name="competency-category-name" placeholder="Enter Competency Category Name"/>
         </div>
         <div class="row form-field-set">
-            <label>Name</label>
-            <input placeholder="Enter Name"/>
+            <label>Competency Group</label>
+            <select name= "competency-group-id">
+                <option value="" disabled selected>Select Competency Group</option>
+                <option value="1">Technical</option>
+                <option value="2">Management</option>
+                <option value="3">Leadership</option>
+            </select>
         </div>
-        <div class="row form-field-set">
-            <label>Job Position</label>
-            <input placeholder="Enter Position"/>
-        </div>
-        <div class="row form-field-set">
-            <label>Company</label>
-            <input placeholder="Enter Company"/>
-        </div>
-        <div class="row form-field-set">
-            <label>Department</label>
-            <input placeholder="Enter Department"/>
-        </div>
-        <fieldset>
-            <h3>Task Detail</h3>
-            <p>Provide Task details</p>
-            <div class="row form-field-set">
-                <label>Task Date</label>
-                <input placeholder="Enter Department"/>
-            </div>
-            <div class="row form-field-set">
-                <label>Task Title</label>
-                <input placeholder="Enter Task Title"/>
-            </div>
-            <div class="row form-field-set">
-                <label>Activity</label>
-                <input placeholder="Enter Activity"/>
-            </div>
-        </fieldset>
         <div class="row form-cta">
             <button type="reset" onclick="handleCloseSetupCompetencyCategoryModal()">
                 <span>Cancel</span>
@@ -186,6 +188,41 @@ function handleCloseSetupManagementModal() {
     });
 };
 
+async function handleSetupCompetencyCategory(e) {
+    e.preventDefault();
+    const form = document.getElementById("setup-competency-category-form");
+    const competencyCategoryName = form.elements["competency-category-name"].value;
+    const competencyGroup = form.elements["competency-group-id"].value;
+
+    const setupButton = document.querySelector('.confirmation-cta button[type="submit"]');
+    const errorMessage = document.querySelector('.error-message');
+
+    errorMessage.innerHTML = "";
+
+    const originalText = setupButton.innerHTML;
+    setupButton.innerHTML = '<span class="spinner"></span>';
+    setupButton.disabled = true;
+
+    try {
+        const payload = {
+            name: competencyCategoryName,
+            ...( {id: Number(competencyGroup)  })
+        };
+        const response = await setupCompetencyCategoryService(TOKEN, payload);
+        if (response.status === "Success") {
+            handleCloseConfirmationModal();
+        } else {
+            errorMessage.innerHTML = (`Setup competency category failed. Please check your credentials and try again`);
+            console.log("Failed to setup comptency category");
+        }
+    } catch (error) {
+        errorMessage.innerHTML = (`Setup competency category failed. Please check your credentials and try again`);
+        console.error('Setup competency category failed:', error);
+    } finally {
+        setupButton.innerHTML = originalText;
+        setupButton.disabled = false;
+    }
+};
 
 window.addEventListener("click", (e) => {
     // condition - if the modal is currently rendered && if the click is not within the modal 
