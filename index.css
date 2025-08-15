@@ -1,28 +1,179 @@
-html {
-    --flex-gap: 2rem;
-    --top-nav-height: 3.15rem;
-    --side-nav-width: 11.25rem;
-    --basic-padding: 2rem;
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+@media screen and (min-width: 0px) {
+
+    /* base styles */
+    html {
+        --top-nav-height: 11.409375rem;
+        --side-nav-width: 16rem;
+        --modal-width: 100%;
+        --flex-gap: 2rem;
+        --basic-padding: 2rem;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .row {
+        display: flex;
+        gap: var(--flex-gap);
+    }
+
+    .column {
+        display: flex;
+        flex-direction: column;
+        gap: var(--flex-gap);
+    }
+
+    .hide-element {
+        display: none;
+    }
+
+    /* Typography styles */
+    h1 {
+        font-family: Inter;
+        font-size: 22px;
+        font-weight: 700;
+        line-height: normal;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    h2 {
+        font-family: Inter;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 18px;
+        letter-spacing: -0.02em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    h3 {
+        font-family: Inter;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 21px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    p {
+        font-family: Inter;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 20px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    a,
+    span,
+    label {
+        font-family: Inter;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 20px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    input {
+        font-family: Inter;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 18.15px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    button {
+        padding-inline: calc(var(--basic-padding)/2);
+        padding-block: calc(var(--basic-padding)/4);
+        border-radius: 0.5rem;
+        cursor: pointer;
+    }
+
+    table {
+        width: 100%;
+        margin-top: var(--basic-padding);
+    }
+
+    th {
+        font-family: Inter;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: normal;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: #667085;
+        border-bottom: 1px solid #EAECF0;
+        padding: calc(var(--basic-padding)/2) var(--basic-padding);
+        white-space: nowrap;
+        background-color: #F9FAFB;
+    }
+
+    td {
+        font-family: Inter;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: normal;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: #667085;
+        border-bottom: 1px solid #EAECF0;
+        padding: calc(var(--basic-padding)/2) var(--basic-padding);
+    }
+
+    td:nth-child(2) {
+        font-weight: 500;
+        color: #101828;
+    }
+
+    .error-message {
+        color: #F03D44;
+        margin-block-start: 0;
+        margin-block-end: 20px;
+    }
+
+    .spinner {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        border: 2px solid #FFFFFF;
+        border-top: 2px solid transparent;
+        border-radius: 50%;
+        animation: spin 0.6s linear infinite;
+        vertical-align: middle;
+    }
+
+    @keyframes spin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    /* debug style */
+    * {
+        /* outline: 1px solid red; */
+    }
 }
 
-body {
-    margin: 0;
-    padding: 0;
+@media screen and (min-width: 343px) {
+
+    /* base styles */
+    html {
+        --top-nav-height: 7.275rem;
+    }
 }
 
-* {
-    /* outline: 1px solid red; */
-}
+@media screen and (min-width: 768px) {
 
-.row {
-    display: flex;
-    gap: var(--flex-gap);
+    /* base styles */
+    html {
+        --top-nav-height: 3.15rem;
+        --modal-width: 30.375rem;
+    }
 }
-
-.column {
-    display: flex;
-    flex-direction: column;
-    gap: var(--flex-gap);
-}
-
-/* Typography styles */
