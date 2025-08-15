@@ -134,7 +134,8 @@
             <h2>Submit setup staff type</h2>
             <p>By submitting this setup staff type you show your availability and the task you accomplished for the day
             </p>
-            <form>
+            <form onsubmit="handleSetupStaffType(event)">
+                <p class="error-message"></p>
                 <label>
                     <input type="checkbox" />
                     Don’t show this again

@@ -32,6 +32,7 @@ const setupRelationshipService = async (TOKEN, relationshipDetails) => {
         throw error;
     }
 };
+
 setupRelationshipTable.innerHTML = rows.length > 0 ? (
     `<table>
         <thead>
@@ -81,7 +82,7 @@ setupRelationshipForm.innerHTML = (`
     <form id="setup-relationship-form">
         <div class="row form-field-set">
             <label>Relationship Name</label>
-            <input placeholder="Enter Name"/>
+            <input name="name" placeholder="Enter Name"/>
         </div>
         <div class="row form-cta">
             <button type="reset" onclick="handleCloseSetupRelationshipModal()">
@@ -181,28 +182,31 @@ function handleCloseSetupManagementModal() {
 async function handleSetupRelationship(e) {
     e.preventDefault();
     const form = document.getElementById("setup-relationship-form");
-    const companyName = form.elements["relationshipName"].value;
-    const companyHeadUsername = form.elements["relationshipHeadUsername"].value;
+    const relationshipName = form.elements["name"].value;
+
+    const setupButton = document.querySelector('.confirmation-cta button[type="submit"]');
+    const errorMessage = document.querySelector('.error-message');
+
+    errorMessage.innerHTML = "";
+
+    const originalText = setupButton.innerHTML;
+    setupButton.innerHTML = '<span class="spinner"></span>';
+    setupButton.disabled = true;
 
     try {
-        const response = await setupRelationshipService(TOKEN, { name: relationshipName});
+        const response = await setupRelationshipService(TOKEN, {name:relationshipName});
         if (response.status === "Success") {
-            //     // setIsLoading(false);
-            //     // cookies.set("TOKEN", response.token, {
-            //     //     path: "/",
-            //     // });
-            //     // setIsAuthenticated(true);
-            // window.location.href = '../dashboard/index.html';
-            console.log("I have been submitted")
+            handleCloseConfirmationModal();
         } else {
-            //     // setIsLoading(false);
-            //     // setError('Authentication failed. Please check your credentials and try again.');
-            console.log("Fail to login");
+            errorMessage.innerHTML = (`Setup relationship failed. Please check your credentials and try again`);
+            console.log("Failed to setup relationship");
         }
     } catch (error) {
-        // setIsLoading(false);
-        // setError(`Login failed. ${error.message}`);
-        console.error('Login failed:', error);
+        errorMessage.innerHTML = (`Setup relationship failed. Please check your credentials and try again`);
+        console.error('Setup relationship failed:', error);
+    } finally {
+        setupButton.innerHTML = originalText;
+        setupButton.disabled = false;
     }
 };
 

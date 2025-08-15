@@ -8,6 +8,31 @@ const markedForDeHighlighting = document.querySelectorAll(".module-title-box, .m
 const headers = ["S/N", "Name", "Company", "Department", "Task Date", "Task Title", "Time Spent", "Manager's Remark", "Status", "View"];
 const rows = [""];
 
+const TOKEN = sessionStorage.getItem('access_token');
+const BASE_ENDPOINT = 'http://52.150.234.195:7268/api';
+
+const setupStaffClassService = async (TOKEN, staffclassDetails) => {
+    try {
+        const response = await fetch(`${BASE_ENDPOINT}/StaffClasses`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${TOKEN}`,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(staffclassDetails)
+        });
+        const res = await response.json();
+        if (!response.ok) {
+            console.error('Error:', res);
+            throw new Error(res.message);
+        }
+        return res;
+    } catch (error) {
+        console.error('API fetch error:', error);
+        throw error;
+    }
+};
+
 setupStaffClassTable.innerHTML = rows.length > 0 ? (
     `<table>
         <thead>
@@ -54,43 +79,11 @@ setupStaffClassTable.innerHTML = rows.length > 0 ? (
 );
 
 setupStaffClassForm.innerHTML = (`
-    <form>
+    <form id="setup-staff-class-form">
         <div class="row form-field-set">
-            <label>Email</label>
-            <input placeholder="Enter Email"/>
+            <label>Staff Class Name</label>
+            <input name="name" placeholder="Enter Name"/>
         </div>
-        <div class="row form-field-set">
-            <label>Name</label>
-            <input placeholder="Enter Name"/>
-        </div>
-        <div class="row form-field-set">
-            <label>Job Position</label>
-            <input placeholder="Enter Position"/>
-        </div>
-        <div class="row form-field-set">
-            <label>Company</label>
-            <input placeholder="Enter Company"/>
-        </div>
-        <div class="row form-field-set">
-            <label>Department</label>
-            <input placeholder="Enter Department"/>
-        </div>
-        <fieldset>
-            <h3>Task Detail</h3>
-            <p>Provide Task details</p>
-            <div class="row form-field-set">
-                <label>Task Date</label>
-                <input placeholder="Enter Department"/>
-            </div>
-            <div class="row form-field-set">
-                <label>Task Title</label>
-                <input placeholder="Enter Task Title"/>
-            </div>
-            <div class="row form-field-set">
-                <label>Activity</label>
-                <input placeholder="Enter Activity"/>
-            </div>
-        </fieldset>
         <div class="row form-cta">
             <button type="reset" onclick="handleCloseSetupStaffClassModal()">
                 <span>Cancel</span>
@@ -185,6 +178,37 @@ function handleCloseSetupManagementModal() {
         item.style.pointerEvents = "auto";
     });
 }; 
+
+async function handleSetupStaffClass(e) {
+    e.preventDefault();
+    const form = document.getElementById("setup-staff-class-form");
+    const staffclassName = form.elements["name"].value;
+
+    const setupButton = document.querySelector('.confirmation-cta button[type="submit"]');
+    const errorMessage = document.querySelector('.error-message');
+
+    errorMessage.innerHTML = "";
+
+    const originalText = setupButton.innerHTML;
+    setupButton.innerHTML = '<span class="spinner"></span>';
+    setupButton.disabled = true;
+
+    try {
+        const response = await setupStaffClassService(TOKEN, {name:staffclassName});
+        if (response.status === "Success") {
+            handleCloseConfirmationModal();
+        } else {
+            errorMessage.innerHTML = (`Setup staff class failed. Please check your credentials and try again`);
+            console.log("Failed to setup staff class");
+        }
+    } catch (error) {
+        errorMessage.innerHTML = (`Setup staff class failed. Please check your credentials and try again`);
+        console.error('Setup staff class failed:', error);
+    } finally {
+        setupButton.innerHTML = originalText;
+        setupButton.disabled = false;
+    }
+};
 
 window.addEventListener("click", (e) => {
     // condition - if the modal is currently rendered && if the click is not within the modal 
