@@ -8,6 +8,31 @@ const markedForDeHighlighting = document.querySelectorAll(".module-title-box, .m
 const headers = ["S/N", "Name", "Company", "Department", "Task Date", "Task Title", "Time Spent", "Manager's Remark", "Status", "View"];
 const rows = [""];
 
+const TOKEN = sessionStorage.getItem('access_token');
+const BASE_ENDPOINT = 'http://52.150.234.195:7268/api';
+
+const setupJobPositionService = async (TOKEN, jobPositionDetails) => {
+    try {
+        const response = await fetch(`${BASE_ENDPOINT}/JobPositions`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${TOKEN}`,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(jobPositionDetails)
+        });
+        const res = await response.json();
+        if (!response.ok) {
+            console.error('Error:', res);
+            throw new Error(res.message);
+        }
+        return res;
+    } catch (error) {
+        console.error('API fetch error:', error);
+        throw error;
+    }
+};
+
 setupJobPositionTable.innerHTML = rows.length > 0 ? (
     `<table>
         <thead>
@@ -54,43 +79,19 @@ setupJobPositionTable.innerHTML = rows.length > 0 ? (
 );
 
 setupJobPositionForm.innerHTML = (`
-    <form>
+       <form id="setup-job-position-form">
         <div class="row form-field-set">
-            <label>Email</label>
-            <input placeholder="Enter Email"/>
+            <label>Job Position Name</label>
+            <input name="jobPositionName" placeholder="Enter Job Position Name"/>
         </div>
         <div class="row form-field-set">
-            <label>Name</label>
-            <input placeholder="Enter Name"/>
+            <label>Job Postion Code</label>
+            <input name="jobPositionCode" placeholder="Enter Job Position Code"/>
         </div>
-        <div class="row form-field-set">
-            <label>Job Position</label>
-            <input placeholder="Enter Position"/>
+         <div class="row form-field-set">
+            <label>Job Postion Required Units</label>
+            <input name="jobPositionRequiredUnits" placeholder="Enter Job Position Required Units"/>
         </div>
-        <div class="row form-field-set">
-            <label>Company</label>
-            <input placeholder="Enter Company"/>
-        </div>
-        <div class="row form-field-set">
-            <label>Department</label>
-            <input placeholder="Enter Department"/>
-        </div>
-        <fieldset>
-            <h3>Task Detail</h3>
-            <p>Provide Task details</p>
-            <div class="row form-field-set">
-                <label>Task Date</label>
-                <input placeholder="Enter Department"/>
-            </div>
-            <div class="row form-field-set">
-                <label>Task Title</label>
-                <input placeholder="Enter Task Title"/>
-            </div>
-            <div class="row form-field-set">
-                <label>Activity</label>
-                <input placeholder="Enter Activity"/>
-            </div>
-        </fieldset>
         <div class="row form-cta">
             <button type="reset" onclick="handleCloseSetupJobPositionModal()">
                 <span>Cancel</span>
@@ -185,6 +186,47 @@ function handleCloseSetupManagementModal() {
         item.style.pointerEvents = "auto";
     });
 }; 
+
+async function handleSetupJobPosition(e) {
+    e.preventDefault();
+    const form = document.getElementById("setup-job-position-form");
+    const jobPositionName = form.elements["jobPositionName"].value;
+    const jobPositionCode = form.elements["jobPositionCode"].value;
+    const jobPositionRequiredUnits = form.elements["jobPositionRequiredUnits"].value;
+
+
+    const setupButton = document.querySelector('.confirmation-cta button[type="submit"]');
+    const errorMessage = document.querySelector('.error-message');
+
+    errorMessage.innerHTML = "";
+
+    const originalText = setupButton.innerHTML;
+    setupButton.innerHTML = '<span class="spinner"></span>';
+    setupButton.disabled = true;
+
+    try {
+        const payload = {
+            name: jobPositionName,
+            code: jobPositionCode, 
+            requiredUnits: jobPositionRequiredUnits
+            
+        };
+        console.log(payload);
+        const response = await setupJobPositionService(TOKEN, payload);
+        if (response.status === "Success") {
+            handleCloseConfirmationModal();
+        } else {
+            errorMessage.innerHTML = (`Setup job position failed. Please check your credentials and try again`);
+            console.log("Failed to setup job position");
+        }
+    } catch (error) {
+        errorMessage.innerHTML = (`Setup job position failed. Please check your credentials and try again`);
+        console.error('Setup job position failed:', error);
+    } finally {
+        setupButton.innerHTML = originalText;
+        setupButton.disabled = false;
+    }
+};
 
 window.addEventListener("click", (e) => {
     // condition - if the modal is currently rendered && if the click is not within the modal 
