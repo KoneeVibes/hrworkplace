@@ -16,18 +16,11 @@ const markedForDeHighlighting = document.querySelectorAll(
   ".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav"
 );
 const headers = [
+  "",
   "S/N",
   "Name",
-  "Company",
-  "Department",
-  "Task Date",
-  "Task Title",
-  "Time Spent",
-  "Manager's Remark",
-  "Status",
-  "View",
 ];
-const rows = [""];
+let rows = [];
 const statesOfNigeria = [
   { id: 1, name: "Abia" },
   { id: 2, name: "Adamawa" },
@@ -96,57 +89,84 @@ const setupLocalGovernmentService = async (TOKEN, localGovernmentDetails) => {
   }
 };
 
-setupLocalGovernmentTable.innerHTML =
-  rows.length > 0
-    ? `<table>
-        <thead>
+const retrieveAllLocalGovernmentService = async (TOKEN) => {
+  try {
+    const response = await fetch(
+      `${BASE_ENDPOINT}/LocalGovernments`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${TOKEN}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const res = await response.json();
+    if (!response.ok) {
+      console.error("Error:", res);
+      throw new Error(res.message);
+    }
+    console.log(res?.data?.items);
+    rows = res?.data?.items;
+    renderTable();
+    return rows;
+  } catch (error) {
+    console.error("API fetch error:", error);
+    throw error;
+  }
+};
+
+const renderTable = () => {
+  setupLocalGovernmentTable.innerHTML =
+    rows && rows.length > 0
+      ? `<table>
+          <thead>
             <tr>
-                ${headers
-                  ?.map(
-                    (header, index) => `
-                    <th key=${index}>
-                        ${header}
-                    </th>
-                `
-                  )
-                  .join("")}
+              ${headers
+        ?.map(
+          (header, index) => `
+                      <th key=${index}>
+                          ${header}
+                      </th>
+                    `
+        )
+        .join("")}
             </tr>
-        </thead>
-        <tbody>
-        ${rows
-          ?.map(
-            (row, index) => `
+          </thead>
+          <tbody>
+          ${rows
+        ?.map(
+          (row, index) => `
                 <tr 
                     key=${index}
                     onclick="handleOpenDetailModal(event)"
                 >
                     <td>
-                        <input 
-                            type="checkbox"
-                        />
+                        <input type="checkbox"/>
                     </td>
-                    <td>${row}</td>
-                    <td>hii</td>
+                    <td>${row?.id}</td>
+                    <td>${row?.name.charAt(0).toUpperCase() + row?.name.slice(1)}</td>
                 </tr>
             `
-          )
-          .join("")}
-        </tbody>
-    </table>`
-    : `<div class="call-to-action">
-        <div>
-            <img src=${"../../assets/search.svg"} alt="search-icon"/>
-        </div>
-        <div>
-            <h3>Nothing to see here...yet</h3>
-            <p>When Ofofon logs his setup local government, they will show up here</p>
-        </div>
-        <div class="cta-box">
-            <button onclick="handleOpenSetupLocalGovernment(event)">
-                <span>Add New Setup Local Government</span>
-            </button>
-        </div>
-    </div>`;
+        )
+        .join("")}
+          </tbody>
+      </table>`
+      : `<div class="call-to-action">
+          <div>
+              <img src=${"/../../assets/search.svg"} alt="search-icon"/>
+          </div>
+          <div>
+              <h3>Nothing to see here...yet</h3>
+              <p>When Ofofon logs his setup local government, they will show up here</p>
+          </div>
+          <div class="cta-box">
+              <button onclick="handleOpenSetupLocalGovernment(event)">
+                  <span>Add New Setup Local Government</span>
+              </button>
+          </div>
+      </div>`;
+};
 
 setupLocalGovernmentForm.innerHTML = `
     <form id="setup-local-government-form">
@@ -157,12 +177,12 @@ setupLocalGovernmentForm.innerHTML = `
         <div class="row form-field-set">
             <label>State</label>
             <select name="state-name">
-            ${statesOfNigeria
-              .map((state) => `<option>${state.name}</option>`)
-              .join("")}
+              <option>Select State</option>
+              ${statesOfNigeria
+    .map((state) => `<option>${state.name}</option>`)
+    .join("")}
             </select>
         </div>
-      
         <div class="row form-cta">
             <button type="reset" onclick="handleCloseSetupLocalGovernmentModal()">
                 <span>Cancel</span>
@@ -289,7 +309,7 @@ async function handleSetupLocalGovernment(e) {
       handleCloseConfirmationModal();
     } else {
       errorMessage.innerHTML = `Setup local government failed. Please check your credentials and try again`;
-      console.log("Failed to setup local government");
+      console.error("Failed to setup local government");
     }
   } catch (error) {
     errorMessage.innerHTML = `Setup local government failed. Please check your credentials and try again`;
@@ -299,6 +319,9 @@ async function handleSetupLocalGovernment(e) {
     setupButton.disabled = false;
   }
 }
+
+renderTable();
+retrieveAllLocalGovernmentService(TOKEN);
 
 window.addEventListener("click", (e) => {
   // condition - if the modal is currently rendered && if the click is not within the modal

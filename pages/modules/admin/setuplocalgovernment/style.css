@@ -58,9 +58,10 @@
 .setup-local-government-module-modal {
     position: fixed;
     left: calc(2 * var(--basic-padding));
-    top: var(--basic-padding);
+    top: 50%;
+    transform: translateY(-50%);
+    max-height: 90vh;
     right: calc(2 * var(--basic-padding));
-    bottom: var(--basic-padding);
     z-index: 1;
     background-color: #FFFFFF;
     box-shadow: 0px 20px 24px -4px #10182814;
@@ -82,6 +83,7 @@
     font-weight: 600;
     font-size: 18px;
     line-height: normal;
+    margin-block: 0;
 }
 
 .module-modal-form {
@@ -101,15 +103,18 @@
 }
 
 .module-modal-form>form .form-field-set>label,
-.module-modal-form>form .form-field-set>input {
+.module-modal-form>form .form-field-set>input,
+.module-modal-form>form .form-field-set>select {
     flex: 0 0 45%;
 }
 
-.module-modal-form>form .form-field-set>input {
+.module-modal-form>form .form-field-set>input,
+.module-modal-form>form .form-field-set>select {
     border: 1px solid #D0D5DD;
     border-radius: 0.5rem;
     padding: calc(var(--basic-padding)/4);
     outline: none;
+    box-sizing: border-box;
 }
 
 .module-modal-form>form fieldset {
@@ -138,7 +143,7 @@
 .form-cta {
     flex-wrap: wrap;
     overflow: hidden;
-    margin-bottom: var(--basic-padding);
+    padding: var(--basic-padding) 0;
 }
 
 .form-cta>button:nth-child(1) {
@@ -251,13 +256,23 @@
     padding: var(--basic-padding);
 }
 
+th {
+    text-align: left;
+}
+
+td {
+    font-weight: 500;
+    color: #101828;
+}
+
 @media screen and (max-width: 425px) {
     .call-to-action img {
         width: 100%;
         height: auto;
     }
 
-    .module-modal-form>form .form-field-set>input {
+    .module-modal-form>form .form-field-set>input,
+    .module-modal-form>form .form-field-set>select {
         width: 100%;
     }
 
