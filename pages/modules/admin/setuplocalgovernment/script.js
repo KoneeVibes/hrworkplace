@@ -18,7 +18,7 @@ const markedForDeHighlighting = document.querySelectorAll(
 const headers = [
   "",
   "S/N",
-  "Name",
+    "Name",
 ];
 let rows = [];
 const statesOfNigeria = [
