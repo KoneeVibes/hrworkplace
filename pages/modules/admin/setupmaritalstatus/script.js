@@ -38,7 +38,7 @@ const setupMaritalStatusService = async (TOKEN, maritalStatusDetails) => {
     }
     return res;
   } catch (error) {
-    console.error("API fetch error:", error);
+    console.error("API post error:", error);
     throw error;
   }
 };
@@ -70,6 +70,59 @@ const retrieveAllMaritalStatusService = async (TOKEN) => {
   }
 };
 
+const retrieveMaritalStatusByIdService = async (TOKEN, maritalStatusId) => {
+  try {
+    const response = await fetch(
+      `${BASE_ENDPOINT}/MaritalStatuses/${maritalStatusId}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${TOKEN}`,
+          "Content-Type": "application/json",
+        },
+      },
+    );
+    const res = await response.json();
+    if (!response.ok) {
+      throw new Error(res.message);
+    }
+    return res?.data;
+  } catch (error) {
+    console.error("API fetch error:", error);
+    throw error;
+  }
+};
+
+const updateMaritalStatusByIdService = async (
+  TOKEN,
+  maritalStatusId,
+  maritalStatusDetails,
+) => {
+  try {
+    const response = await fetch(
+      `${BASE_ENDPOINT}/MaritalStatuses/${maritalStatusId}`,
+      {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${TOKEN}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(maritalStatusDetails),
+      },
+    );
+    const res = await response.json();
+    console.log(res);
+    if (!response.ok) {
+      console.error("Error:", res);
+      throw new Error(res.message);
+    }
+    return res;
+  } catch (error) {
+    console.error("API post error:", error);
+    throw error;
+  }
+};
+
 const renderTable = () => {
   setupMaritalStatusTable.innerHTML =
     rows.length > 0
@@ -93,14 +146,14 @@ const renderTable = () => {
             (row, index) => `
                 <tr 
                     key=${index}
-                    onclick="handleOpenDetailModal(event)"
+                    onclick="handleOpenDetailModal(event, ${row.id})"
                 >
                     <td>
                         <input 
                             type="checkbox"
                         />
                     </td>
-                    <td>${row?.id || index+1}</td>
+                    <td>${row?.id || index + 1}</td>
                     <td>${row?.name}</td>
                 </tr>
             `,
@@ -157,7 +210,7 @@ setupMaritalStatusDetailBox.innerHTML = `
         </div>
     `;
 
-function handleOpenDetailModal(e) {
+async function handleOpenDetailModal(e, maritalStatusId) {
   e.stopPropagation();
   setupMaritalStatusDetailModal.classList.remove("close-modal");
   document.body.style.overflow = "hidden";
@@ -165,6 +218,70 @@ function handleOpenDetailModal(e) {
     item.style.opacity = 0.1;
     item.style.pointerEvents = "none";
   });
+
+  setupMaritalStatusDetailBox.innerHTML = `<p style="text-align: center">Loading...</p>`;
+
+  try {
+    const response = await retrieveMaritalStatusByIdService(
+      TOKEN,
+      maritalStatusId,
+    );
+
+    setupMaritalStatusDetailBox.innerHTML = `
+      <form id="detail-marital-status-form">
+        <div class="row form-field-set">
+            <label>Marital Status</label>
+           <select name="marital-status">
+  <option>Select Marital Status</option>
+  ${["single", "married", "divorced", "widow", "separated"]
+    .map(
+      (status) =>
+        `<option ${status === response.name ? "selected" : ""}>${status}</option>`,
+    )
+    .join("")}
+</select>
+        </div>
+        
+       
+        <div class="row form-cta">
+            <button type="reset" onclick="handleCloseDetailModal()">
+                <span>Cancel</span>
+            </button>
+            <button type="button" id="update-marital-status-btn">
+                <span>Save Changes</span>
+            </button>
+        </div>
+      </form>
+    `;
+
+    document
+      .getElementById("update-marital-status-btn")
+      .addEventListener("click", async () => {
+        const form = document.getElementById("detail-marital-status-form");
+        const updatedMaritalStatus = form.elements["marital-status"].value;
+
+        const payload = {
+          name: updatedMaritalStatus,
+        };
+
+        try {
+          const response = await updateMaritalStatusByIdService(
+            TOKEN,
+            maritalStatusId,
+            payload,
+          );
+
+          if (response.status == "Success") {
+            handleCloseDetailModal();
+            retrieveAllMaritalStatusService(TOKEN);
+          }
+        } catch (error) {
+          console.error("Update failed:", error);
+        }
+      });
+  } catch (error) {
+    setupMaritalStatusDetailBox.innerHTML = `<p class="error-message">Failed to load marital status details.</p>`;
+  }
 }
 
 function handleCloseDetailModal() {
@@ -270,7 +387,6 @@ async function handleSetupMaritalStatus(e) {
     setupButton.disabled = false;
   }
 }
-
 
 renderTable();
 retrieveAllMaritalStatusService(TOKEN);

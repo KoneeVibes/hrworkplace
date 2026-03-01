@@ -45,7 +45,7 @@ const setupNationalityService = async (TOKEN, nationalityDetails) => {
     }
     return res;
   } catch (error) {
-    console.error("API fetch error:", error);
+    console.error("API post error:", error);
     throw error;
   }
 };
@@ -77,6 +77,49 @@ const retrieveAllNationalitiesService = async (TOKEN) => {
   }
 };
 
+const retrieveNationalityByIdService = async (TOKEN, nationalityId) => {
+  try {
+    const response = await fetch(`${BASE_ENDPOINT}/Nationalities/${nationalityId}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+        "Content-Type": "application/json",
+      },
+    });
+    const res = await response.json();
+    if (!response.ok) {
+      throw new Error(res.message);
+    }
+    return res?.data;
+  } catch (error) {
+    console.error("API fetch error:", error);
+    throw error;
+  }
+};
+
+const updateNationalityByIdService = async (TOKEN, nationalityId, nationalityDetails) => {
+  try {
+    const response = await fetch(`${BASE_ENDPOINT}/Nationalities/${nationalityId}`, {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(nationalityDetails),
+    });
+    const res = await response.json();
+    console.log(res);
+    if (!response.ok) {
+      console.error("Error:", res);
+      throw new Error(res.message);
+    }
+    return res;
+  } catch (error) {
+    console.error("API post error:", error);
+    throw error;
+  }
+};
+
 
 const renderTable = () => {
 setupNationalityTable.innerHTML =
@@ -101,7 +144,7 @@ setupNationalityTable.innerHTML =
             (row, index) => `
                 <tr 
                     key=${index}
-                    onclick="handleOpenDetailModal(event)"
+                    onclick="handleOpenDetailModal(event, ${row.id})"
                 >
                     <td>
                         <input 
@@ -157,7 +200,7 @@ setupNationalityDetailBox.innerHTML = `
         </div>
     `;
 
-function handleOpenDetailModal(e) {
+async function handleOpenDetailModal(e, nationalityId) {
   e.stopPropagation();
   setupNationalityDetailModal.classList.remove("close-modal");
   document.body.style.overflow = "hidden";
@@ -165,6 +208,56 @@ function handleOpenDetailModal(e) {
     item.style.opacity = 0.1;
     item.style.pointerEvents = "none";
   });
+
+   setupNationalityDetailBox.innerHTML = `<p style="text-align: center">Loading...</p>`;
+
+  try {
+    const response = await retrieveNationalityByIdService(TOKEN, nationalityId);
+
+    setupNationalityDetailBox.innerHTML = `
+      <form id="detail-nationality-form">
+       <div class="row form-field-set">
+            <label>Nationality</label>
+            <input name="nationalityName" value="${response.name}" placeholder="Enter Nationality"/>
+        </div>
+        
+        <div class="row form-cta">
+            <button type="reset" onclick="handleCloseDetailModal()">
+                <span>Cancel</span>
+            </button>
+            <button type="button" id="update-nationality-btn">
+                <span>Save Changes</span>
+            </button>
+        </div>
+      </form>
+    `;
+
+    document.getElementById("update-nationality-btn").addEventListener("click", async () => {
+      const form = document.getElementById("detail-nationality-form");
+      const updatedNationaltiy = form.elements["nationalityName"].value;
+
+      const payload = {
+        name: updatedNationaltiy,
+      };
+
+      try {
+        const response = await updateNationalityByIdService(
+          TOKEN,
+          nationalityId,
+          payload,
+        );
+
+        if (response.status == "Success") {
+          handleCloseDetailModal();
+          retrieveAllNationalitiesService(TOKEN);
+        }
+      } catch (error) {
+        console.error("Update failed:", error);
+      }
+    });
+  } catch (error) {
+    setupNationalityDetailBox.innerHTML = `<p class="error-message">Failed to load nationality details.</p>`;
+  }
 }
 
 function handleCloseDetailModal() {
