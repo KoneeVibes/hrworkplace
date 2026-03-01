@@ -254,10 +254,10 @@ async function handleSetupPromotion(e) {
     const payload = {
       id: promotionId,
       ...{
-        title: promotionTitle,
+        title: promotionTitle
       },
       ...{
-        body: promotionBody,
+        body: promotionBody
       },
     };
     const response = await setupPromotionService(TOKEN, payload);

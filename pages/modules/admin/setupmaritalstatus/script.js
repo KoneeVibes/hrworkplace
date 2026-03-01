@@ -1,33 +1,22 @@
 const setupMaritalStatusTable = document.querySelector(".module-table");
 const setupMaritalStatusModal = document.querySelector(
-  ".setup-marital-status-module-modal"
+  ".setup-marital-status-module-modal",
 );
 const setupMaritalStatusForm = document.querySelector(".module-modal-form");
 const setupMaritalStatusConfirmationModal = document.querySelector(
-  ".setup-marital-status-confirmation-modal"
+  ".setup-marital-status-confirmation-modal",
 );
 const setupMaritalStatusDetailModal = document.querySelector(
-  ".module-detail-modal"
+  ".module-detail-modal",
 );
 const setupMaritalStatusDetailBox = document.querySelector(
-  ".module-modal-detail-box"
+  ".module-modal-detail-box",
 );
 const markedForDeHighlighting = document.querySelectorAll(
-  ".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav"
+  ".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav",
 );
-const headers = [
-  "S/N",
-  "Name",
-  "Company",
-  "Department",
-  "Task Date",
-  "Task Title",
-  "Time Spent",
-  "Manager's Remark",
-  "Status",
-  "View",
-];
-const rows = [""];
+const headers = ["", "S/N", "Name"];
+let rows = [];
 
 const TOKEN = sessionStorage.getItem("access_token");
 const BASE_ENDPOINT = "http://52.150.234.195:7268/api";
@@ -54,9 +43,37 @@ const setupMaritalStatusService = async (TOKEN, maritalStatusDetails) => {
   }
 };
 
-setupMaritalStatusTable.innerHTML =
-  rows.length > 0
-    ? `<table>
+const retrieveAllMaritalStatusService = async (TOKEN) => {
+  try {
+    const response = await fetch(
+      `${BASE_ENDPOINT}/MaritalStatuses
+`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${TOKEN}`,
+          "Content-Type": "application/json",
+        },
+      },
+    );
+    const res = await response.json();
+    if (!response.ok) {
+      console.error("Error:", res);
+      throw new Error(res.message);
+    }
+    rows = res?.data;
+    renderTable();
+    return rows;
+  } catch (error) {
+    console.error("API fetch error:", error);
+    throw error;
+  }
+};
+
+const renderTable = () => {
+  setupMaritalStatusTable.innerHTML =
+    rows.length > 0
+      ? `<table>
         <thead>
             <tr>
                 ${headers
@@ -65,7 +82,7 @@ setupMaritalStatusTable.innerHTML =
                     <th key=${index}>
                         ${header}
                     </th>
-                `
+                `,
                   )
                   .join("")}
             </tr>
@@ -83,15 +100,15 @@ setupMaritalStatusTable.innerHTML =
                             type="checkbox"
                         />
                     </td>
-                    <td>${row}</td>
-                    <td>hii</td>
+                    <td>${row?.id || index+1}</td>
+                    <td>${row?.name}</td>
                 </tr>
-            `
+            `,
           )
           .join("")}
         </tbody>
     </table>`
-    : `<div class="call-to-action">
+      : `<div class="call-to-action">
         <div>
             <img src=${"../../assets/search.svg"} alt="search-icon"/>
         </div>
@@ -105,6 +122,7 @@ setupMaritalStatusTable.innerHTML =
             </button>
         </div>
     </div>`;
+};
 
 setupMaritalStatusForm.innerHTML = `
     <form id="setup-marital-status-form">
@@ -222,7 +240,7 @@ async function handleSetupMaritalStatus(e) {
   const maritalStatus = form.elements["marital-status"].value;
 
   const setupButton = document.querySelector(
-    '.confirmation-cta button[type="submit"]'
+    '.confirmation-cta button[type="submit"]',
   );
   const errorMessage = document.querySelector(".error-message");
 
@@ -239,6 +257,7 @@ async function handleSetupMaritalStatus(e) {
     const response = await setupMaritalStatusService(TOKEN, payload);
     if (response.status === "Success") {
       handleCloseConfirmationModal();
+      retrieveAllMaritalStatusService(TOKEN);
     } else {
       errorMessage.innerHTML = `Setup Marital Status failed. Please check your credentials and try again`;
       console.log("Failed to setup marital status");
@@ -252,6 +271,9 @@ async function handleSetupMaritalStatus(e) {
   }
 }
 
+
+renderTable();
+retrieveAllMaritalStatusService(TOKEN);
 window.addEventListener("click", (e) => {
   // condition - if the modal is currently rendered && if the click is not within the modal
   if (

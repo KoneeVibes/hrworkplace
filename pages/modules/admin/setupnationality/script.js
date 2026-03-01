@@ -16,21 +16,17 @@ const markedForDeHighlighting = document.querySelectorAll(
   ".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav"
 );
 const headers = [
+  "",
   "S/N",
-  "Name",
-  "Company",
-  "Department",
-  "Task Date",
-  "Task Title",
-  "Time Spent",
-  "Manager's Remark",
-  "Status",
-  "View",
+  "Name"
 ];
-const rows = [""];
+
+const BASE_ENDPOINT = "http://52.150.234.195:7268/api";
+
+let rows = [];
 
 const TOKEN = sessionStorage.getItem("access_token");
-const BASE_ENDPOINT = "http://52.150.234.195:7268/api";
+
 
 const setupNationalityService = async (TOKEN, nationalityDetails) => {
   try {
@@ -54,6 +50,35 @@ const setupNationalityService = async (TOKEN, nationalityDetails) => {
   }
 };
 
+const retrieveAllNationalitiesService = async (TOKEN) => {
+  try {
+    const response = await fetch(
+      `${BASE_ENDPOINT}/Nationalities
+`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${TOKEN}`,
+          "Content-Type": "application/json",
+        },
+      },
+    );
+    const res = await response.json();
+    if (!response.ok) {
+      console.error("Error:", res);
+      throw new Error(res.message);
+    }
+    rows = res?.data?.items;
+    renderTable();
+    return rows;
+  } catch (error) {
+    console.error("API fetch error:", error);
+    throw error;
+  }
+};
+
+
+const renderTable = () => {
 setupNationalityTable.innerHTML =
   rows.length > 0
     ? `<table>
@@ -83,8 +108,8 @@ setupNationalityTable.innerHTML =
                             type="checkbox"
                         />
                     </td>
-                    <td>${row}</td>
-                    <td>hii</td>
+                    <td>${row?.id}</td>
+                    <td>${row.name}</td>
                 </tr>
             `
           )
@@ -105,6 +130,7 @@ setupNationalityTable.innerHTML =
             </button>
         </div>
     </div>`;
+        }
 
 setupNationalityForm.innerHTML = `
     <form id="setup-nationality-form">
@@ -229,6 +255,7 @@ async function handleSetupNationality(e) {
     const response = await setupNationalityService(TOKEN, payload);
     if (response.status === "Success") {
       handleCloseConfirmationModal();
+      retrieveAllNationalitiesService(TOKEN);
     } else {
       errorMessage.innerHTML = `Setup Nationality failed. Please check your credentials and try again`;
       console.log("Failed to setup nationality");
@@ -241,6 +268,9 @@ async function handleSetupNationality(e) {
     setupButton.disabled = false;
   }
 }
+
+renderTable();
+retrieveAllNationalitiesService(TOKEN);
 
 window.addEventListener("click", (e) => {
   // condition - if the modal is currently rendered && if the click is not within the modal

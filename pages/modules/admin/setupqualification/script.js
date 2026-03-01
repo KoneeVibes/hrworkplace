@@ -16,18 +16,11 @@ const markedForDeHighlighting = document.querySelectorAll(
   ".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav"
 );
 const headers = [
+  "",
   "S/N",
-  "Name",
-  "Company",
-  "Department",
-  "Task Date",
-  "Task Title",
-  "Time Spent",
-  "Manager's Remark",
-  "Status",
-  "View",
+  "Name"
 ];
-const rows = [""];
+let rows = [];
 
 const TOKEN = sessionStorage.getItem("access_token");
 const BASE_ENDPOINT = "http://52.150.234.195:7268/api";
@@ -57,6 +50,35 @@ const setupQualificationService = async (TOKEN, qualificationDetails) => {
   }
 };
 
+const retrieveAllQualificationService = async (TOKEN) => {
+  try {
+    const response = await fetch(
+      `${BASE_ENDPOINT}/Qualifications
+`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${TOKEN}`,
+          "Content-Type": "application/json",
+        },
+      },
+    );
+    const res = await response.json();
+    if (!response.ok) {
+      console.error("Error:", res);
+      throw new Error(res.message);
+    }
+    rows = res?.data;
+    renderTable();
+    return rows;
+  } catch (error) {
+    console.error("API fetch error:", error);
+    throw error;
+  }
+};
+
+
+const renderTable = () => {
 setupQualificationTable.innerHTML =
   rows.length > 0
     ? `<table>
@@ -86,8 +108,8 @@ setupQualificationTable.innerHTML =
                             type="checkbox"
                         />
                     </td>
-                    <td>${row}</td>
-                    <td>hii</td>
+                    <td>${row?.id}</td>
+                    <td>${row?.name}</td>
                 </tr>
             `
           )
@@ -108,6 +130,7 @@ setupQualificationTable.innerHTML =
             </button>
         </div>
     </div>`;
+        }
 
 setupQualificationForm.innerHTML = `
     <form id="setup-qualification-form">
@@ -231,6 +254,7 @@ async function handleSetupQualification(e) {
     const response = await setupQualificationService(TOKEN, payload);
     if (response.status === "Success") {
       handleCloseConfirmationModal();
+      retrieveAllQualificationService(TOKEN);
     } else {
       errorMessage.innerHTML = `Setup Qualification failed. Please check your credentials and try again`;
       console.log("Failed to setup qualification");
@@ -243,6 +267,9 @@ async function handleSetupQualification(e) {
     setupButton.disabled = false;
   }
 }
+
+renderTable();
+retrieveAllQualificationService(TOKEN);
 
 window.addEventListener("click", (e) => {
   // condition - if the modal is currently rendered && if the click is not within the modal

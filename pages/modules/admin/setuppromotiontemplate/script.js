@@ -5,8 +5,8 @@ const setupPromotionTemplateConfirmationModal = document.querySelector(".setup-p
 const setupPromotionTemplateDetailModal = document.querySelector(".module-detail-modal");
 const setupPromotionTemplateDetailBox = document.querySelector(".module-modal-detail-box");
 const markedForDeHighlighting = document.querySelectorAll(".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav");
-const headers = ["S/N", "Name", "Company", "Department", "Task Date", "Task Title", "Time Spent", "Manager's Remark", "Status", "View"];
-const rows = [""];
+const headers = ["", "S/N", "Title", "Body"];
+let rows = [];
 
 setupPromotionTemplateTable.innerHTML = rows.length > 0 ? (
     `<table>

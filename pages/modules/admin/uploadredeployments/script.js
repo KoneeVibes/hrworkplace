@@ -1,33 +1,36 @@
 const uploadRedeploymentsTable = document.querySelector(".module-table");
 const uploadRedeploymentsModal = document.querySelector(
-  ".upload-redeployments-module-modal"
+  ".upload-redeployments-module-modal",
 );
 const uploadRedeploymentsForm = document.querySelector(".module-modal-form");
 const uploadRedeploymentsConfirmationModal = document.querySelector(
-  ".upload-redeployments-confirmation-modal"
+  ".upload-redeployments-confirmation-modal",
 );
 const uploadRedeploymentsDetailModal = document.querySelector(
-  ".module-detail-modal"
+  ".module-detail-modal",
 );
 const uploadRedeploymentsDetailBox = document.querySelector(
-  ".module-modal-detail-box"
+  ".module-modal-detail-box",
 );
 const markedForDeHighlighting = document.querySelectorAll(
-  ".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav"
+  ".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav",
 );
 const headers = [
+  "",
   "S/N",
-  "Name",
-  "Company",
-  "Department",
-  "Task Date",
-  "Task Title",
-  "Time Spent",
-  "Manager's Remark",
-  "Status",
-  "View",
+  "CompanyName",
+  "LastName",
+  "FirstName",
+  "EmployeeUsername",
+  "DepartmentName",
+  "MonthsInOldUnit",
+  "OldLineManagerUsername",
+  "CurrentLineManagerUsername",
+  "JobPosition",
+  "TransferDate",
+  "ResumptionDate",
 ];
-const rows = [""];
+let rows = [];
 
 const TOKEN = sessionStorage.getItem("access_token");
 const BASE_ENDPOINT = "http://52.150.234.195:7268/api";
@@ -54,9 +57,37 @@ const setupRedeploymentService = async (TOKEN, redeploymentDetails) => {
   }
 };
 
-uploadRedeploymentsTable.innerHTML =
-  rows.length > 0
-    ? `<table>
+const retrieveAllRedeploymentsService = async (TOKEN) => {
+  try {
+    const response = await fetch(
+      `${BASE_ENDPOINT}/Redeployments
+`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${TOKEN}`,
+          "Content-Type": "application/json",
+        },
+      },
+    );
+    const res = await response.json();
+    if (!response.ok) {
+      console.error("Error:", res);
+      throw new Error(res.message);
+    }
+    rows = res?.data?.items;
+    renderTable();
+    return rows;
+  } catch (error) {
+    console.error("API fetch error:", error);
+    throw error;
+  }
+};
+
+const renderTable = () => {
+  uploadRedeploymentsTable.innerHTML =
+    rows.length > 0
+      ? `<table>
         <thead>
             <tr>
                 ${headers
@@ -65,7 +96,7 @@ uploadRedeploymentsTable.innerHTML =
                     <th key=${index}>
                         ${header}
                     </th>
-                `
+                `,
                   )
                   .join("")}
             </tr>
@@ -83,15 +114,26 @@ uploadRedeploymentsTable.innerHTML =
                             type="checkbox"
                         />
                     </td>
-                    <td>${row}</td>
-                    <td>hii</td>
+                    <td>${row?.id}</td>
+                    <td>${rows?.companyName}</td>
+                     <td>${rows?.lastName}</td>
+                      <td>${rows?.firstName}</td>
+                       <td>${rows?.employeeUsername}</td>
+                        <td>${rows?.departmentName}</td>
+                         <td>${rows?.monthsInOldUnit}</td>
+                          <td>${rows?.oldLineManagerUsername}</td>
+                           <td>${rows?.currentLineManagerUsername}</td>
+                            <td>${rows?.jobPosition}</td>
+                             <td>${rows?.transferDate}</td>
+                              <td>${rows?.resumptionDate}</td>
+
                 </tr>
-            `
+            `,
           )
           .join("")}
         </tbody>
     </table>`
-    : `<div class="call-to-action">
+      : `<div class="call-to-action">
         <div>
             <img src=${"../../assets/search.svg"} alt="search-icon"/>
         </div>
@@ -105,6 +147,7 @@ uploadRedeploymentsTable.innerHTML =
             </button>
         </div>
     </div>`;
+};
 
 uploadRedeploymentsForm.innerHTML = `
     <form id="setup-redeployment-form">
@@ -258,7 +301,7 @@ async function handleSetupRedeployment(e) {
   const jobPositionId = form.elements["job-position-id"].value;
 
   const setupButton = document.querySelector(
-    '.confirmation-cta button[type="submit"]'
+    '.confirmation-cta button[type="submit"]',
   );
   const errorMessage = document.querySelector(".error-message");
 
@@ -284,6 +327,7 @@ async function handleSetupRedeployment(e) {
     const response = await setupRedeploymentService(TOKEN, payload);
     if (response.status === "Success") {
       handleCloseConfirmationModal();
+      retrieveAllRedeploymentsService(TOKEN);
     } else {
       errorMessage.innerHTML = `Redeployment Upload failed. Please check your credentials and try again`;
       console.log("Failed to upload redeployment");
@@ -297,6 +341,8 @@ async function handleSetupRedeployment(e) {
   }
 }
 
+renderTable();
+retrieveAllRedeploymentsService(TOKEN);
 window.addEventListener("click", (e) => {
   // condition - if the modal is currently rendered && if the click is not within the modal
   if (

@@ -5,8 +5,8 @@ const setupCompetencyGroupConfirmationModal = document.querySelector(".setup-com
 const setupCompetencyGroupDetailModal = document.querySelector(".module-detail-modal");
 const setupCompetencyGroupDetailBox = document.querySelector(".module-modal-detail-box");
 const markedForDeHighlighting = document.querySelectorAll(".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav");
-const headers = ["S/N", "Name", "Company", "Department", "Task Date", "Task Title", "Time Spent", "Manager's Remark", "Status", "View"];
-const rows = [""];
+const headers = ["","S/N", "Name"];
+let rows = [];
 
 const TOKEN = sessionStorage.getItem('access_token');
 const BASE_ENDPOINT = 'http://52.150.234.195:7268/api';
@@ -28,11 +28,82 @@ const setupCompetencyGroupService = async (TOKEN, competencyGroupDetails) => {
         }
         return res;
     } catch (error) {
-        console.error('API fetch error:', error);
+        console.error('API post error:', error);
         throw error;
     }
 };
 
+const retrieveAllCompetencyService = async (TOKEN) => {
+  try {
+    const response = await fetch(
+      `${BASE_ENDPOINT}/competency-groups`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${TOKEN}`,
+          "Content-Type": "application/json",
+        },
+      },
+    );
+    const res = await response.json();
+    if (!response.ok) {
+      console.error("Error:", res);
+      throw new Error(res.message);
+    }
+    rows = res?.data;
+    renderTable();
+    return rows;
+  } catch (error) {
+    console.error("API fetch error:", error);
+    throw error;
+  }
+};
+
+const retrieveCompetencyGroupByIdService = async (TOKEN, competencyGroupId) => {
+  try {
+    const response = await fetch(`${BASE_ENDPOINT}/competency-groups/${competencyGroupId}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+        "Content-Type": "application/json",
+      },
+    });
+    const res = await response.json();
+    if (!response.ok) {
+      throw new Error(res.message);
+    }
+    return res?.data;
+  } catch (error) {
+    console.error("API fetch error:", error);
+    throw error;
+  }
+};
+
+const updateCompetencyGroupByIdService = async (TOKEN, competencyGroupId, competencyGroupDetails) => {
+  try {
+    const response = await fetch(`${BASE_ENDPOINT}/competency-groups/${competencyGroupId}`, {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(competencyGroupDetails),
+    });
+    const res = await response.json();
+    console.log(res);
+    if (!response.ok) {
+      console.error("Error:", res);
+      throw new Error(res.message);
+    }
+    return res;
+  } catch (error) {
+    console.error("API post error:", error);
+    throw error;
+  }
+};
+
+
+const renderTable = () => {
 setupCompetencyGroupTable.innerHTML = rows.length > 0 ? (
     `<table>
         <thead>
@@ -48,15 +119,15 @@ setupCompetencyGroupTable.innerHTML = rows.length > 0 ? (
         ${rows?.map((row, index) => `
                 <tr 
                     key=${index}
-                    onclick="handleOpenDetailModal(event)"
+                    onclick="handleOpenDetailModal(event, ${row.id})"
                 >
                     <td>
                         <input 
                             type="checkbox"
                         />
                     </td>
-                    <td>${row}</td>
-                    <td>hii</td>
+                    <td>${row.id}</td>
+                    <td>${row.name}</td>
                 </tr>
             `).join('')}
         </tbody>
@@ -77,6 +148,7 @@ setupCompetencyGroupTable.innerHTML = rows.length > 0 ? (
         </div>
     </div>`
 );
+}
 
 setupCompetencyGroupForm.innerHTML = (`
     <form
@@ -104,7 +176,7 @@ setupCompetencyGroupDetailBox.innerHTML = (`
         </div>
     `)
 
-function handleOpenDetailModal(e) {
+async function handleOpenDetailModal(e, competencyGroupId) {
     e.stopPropagation();
     setupCompetencyGroupDetailModal.classList.remove("close-modal");
     document.body.style.overflow = "hidden";
@@ -112,6 +184,56 @@ function handleOpenDetailModal(e) {
         item.style.opacity = 0.1;
         item.style.pointerEvents = "none";
     });
+
+    setupCompetencyGroupDetailBox.innerHTML = `<p style="text-align: center">Loading...</p>`;
+
+  try {
+    const competencyGroup = await retrieveCompetencyGroupByIdService(TOKEN, competencyGroupId);
+
+    setupCompetencyGroupDetailBox.innerHTML = `
+      <form id="detail-competency-group-form">
+         <div class="row form-field-set">
+            <label>Name</label>
+            <input name="name" value="${competencyGroup.name}" placeholder="Enter Name"/>
+        </div>
+        <div class="row form-cta">
+            <button type="reset" onclick="handleCloseDetailModal()">
+                <span>Cancel</span>
+            </button>
+            <button type="button" id="update-competency-group-btn">
+                <span>Save Changes</span>
+            </button>
+        </div>
+      </form>
+    `;
+
+    document.getElementById("update-competency-group-btn").addEventListener("click", async () => {
+      const form = document.getElementById("detail-competency-group-form");
+      const updatedName = form.elements["name"].value;
+
+
+      const payload = {
+        name: updatedName,
+      };
+
+      try {
+        const response = await updateCompetencyGroupByIdService(
+          TOKEN,
+          competencyGroupId,
+          payload,
+        );
+
+        if (response.status == "Success") {
+          handleCloseDetailModal();
+          retrieveAllCompetencyService(TOKEN);
+        }
+      } catch (error) {
+        console.error("Update failed:", error);
+      }
+    });
+  } catch (error) {
+    setupCompetencyGroupDetailBox.innerHTML = `<p class="error-message">Failed to load competency group details.</p>`;
+  }
 }
 
 function handleCloseDetailModal() {
@@ -199,6 +321,7 @@ async function handleSetupCompetencyGroup(e) {
         const response = await setupCompetencyGroupService(TOKEN, { name: competencyGroupName });
         if (response.status === "Success") {
             handleCloseConfirmationModal();
+            retrieveAllCompetencyService(TOKEN);
         } else {
             errorMessage.innerHTML = (`Setup competency group failed. Please check your credentials and try again`);
             console.log("Fail to setup competency group");
@@ -212,6 +335,8 @@ async function handleSetupCompetencyGroup(e) {
     }
 };
 
+renderTable();
+retrieveAllCompetencyService(TOKEN);
 window.addEventListener("click", (e) => {
     // condition - if the modal is currently rendered && if the click is not within the modal 
     if (!setupCompetencyGroupModal.classList.contains("close-modal") && !setupCompetencyGroupModal.contains(e.target)) {
