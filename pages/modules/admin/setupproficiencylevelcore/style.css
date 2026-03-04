@@ -88,48 +88,57 @@
     overflow: hidden;
 }
 
-.module-modal-form>form {
-    padding: 0 var(--basic-padding);
+.module-modal-form > form,
+.module-detail-modal form {
+  padding: 0 var(--basic-padding);
 }
 
-.module-modal-form>form .form-field-set {
-    padding-block: calc(var(--basic-padding));
-    border-bottom: 1px solid #EAECF0;
-    flex-wrap: wrap;
-    overflow: hidden;
-    justify-content: space-between;
+.module-modal-form > form .form-field-set,
+.module-detail-modal form .form-field-set {
+  padding-block: calc(var(--basic-padding));
+  border-bottom: 1px solid #eaecf0;
+  flex-wrap: wrap;
+  overflow: hidden;
+  justify-content: space-between;
 }
 
-.module-modal-form>form .form-field-set>label,
-.module-modal-form>form .form-field-set>input {
-    flex: 0 0 45%;
+.module-modal-form > form .form-field-set > label,
+.module-modal-form > form .form-field-set > input,
+.module-detail-modal form .form-field-set > label,
+.module-detail-modal form .form-field-set > input {
+  flex: 0 0 45%;
 }
 
-.module-modal-form>form .form-field-set>input {
-    border: 1px solid #D0D5DD;
-    border-radius: 0.5rem;
-    padding: calc(var(--basic-padding)/4);
-    outline: none;
+.module-modal-form > form .form-field-set > input,
+.module-detail-modal form .form-field-set > input {
+  border: 1px solid #d0d5dd;
+  border-radius: 0.5rem;
+  padding: calc(var(--basic-padding) / 4);
+  outline: none;
 }
 
-.module-modal-form>form fieldset {
-    border: none;
-    padding-block: var(--basic-padding);
-    margin-inline: 0;
-    padding-inline: 0;
-    min-inline-size: auto;
+.module-modal-form > form fieldset,
+.module-detail-modal form fieldset {
+  border: none;
+  padding-block: var(--basic-padding);
+  margin-inline: 0;
+  padding-inline: 0;
+  min-inline-size: auto;
 }
 
-.module-modal-form>form fieldset>h3 {
-    margin-block: 0;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: normal;
+.module-modal-form > form fieldset > h3,
+.module-detail-modal form fieldset > h3 {
+  margin-block: 0;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: normal;
 }
 
-.module-modal-form>form fieldset>p {
-    margin-block-end: 0;
+.module-modal-form > form fieldset > p,
+.module-detail-modal form fieldset > p {
+  margin-block-end: 0;
 }
+
 
 .setup-proficiency-level-core-modal-close-icon {
     cursor: pointer;

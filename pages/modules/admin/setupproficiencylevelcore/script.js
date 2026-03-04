@@ -1,41 +1,31 @@
 const setupProficiencyLevelCoreTable = document.querySelector(".module-table");
 const setupProficiencyLevelCoreModal = document.querySelector(
-  ".setup-proficiency-level-core-module-modal"
+  ".setup-proficiency-level-core-module-modal",
 );
 const setupProficiencyLevelCoreForm =
   document.querySelector(".module-modal-form");
 const setupProficiencyLevelCoreConfirmationModal = document.querySelector(
-  ".setup-proficiency-level-core-confirmation-modal"
+  ".setup-proficiency-level-core-confirmation-modal",
 );
 const setupProficiencyLevelCoreDetailModal = document.querySelector(
-  ".module-detail-modal"
+  ".module-detail-modal",
 );
 const setupProficiencyLevelCoreDetailBox = document.querySelector(
-  ".module-modal-detail-box"
+  ".module-modal-detail-box",
 );
 const markedForDeHighlighting = document.querySelectorAll(
-  ".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav"
+  ".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav",
 );
-const headers = [
-  "S/N",
-  "Name",
-  "Company",
-  "Department",
-  "Task Date",
-  "Task Title",
-  "Time Spent",
-  "Manager's Remark",
-  "Status",
-  "View",
-];
-const rows = [""];
+const headers = ["", "S/N", "Name"];
+
+let rows = [];
 
 const TOKEN = sessionStorage.getItem("access_token");
 const BASE_ENDPOINT = "http://52.150.234.195:7268/api";
 
 const setupProficiencyLevelCoreService = async (
   TOKEN,
-  proficiencyLevelCoreDetails
+  proficiencyLevelCoreDetails,
 ) => {
   try {
     const response = await fetch(
@@ -47,7 +37,7 @@ const setupProficiencyLevelCoreService = async (
           "Content-Type": "application/json",
         },
         body: JSON.stringify(proficiencyLevelCoreDetails),
-      }
+      },
     );
     const res = await response.json();
     if (!response.ok) {
@@ -56,14 +46,99 @@ const setupProficiencyLevelCoreService = async (
     }
     return res;
   } catch (error) {
+    console.error("API post error:", error);
+    throw error;
+  }
+};
+
+const retrieveAllProficiencyLevelCoreService = async (TOKEN) => {
+  try {
+    const response = await fetch(
+      `${BASE_ENDPOINT}/Proficiencies/level-core-dimensions`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${TOKEN}`,
+          "Content-Type": "application/json",
+        },
+      },
+    );
+    const res = await response.json();
+
+    if (!response.ok) {
+      console.error("Error:", res);
+      throw new Error(res.message);
+    }
+
+    rows = res?.data;
+    renderTable();
+    return rows;
+  } catch (error) {
     console.error("API fetch error:", error);
     throw error;
   }
 };
 
-setupProficiencyLevelCoreTable.innerHTML =
-  rows.length > 0
-    ? `<table>
+const retrieveProficiencyLevelCoreByIdService = async (
+  TOKEN,
+  proficiencyLevelCoreId,
+) => {
+  try {
+    const response = await fetch(
+      `${BASE_ENDPOINT}/Proficiencies/level-core-dimensions/${proficiencyLevelCoreId}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${TOKEN}`,
+          "Content-Type": "application/json",
+        },
+      },
+    );
+    const res = await response.json();
+    if (!response.ok) {
+      throw new Error(res.message);
+    }
+    return res?.data;
+  } catch (error) {
+    console.error("API fetch error:", error);
+    throw error;
+  }
+};
+
+const updateProficiencyLevelCoreByIdService = async (
+  TOKEN,
+  proficiencyLevelCoreId,
+  proficiencyLevelCoreDetails,
+) => {
+  try {
+    const response = await fetch(
+      `${BASE_ENDPOINT}/Proficiencies/level-core-dimensions/${proficiencyLevelCoreId}`,
+      {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${TOKEN}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(proficiencyLevelCoreDetails),
+      },
+    );
+    const res = await response.json();
+    console.log(res);
+    if (!response.ok) {
+      console.error("Error:", res);
+      throw new Error(res.message);
+    }
+    return res;
+  } catch (error) {
+    console.error("API post error:", error);
+    throw error;
+  }
+};
+
+const renderTable = () => {
+  setupProficiencyLevelCoreTable.innerHTML =
+    rows.length > 0
+      ? `<table>
         <thead>
             <tr>
                 ${headers
@@ -72,7 +147,7 @@ setupProficiencyLevelCoreTable.innerHTML =
                     <th key=${index}>
                         ${header}
                     </th>
-                `
+                `,
                   )
                   .join("")}
             </tr>
@@ -83,22 +158,22 @@ setupProficiencyLevelCoreTable.innerHTML =
             (row, index) => `
                 <tr 
                     key=${index}
-                    onclick="handleOpenDetailModal(event)"
+                    onclick="handleOpenDetailModal(event, ${row.id})"
                 >
                     <td>
                         <input 
                             type="checkbox"
                         />
                     </td>
-                    <td>${row}</td>
-                    <td>hii</td>
+                    <td>${row?.id}</td>
+                    <td>${row.name}</td>
                 </tr>
-            `
+            `,
           )
           .join("")}
         </tbody>
     </table>`
-    : `<div class="call-to-action">
+      : `<div class="call-to-action">
         <div>
             <img src=${"../../assets/search.svg"} alt="search-icon"/>
         </div>
@@ -112,6 +187,7 @@ setupProficiencyLevelCoreTable.innerHTML =
             </button>
         </div>
     </div>`;
+};
 
 setupProficiencyLevelCoreForm.innerHTML = `
      <form id="setup-proficiency-level-core-form">
@@ -137,7 +213,7 @@ setupProficiencyLevelCoreDetailBox.innerHTML = `
         </div>
     `;
 
-function handleOpenDetailModal(e) {
+async function handleOpenDetailModal(e, proficiencyLevelCoreId) {
   e.stopPropagation();
   setupProficiencyLevelCoreDetailModal.classList.remove("close-modal");
   document.body.style.overflow = "hidden";
@@ -145,6 +221,61 @@ function handleOpenDetailModal(e) {
     item.style.opacity = 0.1;
     item.style.pointerEvents = "none";
   });
+
+  setupProficiencyLevelCoreDetailBox.innerHTML = `<p style="text-align: center">Loading...</p>`;
+
+  try {
+    const response = await retrieveProficiencyLevelCoreByIdService(
+      TOKEN,
+      proficiencyLevelCoreId,
+    );
+
+    setupProficiencyLevelCoreDetailBox.innerHTML = `
+      <form id="detail-proficiency-level-core-form">
+       <div class="row form-field-set">
+            <label>Proficiency Level</label>
+            <input name="proficiencyLevel-core" value="${response.name}" placeholder="Enter Proficiency Level Core Dimensions"/>
+        </div>
+        
+        <div class="row form-cta">
+            <button type="reset" onclick="handleCloseDetailModal()">
+                <span>Cancel</span>
+            </button>
+            <button type="button" id="update-proficiencyLevel-core-btn">
+                <span>Save Changes</span>
+            </button>
+        </div>
+      </form>
+    `;
+
+    document
+      .getElementById("update-proficiencyLevel-core-btn")
+      .addEventListener("click", async () => {
+        const form = document.getElementById("detail-proficiency-level-core-form");
+        const updatedName = form.elements["proficiencyLevel-core"].value;
+
+        const payload = {
+          name: updatedName,
+        };
+
+        try {
+          const response = await updateProficiencyLevelCoreByIdService(
+            TOKEN,
+            proficiencyLevelCoreId,
+            payload,
+          );
+
+          if (response.status == "Success") {
+            handleCloseDetailModal();
+            retrieveAllProficiencyLevelCoreService(TOKEN);
+          }
+        } catch (error) {
+          console.error("Update failed:", error);
+        }
+      });
+  } catch (error) {
+    setupProficiencyLevelCoreDetailBox.innerHTML = `<p class="error-message">Failed to load proficiency level core dimensions.</p>`;
+  }
 }
 
 function handleCloseDetailModal() {
@@ -154,6 +285,8 @@ function handleCloseDetailModal() {
     item.style.opacity = 1;
     item.style.pointerEvents = "auto";
   });
+
+  
 }
 
 function handleOpenSetupProficiencyLevelCoreModal(e) {
@@ -221,7 +354,7 @@ async function handleSetupProficiencyLevelCore(e) {
   const proficiencyLevelCore = form.elements["proficiencyLevel-core"].value;
 
   const setupButton = document.querySelector(
-    '.confirmation-cta button[type="submit"]'
+    '.confirmation-cta button[type="submit"]',
   );
   const errorMessage = document.querySelector(".error-message");
 
@@ -233,7 +366,7 @@ async function handleSetupProficiencyLevelCore(e) {
 
   try {
     const payload = {
-      ...({ name: proficiencyLevelCore }),
+      ...{ name: proficiencyLevelCore },
     };
     const response = await setupProficiencyLevelCoreService(TOKEN, payload);
     if (response.status === "Success") {
@@ -250,6 +383,9 @@ async function handleSetupProficiencyLevelCore(e) {
     setupButton.disabled = false;
   }
 }
+
+renderTable();
+retrieveAllProficiencyLevelCoreService(TOKEN);
 
 window.addEventListener("click", (e) => {
   // condition - if the modal is currently rendered && if the click is not within the modal

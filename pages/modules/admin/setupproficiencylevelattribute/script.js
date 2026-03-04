@@ -1,56 +1,35 @@
 const setupProficiencyLevelAttributeTable =
   document.querySelector(".module-table");
 const setupProficiencyLevelAttributeModal = document.querySelector(
-  ".setup-proficiency-level-attribute-module-modal"
+  ".setup-proficiency-level-attribute-module-modal",
 );
 const setupProficiencyLevelAttributeForm =
   document.querySelector(".module-modal-form");
 const setupProficiencyLevelAttributeConfirmationModal = document.querySelector(
-  ".setup-proficiency-level-attribute-confirmation-modal"
+  ".setup-proficiency-level-attribute-confirmation-modal",
 );
 const setupProficiencyLevelAttributeDetailModal = document.querySelector(
-  ".module-detail-modal"
+  ".module-detail-modal",
 );
 const setupProficiencyLevelAttributeDetailBox = document.querySelector(
-  ".module-modal-detail-box"
+  ".module-modal-detail-box",
 );
 const markedForDeHighlighting = document.querySelectorAll(
-  ".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav"
+  ".module-title-box, .module-navigation, .module-table, .top-nav, .side-nav",
 );
-const headers = [
-  "S/N",
-  "Name",
-  "Company",
-  "Department",
-  "Task Date",
-  "Task Title",
-  "Time Spent",
-  "Manager's Remark",
-  "Status",
-  "View",
-];
-const rows = [""];
+const headers = ["", "S/N", "Name", "Proficiency Level", "Core Dimension"];
 
-const proficiencyLevelDimension = [
-  { id: 1, name: "Select a dimension" },
-  { id: 2, name: "Communication" },
-  { id: 3, name: "Technical Skills" },
-  { id: 4, name: "Leadership" },
-];
-
-const proficiencyLevel = [
-  { id: 1, name: "Select a level" },
-  { id: 2, name: "Beginner" },
-  { id: 3, name: "Intermediate" },
-  { id: 4, name: "Advanced" },
-];
+let rows = [];
+let proficiencyLevels = [];
+let proficiencyLevelCoreDimensions = [];
 
 const TOKEN = sessionStorage.getItem("access_token");
 const BASE_ENDPOINT = "http://52.150.234.195:7268/api";
 
+
 const setupProficiencyLevelAttributeService = async (
   TOKEN,
-  proficiencyLevelAttributeDetails
+  proficiencyLevelAttributeDetails,
 ) => {
   try {
     const response = await fetch(
@@ -62,7 +41,7 @@ const setupProficiencyLevelAttributeService = async (
           "Content-Type": "application/json",
         },
         body: JSON.stringify(proficiencyLevelAttributeDetails),
-      }
+      },
     );
     const res = await response.json();
     if (!response.ok) {
@@ -71,14 +50,145 @@ const setupProficiencyLevelAttributeService = async (
     }
     return res;
   } catch (error) {
+    console.error("API post error:", error);
+    throw error;
+  }
+};
+
+const retrieveAllProficiencyLevelAttributeService = async (TOKEN) => {
+  try {
+    const response = await fetch(
+      `${BASE_ENDPOINT}/Proficiencies/level-core-attributes`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${TOKEN}`,
+          "Content-Type": "application/json",
+        },
+      },
+    );
+    const res = await response.json();
+
+    console.log(res);
+    if (!response.ok) {
+      console.error("Error:", res);
+      throw new Error(res.message);
+    }
+
+    rows = res?.data;
+    renderTable();
+    return rows;
+  } catch (error) {
     console.error("API fetch error:", error);
     throw error;
   }
 };
 
-setupProficiencyLevelAttributeTable.innerHTML =
-  rows.length > 0
-    ? `<table>
+const retrieveProficiencyLevelAttributeByIdService = async (
+  TOKEN,
+  proficiencyLevelAttributeId,
+) => {
+  try {
+    const response = await fetch(
+      `${BASE_ENDPOINT}/Proficiencies/level-core-attributes/${proficiencyLevelAttributeId}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${TOKEN}`,
+          "Content-Type": "application/json",
+        },
+      },
+    );
+    const res = await response.json();
+    if (!response.ok) {
+      throw new Error(res.message);
+    }
+    return res?.data;
+  } catch (error) {
+    console.error("API fetch error:", error);
+    throw error;
+  }
+};
+
+const updateProficiencyLevelAttributeByIdService = async (
+  TOKEN,
+  proficiencyLevelAttributeId,
+  proficiencyLevelAttributeDetails,
+) => {
+  try {
+    const response = await fetch(
+      `${BASE_ENDPOINT}/Proficiencies/level-core-attributes/${proficiencyLevelAttributeId}`,
+      {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${TOKEN}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(proficiencyLevelAttributeDetails),
+      },
+    );
+    const res = await response.json();
+    console.log(res);
+    if (!response.ok) {
+      console.error("Error:", res);
+      throw new Error(res.message);
+    }
+    return res;
+  } catch (error) {
+    console.error("API patch error:", error);
+    throw error;
+  }
+};
+
+const retrieveAllProficiencyLevelsService = async (TOKEN) => {
+  try {
+    const response = await fetch(`${BASE_ENDPOINT}/Proficiencies/levels`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+        "Content-Type": "application/json",
+      },
+    });
+    const res = await response.json();
+    if (!response.ok) {
+      throw new Error(res.message);
+    }
+    proficiencyLevels = res?.data || [];
+    return proficiencyLevels;
+  } catch (error) {
+    console.error("API fetch error (levels):", error);
+    throw error;
+  }
+};
+
+const retrieveAllProficiencyLevelCoreDimensionsService = async (TOKEN) => {
+  try {
+    const response = await fetch(
+      `${BASE_ENDPOINT}/Proficiencies/level-core-dimensions`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${TOKEN}`,
+          "Content-Type": "application/json",
+        },
+      },
+    );
+    const res = await response.json();
+    if (!response.ok) {
+      throw new Error(res.message);
+    }
+    proficiencyLevelCoreDimensions = res?.data || [];
+    return proficiencyLevelCoreDimensions;
+  } catch (error) {
+    console.error("API fetch error (core dimensions):", error);
+    throw error;
+  }
+};
+
+const renderTable = () => {
+  setupProficiencyLevelAttributeTable.innerHTML =
+    rows.length > 0
+      ? `<table>
         <thead>
             <tr>
                 ${headers
@@ -87,7 +197,7 @@ setupProficiencyLevelAttributeTable.innerHTML =
                     <th key=${index}>
                         ${header}
                     </th>
-                `
+                `,
                   )
                   .join("")}
             </tr>
@@ -98,58 +208,71 @@ setupProficiencyLevelAttributeTable.innerHTML =
             (row, index) => `
                 <tr 
                     key=${index}
-                    onclick="handleOpenDetailModal(event)"
+                    onclick="handleOpenDetailModal(event, ${row.id})"
                 >
                     <td>
                         <input 
                             type="checkbox"
                         />
                     </td>
-                    <td>${row}</td>
-                    <td>hii</td>
+                    <td>${row?.id}</td>
+                    <td>${row.name}</td>
+                    <td>${row.proficiencyLevel}</td>
+                    <td>${row.proficiencyLevelCoreDimension}</td>
                 </tr>
-            `
+            `,
           )
           .join("")}
         </tbody>
     </table>`
-    : `<div class="call-to-action">
+      : `<div class="call-to-action">
         <div>
             <img src=${"../../assets/search.svg"} alt="search-icon"/>
         </div>
         <div>
             <h3>Nothing to see here...yet</h3>
-            <p>When Ofofon logs his setup proficiency level attribute, they will show up here</p>
+            <p>When proficiency level attributes are added, they will show up here</p>
         </div>
         <div class="cta-box">
-            <button onclick="handleOpenSetupProficiencyLevelAttribute(event)">
+            <button onclick="handleOpenSetupProficiencyLevelAttributeModal(event)">
                 <span>Add New Setup Proficiency Level Attribute</span>
             </button>
         </div>
     </div>`;
+};
 
-setupProficiencyLevelAttributeForm.innerHTML = `
-    <form id="setup-proficiency-attribute">
+
+const renderAddForm = () => {
+  setupProficiencyLevelAttributeForm.innerHTML = `
+    <form id="setup-proficiency-level-attribute-form">
         <div class="row form-field-set">
             <label>Proficiency Level Core Attribute</label>
             <input name="proficiency-attribute-name" placeholder="Enter Proficiency Level Core Attribute"/>
         </div>
         <div class="row form-field-set">
-        <label>Proficiency Level Core Dimension</label>
-        <select name="proficiency-core-dimension-id">
-          ${proficiencyLevelDimension.map(
-            (dimension) => `<option>${dimension.name}</option>`
-          )}
-        </select>
-      </div>
-
-       <div class="row form-field-set">
-        <label>Proficiency Level</label>
-        <select name="proficiency-level-id">
-          ${proficiencyLevel.map((level) => `<option>${level.name}</option>`)}
-        </select>
-      </div>
-       
+            <label>Proficiency Level Core Dimension</label>
+            <select name="proficiency-core-dimension-id">
+                <option value="">Select a dimension</option>
+                ${proficiencyLevelCoreDimensions
+                  .map(
+                    (dimension) =>
+                      `<option value="${dimension.id}">${dimension.name}</option>`,
+                  )
+                  .join("")}
+            </select>
+        </div>
+        <div class="row form-field-set">
+            <label>Proficiency Level</label>
+            <select name="proficiency-level-id">
+                <option value="">Select a level</option>
+                ${proficiencyLevels
+                  .map(
+                    (level) =>
+                      `<option value="${level.id}">${level.name}</option>`,
+                  )
+                  .join("")}
+            </select>
+        </div>
         <div class="row form-cta">
             <button type="reset" onclick="handleCloseSetupProficiencyLevelAttributeModal()">
                 <span>Cancel</span>
@@ -159,16 +282,16 @@ setupProficiencyLevelAttributeForm.innerHTML = `
             </button>
         </div>
     </form>
-`;
+  `;
+};
 
 setupProficiencyLevelAttributeDetailBox.innerHTML = `
-        <div>
-            // details would go in here
-            
-        </div>
-    `;
+    <div>
+        // details would go in here
+    </div>
+`;
 
-function handleOpenDetailModal(e) {
+async function handleOpenDetailModal(e, proficiencyLevelAttributeId) {
   e.stopPropagation();
   setupProficiencyLevelAttributeDetailModal.classList.remove("close-modal");
   document.body.style.overflow = "hidden";
@@ -176,6 +299,91 @@ function handleOpenDetailModal(e) {
     item.style.opacity = 0.1;
     item.style.pointerEvents = "none";
   });
+
+  setupProficiencyLevelAttributeDetailBox.innerHTML = `<p style="text-align: center">Loading...</p>`;
+
+  try {
+    const response = await retrieveProficiencyLevelAttributeByIdService(
+      TOKEN,
+      proficiencyLevelAttributeId,
+    );
+
+    setupProficiencyLevelAttributeDetailBox.innerHTML = `
+      <form id="detail-proficiency-level-attribute-form">
+        <div class="row form-field-set">
+          <label>Proficiency Level Core Attribute</label>
+          <input name="proficiency-attribute-name" value="${response.name}" placeholder="Enter Proficiency Level Core Attribute"/>
+        </div>
+        <div class="row form-field-set">
+          <label>Proficiency Level Core Dimension</label>
+          <select name="proficiency-core-dimension-id">
+            <option value="">Select a dimension</option>
+            ${proficiencyLevelCoreDimensions
+              .map(
+                (dimension) =>
+                  `<option value="${dimension.id}" ${dimension.id === response.proficiencyLevelCoreDimensionId ? "selected" : ""}>${dimension.name}</option>`,
+              )
+              .join("")}
+          </select>
+        </div>
+        <div class="row form-field-set">
+          <label>Proficiency Level</label>
+          <select name="proficiency-level-id">
+            <option value="">Select a level</option>
+            ${proficiencyLevels
+              .map(
+                (level) =>
+                  `<option value="${level.id}" ${level.id === response.proficiencyLevelId ? "selected" : ""}>${level.name}</option>`,
+              )
+              .join("")}
+          </select>
+        </div>
+        <div class="row form-cta">
+          <button type="reset" onclick="handleCloseDetailModal()">
+            <span>Cancel</span>
+          </button>
+          <button type="button" id="update-proficiency-level-attribute-btn">
+            <span>Save Changes</span>
+          </button>
+        </div>
+      </form>
+    `;
+
+    document
+      .getElementById("update-proficiency-level-attribute-btn")
+      .addEventListener("click", async () => {
+        const form = document.getElementById(
+          "detail-proficiency-level-attribute-form",
+        );
+        const updatedName = form.elements["proficiency-attribute-name"].value;
+        const updatedDimensionId =
+          form.elements["proficiency-core-dimension-id"].value;
+        const updatedLevelId = form.elements["proficiency-level-id"].value;
+
+        const payload = {
+          name: updatedName,
+          proficiencyLevelCoreDimensionId: Number(updatedDimensionId),
+          proficiencyLevelId: Number(updatedLevelId),
+        };
+
+        try {
+          const res = await updateProficiencyLevelAttributeByIdService(
+            TOKEN,
+            proficiencyLevelAttributeId,
+            payload,
+          );
+
+          if (res.status === "Success") {
+            handleCloseDetailModal();
+            retrieveAllProficiencyLevelAttributeService(TOKEN);
+          }
+        } catch (error) {
+          console.error("Update failed:", error);
+        }
+      });
+  } catch (error) {
+    setupProficiencyLevelAttributeDetailBox.innerHTML = `<p class="error-message">Failed to load proficiency level attribute details.</p>`;
+  }
 }
 
 function handleCloseDetailModal() {
@@ -187,8 +395,20 @@ function handleCloseDetailModal() {
   });
 }
 
-function handleOpenSetupProficiencyLevelAttribute(e) {
+async function handleOpenSetupProficiencyLevelAttributeModal(e) {
   e.stopPropagation();
+
+  try {
+    await Promise.all([
+      retrieveAllProficiencyLevelsService(TOKEN),
+      retrieveAllProficiencyLevelCoreDimensionsService(TOKEN),
+    ]);
+  } catch (error) {
+    console.error("Failed to load select data:", error);
+  }
+
+  renderAddForm();
+
   setupProficiencyLevelAttributeModal.classList.remove("close-modal");
   document.body.style.overflow = "hidden";
   markedForDeHighlighting.forEach((item) => {
@@ -210,7 +430,7 @@ function handleOpenConfirmationModal(e) {
   e.stopPropagation();
   handleCloseSetupProficiencyLevelAttributeModal();
   setupProficiencyLevelAttributeConfirmationModal.classList.remove(
-    "close-modal"
+    "close-modal",
   );
   document.body.style.overflow = "hidden";
   markedForDeHighlighting.forEach((item) => {
@@ -228,45 +448,18 @@ function handleCloseConfirmationModal() {
   });
 }
 
-function handleOpenSetupManagementModal(e) {
-  e.stopPropagation();
-  setupManagementModal.classList.remove("close-modal");
-  document.body.style.overflow = "hidden";
-  markedForDeHighlighting.forEach((item) => {
-    item.style.opacity = 0.1;
-    item.style.pointerEvents = "none";
-  });
-}
-
-function handleCloseSetupManagementModal() {
-  setupManagementModal.classList.add("close-modal");
-  document.body.style.overflow = "auto";
-  markedForDeHighlighting.forEach((item) => {
-    item.style.opacity = 1;
-    item.style.pointerEvents = "auto";
-  });
-}
-
 async function handleSetupProficiencyLevelAttribute(e) {
   e.preventDefault();
-  const form = document.getElementById("setup-proficiency-attribute");
+
+  const form = document.getElementById("setup-proficiency-level-attribute-form");
   const proficiencyAttributeName =
     form.elements["proficiency-attribute-name"].value;
-  const proficiencyDimensionName =
+  const proficiencyCoreDimensionId =
     form.elements["proficiency-core-dimension-id"].value;
-  const specificProficiencyDimension = proficiencyLevelDimension.find(
-    (d) => d.name === proficiencyDimensionName
-  );
-  const proficiencyDimensionId = specificProficiencyDimension.id;
-
-  const proficiencyLevelName = form.elements["proficiency-level-id"].value;
-  const specificProficiencyLevel = proficiencyLevel.find(
-    (d) => d.name === proficiencyLevelName
-  );
-  const proficiencyLevelId = specificProficiencyLevel.id;
+  const proficiencyLevelId = form.elements["proficiency-level-id"].value;
 
   const setupButton = document.querySelector(
-    '.confirmation-cta button[type="submit"]'
+    '.confirmation-cta button[type="submit"]',
   );
   const errorMessage = document.querySelector(".error-message");
 
@@ -278,33 +471,41 @@ async function handleSetupProficiencyLevelAttribute(e) {
 
   try {
     const payload = {
-      ...{
-        name: proficiencyAttributeName,
-      },
-      proficiencyLevelCoreDimensionId: proficiencyDimensionId,
-      proficiencyLevelId: proficiencyLevelId,
+      name: proficiencyAttributeName,
+      proficiencyLevelCoreDimensionId: Number(proficiencyCoreDimensionId),
+      proficiencyLevelId: Number(proficiencyLevelId),
     };
+
     const response = await setupProficiencyLevelAttributeService(
       TOKEN,
-      payload
+      payload,
     );
+
     if (response.status === "Success") {
       handleCloseConfirmationModal();
+      retrieveAllProficiencyLevelAttributeService(TOKEN);
     } else {
-      errorMessage.innerHTML = `Setup Proficiency Level Core Attribute failed. Please check your credentials and try again`;
-      console.log("Failed to setup proficiency level core attribute");
+      errorMessage.innerHTML = `Setup Proficiency Level Attribute failed. Please check your inputs and try again`;
+      console.log("Failed to setup proficiency level attribute");
     }
   } catch (error) {
-    errorMessage.innerHTML = `Setup Proficiency Level Core Attribute failed. Please check your credentials and try again`;
-    console.error("Setup Proficiency Level Core Attribute failed:", error);
+    errorMessage.innerHTML = `Setup Proficiency Level Attribute failed. Please check your inputs and try again`;
+    console.error("Setup Proficiency Level Attribute failed:", error);
   } finally {
     setupButton.innerHTML = originalText;
     setupButton.disabled = false;
   }
 }
 
+renderTable();
+retrieveAllProficiencyLevelAttributeService(TOKEN);
+
+Promise.all([
+  retrieveAllProficiencyLevelsService(TOKEN),
+  retrieveAllProficiencyLevelCoreDimensionsService(TOKEN),
+]).catch((err) => console.error("Pre-fetch failed:", err));
+
 window.addEventListener("click", (e) => {
-  // condition - if the modal is currently rendered && if the click is not within the modal
   if (
     !setupProficiencyLevelAttributeModal.classList.contains("close-modal") &&
     !setupProficiencyLevelAttributeModal.contains(e.target)
@@ -313,7 +514,7 @@ window.addEventListener("click", (e) => {
   }
   if (
     !setupProficiencyLevelAttributeDetailModal.classList.contains(
-      "close-modal"
+      "close-modal",
     ) &&
     !setupProficiencyLevelAttributeDetailModal.contains(e.target)
   ) {
