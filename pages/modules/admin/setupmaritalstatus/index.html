@@ -134,7 +134,8 @@
             <h2>Submit Setup Marital Status</h2>
             <p>By submitting this Setup Marital Status you show your availability and the task you accomplished for the day
             </p>
-            <form>
+            <form onsubmit="handleSetupMaritalStatus(event)">
+                <p class="error-message"></p>
                 <label>
                     <input type="checkbox" />
                     Don’t show this again

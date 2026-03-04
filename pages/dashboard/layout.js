@@ -488,7 +488,7 @@ const selfServiceItems = [
       },
       {
         name: "My Profile",
-        url: "../modules/selfservice/myprofile/index.html",
+        url: "/selfservice/myprofile/index.html",
       },
       {
         name: "My Assigned's Asset",
@@ -848,133 +848,133 @@ const setupManagementItems = {
     },
     {
       name: "Setup Team",
-      url: "../setupteam/index.html"   
+      url: "/pages/modules/admin/setupteam/index.html"   
     },
     {
       name: "Setup Staff Level Group",
-      url: "../setupstafflevelgroup/index.html"   
+      url: "/pages/modules/admin/setupstafflevelgroup/index.html"   
     },
     {
       name: "Setup Staff Level",
-      url: "../setupstafflevel/index.html"   
+      url: "/pages/modules/admin/setupstafflevel/index.html"   
     },
     {
       name: "Setup Staff Level Step",
-      url: "../setupstafflevelstep/index.html"   
+      url: "/pages/modules/admin/setupstafflevelstep/index.html"   
     },
     {
       name: "Setup Staff Type",
-      url: "../setupstafftype/index.html"   
+      url: "/pages/modules/admin/setupstafftype/index.html"   
     },
     {
       name: "Setup Staff Class",
-      url: "../setupstaffclass/index.html"   
+      url: "/pages/modules/admin/setupstaffclass/index.html"   
     },
     {
       name: "Setup Job Position",
-      url: "../setupjobposition/index.html"   
+      url: "/pages/modules/admin/setupjobposition/index.html"   
     },
     {
       name: "Setup Benefit",
-      url: "../setupbenefit/index.html"   
+      url: "/pages/modules/admin/setupbenefit/index.html"   
     },
     {
       name: "Setup Bank",
-      url: "../setupbank/index.html"   
+      url: "/pages/modules/admin/setupbank/index.html"   
     },
     {
       name: "Setup Pension",
-      url: "../setuppension/index.html"   
+      url: "/pages/modules/admin/setuppension/index.html"   
     },
     {
       name: "Setup Office Location",
-      url: "../setupofficelocation/index.html"   
+      url: "/pages/modules/admin/setupofficelocation/index.html"   
     },
     {
       name: "Setup Asset",
-      url: "../setupasset/index.html"   
+      url: "/pages/modules/admin/setupasset/index.html"   
     },
   ],
   "Approval setup": [
     {
       name: "Setup Approval Group",
-      url: "../setupapprovalgroup/index.html"
+      url: "/pages/modules/admin/setupapprovalgroup/index.html"
     },
     {
       name: "Setup Approval Group Users",
-      url: "../setupapprovalgroupusers/index.html"
+      url: "/pages/modules/admin/setupapprovalgroupusers/index.html"
     },
   ],
   "Loan Setup": [
     {
       name: "Setup Loan Type",
-      url: "../setuploantype/index.html"
+      url: "/pages/modules/admin/setuploantype/index.html"
     },
     {
       name: "Setup Loan Rate",
-      url: "../setuploanrate/index.html"
+      url: "/pages/modules/admin/setuploanrate/index.html"
     },
     {
       name: "Setup Loan Approval Flow",
-      url: "../setuploanapprovalflow/index.html"
+      url: "/pages/modules/admin/setuploanapprovalflow/index.html"
     },
     {
       name: "Setup Users-Loan Approval",
-      url: "../setupusersloanapproval/index.html"
+      url: "/pages/modules/admin/setupusersloanapproval/index.html"
     },
   ],
   "Leave Setup": [
     {
       name: "Setup Leave Type",
-      url: "../setupleavetype/index.html"
+      url: "/pages/modules/admin/setupleavetype/index.html"
     },
     {
       name: "Setup Leave Days",
-      url: "../setupleavedays/index.html"
+      url: "/pages/modules/admin/setupleavedays/index.html"
     },
     {
       name: "Setup Public Holiday",
-      url: "../setuppublicholiday/index.html"
+      url: "/pages/modules/admin/setuppublicholiday/index.html"
     },
     {
       name: "Setup Leave Approval Flow",
-      url: "../setupleaveapprovalflow/index.html"
+      url: "/pages/modules/admin/setupleaveapprovalflow/index.html"
     },
     {
       name: "Setup Users-Leave Approval",
-      url: "../setupusersleaveapproval/index.html"
+      url: "/pages/modules/admin/setupusersleaveapproval/index.html"
     },
   ],
   "Training Setup": [
     {
       name: "Setup Training Management",
-      url: "../setuptrainingmanagement/index.html"
+      url: "/pages/modules/admin/setuptrainingmanagement/index.html"
     },
     {
       name: "Setup Training Rating",
-      url: "../setuptrainingrating/index.html"
+      url: "/pages/modules/admin/setuptrainingrating/index.html"
     },
   ],
   "Health & Safety Setup": [
     {
       name: "Setup Injury Type",
-      url: "../setupinjurytype/index.html"
+      url: "/pages/modules/admin/setupinjurytype/index.html"
     },
     {
       name: "Setup Injury Outcome",
-      url: "../setupinjuryoutcome/index.html"
+      url: "/pages/modules/admin/setupinjuryoutcome/index.html"
     },
     {
       name: "Setup Illness Type",
-      url: "../setupillnesstype/index.html"
+      url: "/pages/modules/admin/setupillnesstype/index.html"
     },
     {
       name: "Setup Medical Service Provider",
-      url: "../setupmedicalserviceprovider/index.html"
+      url: "/pages/modules/admin/setupmedicalserviceprovider/index.html"
     },
     {
       name: "Setup Medical Treatment Rating",
-      url: "../setupmedicaltreatmentrating/index.html"
+      url: "/pages/modules/admin/setupmedicaltreatmentrating/index.html"
     },
   ],
   "Proficiency Setup": [
